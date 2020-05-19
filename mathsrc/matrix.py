@@ -1,4 +1,14 @@
+"""
+matrix.py: This module defines a Matrix class to represent and perform
+operations on matrices. It also provides a couple additional functions to
+quickly generate identity matrices and compare matrix orders. Refer to the HTML
+documentation for an indepth explanation.
+"""
 import numpy as np
+
+__author__ = "Aditya Banerjee"
+__copyright__ = "Copyright 2020, Aditya Banerjee"
+__status__ = "Development"
 
 
 class Matrix:
