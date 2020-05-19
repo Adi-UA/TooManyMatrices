@@ -1,3 +1,11 @@
+"""
+basicmath.py: This module defines a few functions to perform basic discrete math
+calculations. Refer to the HTML documentation for an indepth explanation.
+"""
+
+__author__ = "Aditya Banerjee"
+__copyright__ = "Copyright 2020, Aditya Banerjee"
+__status__ = "Development"
 
 memo = {}  # Memoizes factorial to speed up dependent functions
 
