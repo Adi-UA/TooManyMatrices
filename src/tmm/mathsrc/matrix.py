@@ -71,7 +71,7 @@ class Matrix:
         Returns: The value stored at (row, col) or None if the position is
             invalid
         """
-        if row > 0 and col > 0 and row < self._row_no and col < self._col_no:
+        if row > 0 and col > 0 and row <= self._row_no and col <= self._col_no:
             return self._matrix[row - 1][col - 1]
         else:
             return None
@@ -476,8 +476,7 @@ def dimensions_match(matrix1, matrix2):
 
     Returns: boolean-- True or False depending on if their orders match or not.
     """
-    return matrix1.get_row_no() * matrix1.get_col_no() == matrix2.get_row_no() * \
-        matrix2.get_col_no()
+    return matrix1.get_row_no() ==  matrix2.get_row_no() and matrix1.get_col_no() == matrix2.get_col_no()
 
 
 def get_identity_matrix(size):
