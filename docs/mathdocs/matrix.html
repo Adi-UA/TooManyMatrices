@@ -5,7 +5,9 @@
 <meta name="viewport" content="width=device-width, initial-scale=1, minimum-scale=1" />
 <meta name="generator" content="pdoc 0.8.1" />
 <title>matrix API documentation</title>
-<meta name="description" content="" />
+<meta name="description" content="matrix.py: This module defines a Matrix class to represent and perform
+operations on matrices. It also provides a couple additional functions to
+…" />
 <link href='https://cdnjs.cloudflare.com/ajax/libs/normalize/8.0.0/normalize.min.css' rel='stylesheet'>
 <link href='https://cdnjs.cloudflare.com/ajax/libs/10up-sanitize.css/8.0.0/sanitize.min.css' rel='stylesheet'>
 <link href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/styles/github.min.css" rel="stylesheet">
@@ -20,11 +22,24 @@
 <h1 class="title">Module <code>matrix</code></h1>
 </header>
 <section id="section-intro">
+<p>matrix.py: This module defines a Matrix class to represent and perform
+operations on matrices. It also provides a couple additional functions to
+quickly generate identity matrices and compare matrix orders. Refer to the HTML
+documentation for an indepth explanation.</p>
 <details class="source">
 <summary>
 <span>Expand source code</span>
 </summary>
-<pre><code class="python">import numpy as np
+<pre><code class="python">&#34;&#34;&#34;
+matrix.py: This module defines a Matrix class to represent and perform
+operations on matrices. It also provides a couple additional functions to
+quickly generate identity matrices and compare matrix orders. Refer to the HTML
+documentation for an indepth explanation.
+&#34;&#34;&#34;
+import numpy as np
+
+__author__ = &#34;Aditya Banerjee&#34;
+__status__ = &#34;Development&#34;
 
 
 class Matrix:
@@ -493,8 +508,7 @@ def dimensions_match(matrix1, matrix2):
 
     Returns: boolean-- True or False depending on if their orders match or not.
     &#34;&#34;&#34;
-    return matrix1.get_row_no() * matrix1.get_col_no() == matrix2.get_row_no() * \
-        matrix2.get_col_no()
+    return matrix1.get_row_no() ==  matrix2.get_row_no() and matrix1.get_col_no() == matrix2.get_col_no()
 
 
 def get_identity_matrix(size):
@@ -542,8 +556,7 @@ second Matrix object</p>
 
     Returns: boolean-- True or False depending on if their orders match or not.
     &#34;&#34;&#34;
-    return matrix1.get_row_no() * matrix1.get_col_no() == matrix2.get_row_no() * \
-        matrix2.get_col_no()</code></pre>
+    return matrix1.get_row_no() ==  matrix2.get_row_no() and matrix1.get_col_no() == matrix2.get_col_no()</code></pre>
 </details>
 </dd>
 <dt id="matrix.get_identity_matrix"><code class="name flex">

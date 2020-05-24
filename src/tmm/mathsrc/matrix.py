@@ -476,8 +476,7 @@ def dimensions_match(matrix1, matrix2):
 
     Returns: boolean-- True or False depending on if their orders match or not.
     """
-    return matrix1.get_row_no() * matrix1.get_col_no() == matrix2.get_row_no() * \
-        matrix2.get_col_no()
+    return matrix1.get_row_no() ==  matrix2.get_row_no() and matrix1.get_col_no() == matrix2.get_col_no()
 
 
 def get_identity_matrix(size):
