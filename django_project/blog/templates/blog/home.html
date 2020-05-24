@@ -1,0 +1,19 @@
+{% extends "blog/header.html" %}
+{% block content %}
+        <form action= "{% url 'choose' %}" method="post">
+                {% csrf_token %}
+                <h2>Operation type</h2>
+                <label for="choice"></label>
+                <select id="choice" name="choice">
+                        <option value="0">None</option>
+                        <option value="Matrix Addition">Matrix Addition</option>
+                        <option value="Matrix Subtraction">Matrix Subtraction</option>
+                        <option value="Matrix Multiplcation">Matrix Multiplcation</option>
+                        <option value="4">4</option>
+                        <option value="5">5</option>
+                </select>
+                <br>
+                <br>
+                <input type="submit">
+        </form>
+{%  endblock content %}
