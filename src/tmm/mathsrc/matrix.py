@@ -71,7 +71,7 @@ class Matrix:
         Returns: The value stored at (row, col) or None if the position is
             invalid
         """
-        if row > 0 and col > 0 and row < self._row_no and col < self._col_no:
+        if row > 0 and col > 0 and row <= self._row_no and col <= self._col_no:
             return self._matrix[row - 1][col - 1]
         else:
             return None

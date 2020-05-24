@@ -1,32 +1,12 @@
 from django.shortcuts import render
 from tmm.mathsrc.matrix import *
+from .utility import *
 
 __author__ = "Ved Shah"
 __status__ = "Development"
 
 # def home(request):
 # return render(request, 'blog/home.html')
-
-
-def clean(s):
-    """
-    This function takes the string input from the HTML text area
-    field and converts those entries into a list of floating-point numbers which
-    will be used to intialize the matrices.
-
-    This function assumes the string only has number values separated by space.
-
-    Arguments:
-        s [str] -- The string to be convereted into a list of floating-point numbers
-        must be space separated and can be on newlines.
-
-    Returns:
-        list -- Python list of floating-point numbers from the string
-    """
-    temp = s.split()
-    for i in range(0, len(temp)):
-        temp[i] = float(temp[i])
-    return temp
 
 
 def home(request):
@@ -67,5 +47,9 @@ def add(request):
         m2 = Matrix(int(request.POST['m2_rows']),
                     int(request.POST['m2_columns']))
         m2.insert_all(clean(request.POST['m2_entry']))
-        print(m1 + m2)
-        return render(request, 'tmm/home.html')
+        c = m1 + m2
+        d = "Hi Aditya" + "\n" + "How are you"
+        k = matrix_to_list(c)
+        print(c)
+        print(k)
+        return render(request, 'tmm/op_addition.html', {'content': k})
