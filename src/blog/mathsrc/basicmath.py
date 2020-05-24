@@ -4,7 +4,6 @@ calculations. Refer to the HTML documentation for an indepth explanation.
 """
 
 __author__ = "Aditya Banerjee"
-__copyright__ = "Copyright 2020, Aditya Banerjee"
 __status__ = "Development"
 
 memo = {}  # Memoizes factorial to speed up dependent functions
