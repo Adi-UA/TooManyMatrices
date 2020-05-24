@@ -7,7 +7,6 @@ documentation for an indepth explanation.
 import numpy as np
 
 __author__ = "Aditya Banerjee"
-__copyright__ = "Copyright 2020, Aditya Banerjee"
 __status__ = "Development"
 
 
