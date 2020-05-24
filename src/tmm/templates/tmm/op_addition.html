@@ -3,36 +3,10 @@
     <h1>Matrix Addition</h1>
     <h1>Matrix 1</h1>
     <h2>Number of Rows </h2>
-    <label for="m1_rows"></label>
-    <select id="m1_rows" name="m1_rows">
-            <option value="0">0</option>
-            <option value="1">1</option>
-            <option value="2">2</option>
-            <option value="3">3</option>
-            <option value="4">4</option>
-            <option value="5">5</option>
-            <option value="6">6</option>
-            <option value="7">7</option>
-            <option value="8">8</option>
-            <option value="9">9</option>
-            <option value="10">10</option>
-    </select>
+    <input id="m1_rows" name="m1_rows">
     <br>
     <h2>Number of Columns </h2>
-    <label for="m1_columns"></label>
-    <select id="m1_columns" name="m1_columns">
-            <option value="0">0</option>
-            <option value="1">1</option>
-            <option value="2">2</option>
-            <option value="3">3</option>
-            <option value="4">4</option>
-            <option value="5">5</option>
-            <option value="6">6</option>
-            <option value="7">7</option>
-            <option value="8">8</option>
-            <option value="9">9</option>
-            <option value="10">10</option>
-    </select>
+    <input id="m1_columns" name="m1_columns">
     <br>
     <h2>Enter Matrix value</h2>
     <br>
@@ -41,36 +15,11 @@
     <br>
     <h1>Matrix 2</h1>
     <h2>Number of Rows </h2>
-    <label for="m2_rows"></label>
-    <select id="m2_rows" name="m2_rows">
-            <option value="0">0</option>
-            <option value="1">1</option>
-            <option value="2">2</option>
-            <option value="3">3</option>
-            <option value="4">4</option>
-            <option value="5">5</option>
-            <option value="6">6</option>
-            <option value="7">7</option>
-            <option value="8">8</option>
-            <option value="9">9</option>
-            <option value="10">10</option>
-    </select>
+    <input id="m2_rows" name="m2_rows">
     <br>
     <h2>Number of Columns </h2>
-    <label for="m2_columns"></label>
-    <select id="m2_columns" name="m2_columns">
-            <option value="0">0</option>
-            <option value="1">1</option>
-            <option value="2">2</option>
-            <option value="3">3</option>
-            <option value="4">4</option>
-            <option value="5">5</option>
-            <option value="6">6</option>
-            <option value="7">7</option>
-            <option value="8">8</option>
-            <option value="9">9</option>
-            <option value="10">10</option>
-    </select>
+    <input id="m2_columns" name="m2_columns">
+    <br>
     <br>
     <h2>Enter Matrix value</h2>
     <br>
@@ -79,3 +28,10 @@
     <br>
     <input type="submit">
 </form>
+<br>
+{% for c in content %}
+    {{c}}
+    <br>
+{% endfor %}
+<br>
+<a href="{% url 'tmm-home' %}">Try another operation</a>
