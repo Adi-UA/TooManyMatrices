@@ -1,5 +1,8 @@
 from tmm.mathsrc.matrix import *
 
+__author__ = "Ved Shah"
+__status__ = "Development"
+
 
 def clean(s):
     """
@@ -23,6 +26,17 @@ def clean(s):
 
 
 def matrix_to_list(m):
+    """
+    This function takes a matrix argument and reformats it to a list of string.
+    Its purpose is to make it possible for the matrix to be displayed appropriately
+    on a html webpage
+
+    Arguments:
+        m [matrix] -- The matrix that needs to be reformated into a list of strings
+
+    Returns:
+        list -- Python list of strings from floating-point numbers
+    """
     matrix_string = []
     for i in range(1, m.get_row_no()+1):
         s = ""
