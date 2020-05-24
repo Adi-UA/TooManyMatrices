@@ -1,4 +1,4 @@
-"""django_project URL Configuration
+"""django_base URL Configuration
 
 The `urlpatterns` list routes URLs to views. For more information please see:
     https://docs.djangoproject.com/en/3.0/topics/http/urls/
@@ -18,8 +18,8 @@ from django.urls import path, include
 
 urlpatterns = [
     path('admin/', admin.site.urls),
-    path('', include('blog.urls')),
+    path('', include('tmm.urls')),
     # Redirects to blogs.url for the localhost:8000 without the /blog part. Basically empty stuff redirects to blog home
-    path('blog/', include('blog.urls')),
+    path('tmm/', include('tmm.urls')),
     # Redirects to blogs.url for the localhost:8000/blog/
 ]

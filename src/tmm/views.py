@@ -1,5 +1,5 @@
 from django.shortcuts import render
-from blog.mathsrc.matrix import *
+from tmm.mathsrc.matrix import *
 
 __author__ = "Ved Shah"
 __status__ = "Development"
@@ -30,7 +30,7 @@ def clean(s):
 
 
 def home(request):
-    return render(request, 'blog/home.html')
+    return render(request, 'tmm/home.html')
 
 
 def choose(request):
@@ -45,9 +45,9 @@ def choose(request):
     if request.method == "POST":
         operation = request.POST['choice']
         if operation == "0":
-            return render(request, 'blog/home.html')
+            return render(request, 'tmm/home.html')
         if operation == "Matrix Addition":
-            return render(request, 'blog/op_addition.html')
+            return render(request, 'tmm/op_addition.html')
 
 
 def add(request):
@@ -68,4 +68,4 @@ def add(request):
                     int(request.POST['m2_columns']))
         m2.insert_all(clean(request.POST['m2_entry']))
         print(m1 + m2)
-        return render(request, 'blog/home.html')
+        return render(request, 'tmm/home.html')
