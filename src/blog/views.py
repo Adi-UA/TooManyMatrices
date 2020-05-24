@@ -1,5 +1,5 @@
 from django.shortcuts import render
-from .matrix import *
+from blog.mathsrc.matrix import *
 # Create your views here.
 
 
