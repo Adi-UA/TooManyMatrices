@@ -4,7 +4,7 @@ __author__ = "Ved Shah"
 __status__ = "Development"
 
 
-def clean(s):
+def clean(s, isInt=False):
     """
     This function takes the string input from the HTML text area
     field and converts those entries into a list of floating-point numbers which
@@ -16,12 +16,18 @@ def clean(s):
         s [str] -- The string to be convereted into a list of floating-point numbers
         must be space separated and can be on newlines.
 
+        isInt [boolean] -- It tells the function if the values returned need to be
+        integers or not
+
     Returns:
         list -- Python list of floating-point numbers from the string
     """
     temp = s.split()
     for i in range(0, len(temp)):
-        temp[i] = float(temp[i])
+        if isInt:
+            temp[i] = int(temp[i])
+        else:
+            temp[i] = float(temp[i])
     return temp
 
 

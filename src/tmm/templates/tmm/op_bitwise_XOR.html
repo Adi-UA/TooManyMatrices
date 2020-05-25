@@ -1,0 +1,29 @@
+<form action= "{% url 'op_bitwiseXOR' %}" method="post">
+    {% csrf_token %}
+    <h1>Matrix Bitwise XOR</h1>
+    <h2>Number of Rows </h2>
+    <input id="m_rows" name="m_rows">
+    <br>
+    <h2>Number of Columns </h2>
+    <input id="m_columns" name="m_columns">
+    <br>
+    <h1>Matrix 1</h1>
+    <h2>Enter Matrix value</h2>
+    <br>
+    <textarea id="m1_entry" name="m1_entry" rows="4" cols="50" placeholder="Enter Matrix values" required></textarea>
+    <br>
+    <h1>Matrix 2</h1>
+    <h2>Enter Matrix value</h2>
+    <br>
+    <textarea id="m2_entry" name="m2_entry" rows="4" cols="50" placeholder="Enter Matrix values" required></textarea>
+    <br>
+    <br>
+    <input type="submit">
+</form>
+<br>
+{% for c in content %}
+    {{c}}
+    <br>
+{% endfor %}
+<br>
+<a href="{% url 'tmm-home' %}">Try another operation</a>
