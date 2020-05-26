@@ -4,10 +4,23 @@ __author__ = "Ved Shah"
 __status__ = "Development"
 
 
+def matrix_builder(request,mindex,entry_index, isSquare = False):
+    m_row_no = int(request.POST[mindex+'_rows'])
+
+    if isSquare:
+        m_col_no = int(request.POST[mindex+'_rows'])
+    else:
+        m_col_no = int(request.POST[mindex+'_columns'])
+
+    m = Matrix(m_row_no,m_col_no)
+    m_entries = request.POST[entry_index+'_entry'].strip()
+
+    return m,m_entries
+
 def clean(s, isInt=False):
     """
     This function takes the string input from the HTML text area
-    field and converts those entries into a list of floating-point numbers or integers 
+    field and converts those entries into a list of floating-point numbers or integers
     (for bitwise operations) which will be used to intialize the matrices.
 
     This function assumes the string only has number values separated by space.
@@ -52,49 +65,38 @@ def matrix_to_list(m):
     return matrix_string
 
 
-def order_checker(request, m1, m2):
+def order_checker(m1, m2, m1_entries, m2_entries):
     """
-    This Function takes the html request and two matrices and makes sure that that the 
+     This Function takes the html request and two matrices and makes sure that that the
     order of each of the matrix is consistent with the order of the entered values
 
     Arguments:
-        request {HTML request} -- HTML POST/GET request
-        m1 {matrix} -- The first Matrix for which you want to run the test
-        m2 {matrix} -- The second Matrix for which you want to run the test
+        m1 {Matrix} -- Matrix 1
+        m2 {Matrix} -- Matrix 2 or None for one matrix
+        m1_entries {str} -- The string of characters to input into m1
+        m2_entries {str} -- The string of characters to input into m2 or None
+        for one matrix
 
     Returns:
-        boolean -- returns true if the order are consistent with the input data.
+        boolean -- True if everything is consistent and False
     """
-    if m1.get_row_no() == get_string_rows(request.POST['m1_entry']) and m1.get_col_no() == get_string_columns(request.POST['m1_entry']) and m2.get_row_no() == get_string_rows(request.POST['m2_entry']) and m2.get_col_no() == get_string_columns(request.POST['m2_entry']):
-        return True
+
+    # Sanity chcek for input and actual dimensions of m1
+    m1_new_line_split = m1_entries.split("\n")
+    m1_row_no = len(m1_new_line_split)
+    m1_col_no = len(m1_new_line_split[0].split())
+
+    if m2 != None:
+        # Sanity chcek for input and actual dimensions of m2
+        m2_new_line_split = m2_entries.split("\n")
+        m2_row_no = len(m2_new_line_split)
+        m2_col_no = len(m2_new_line_split[0].split())
+
+        return (m1.get_row_no() == m1_row_no
+            and m1.get_col_no() == m1_col_no
+            and m2.get_row_no() == m2_row_no
+            and m2.get_col_no() == m2_col_no)
     else:
-        return False
+        return (m1.get_row_no() == m1_row_no
+                and m1.get_col_no() == m1_col_no)
 
-
-def get_string_rows(s):
-    """
-    This function takes the HTML matrix value string and computes the number of rows.
-
-    Arguments:
-        s {string} -- Martrix input string for which the number of rows needs to be computed.
-    
-    Returns:
-        int -- Number of rows
-    """
-    temp = s.split("\n")
-    return(int(len(temp)))
-
-
-def get_string_columns(s):
-    """
-    This function takes the HTML matrix value string and computes the number of columns.
-
-    Arguments:
-        s {string} -- Martrix input string for which the number of columns needs to be computed.
-    
-    Returns:
-        int -- Number of columns
-    """
-    temp = s.split("\n")
-    temp = temp[0].split()
-    return(len(temp))

@@ -53,15 +53,15 @@ def add(request):
         The rendered page view
     """
     if request.method == "POST":
-        m1 = Matrix(int(request.POST['m_rows']),  # request.POST['m1_rows'] gives the value entered in the m1_rows field in the html input
-                    int(request.POST['m_columns']))
-        m2 = Matrix(int(request.POST['m_rows']),
-                    int(request.POST['m_columns']))
-        print(get_string_rows(request.POST['m1_entry']))
-        print(get_string_columns(request.POST['m1_entry']))
-        if order_checker(request, m1, m2) == True:
-            m1.insert_all(clean(request.POST['m1_entry']))
-            m2.insert_all(clean(request.POST['m2_entry']))
+        m1,m1_entries = matrix_builder(request,"m","m1")
+        m2,m2_entries = matrix_builder(request,"m","m2")
+
+        print(str(m1) + "\n")
+        print(m2)
+
+        if order_checker(m1,m2,m1_entries,m2_entries):
+            m1.insert_all(clean(m1_entries))
+            m2.insert_all(clean(m2_entries))
             result_add = matrix_to_list(m1+m2)
             return render(request, 'tmm/op_addition.html', {'content': result_add})
         else:
@@ -80,13 +80,13 @@ def subtract(request):
         The rendered page view
     """
     if request.method == "POST":
-        m1 = Matrix(int(request.POST['m_rows']),  # request.POST['m1_rows'] gives the value entered in the m1_rows field in the html input
-                    int(request.POST['m_columns']))
-        m2 = Matrix(int(request.POST['m_rows']),
-                    int(request.POST['m_columns']))
-        if order_checker(request, m1, m2) == True:
-            m1.insert_all(clean(request.POST['m1_entry']))
-            m2.insert_all(clean(request.POST['m2_entry']))
+        m1,m1_entries = matrix_builder(request,"m","m1")
+        m2,m2_entries = matrix_builder(request,"m","m2")
+
+        if order_checker(m1,m2,m1_entries,m2_entries):
+            m1.insert_all(clean(m1_entries))
+            m2.insert_all(clean(m2_entries))
+
             result_subtract = matrix_to_list(m1-m2)
             return render(request, 'tmm/op_subtraction.html', {'content': result_subtract})
         else:
@@ -105,14 +105,13 @@ def multiply(request):
         The rendered page view
     """
     if request.method == "POST":
-        m1 = Matrix(int(request.POST['m1_rows']),  # request.POST['m1_rows'] gives the value entered in the m1_rows field in the html input
-                    int(request.POST['m1_columns']))
-        m2 = Matrix(int(request.POST['m2_rows']),
-                    int(request.POST['m2_columns']))
-        if order_checker(request, m1, m2) == True:
-            if int(request.POST['m1_columns']) == int(request.POST['m2_rows']):
-                m1.insert_all(clean(request.POST['m1_entry']))
-                m2.insert_all(clean(request.POST['m2_entry']))
+        m1,m1_entries = matrix_builder(request,"m1","m1")
+        m2,m2_entries = matrix_builder(request,"m2","m2")
+
+        if order_checker(m1,m2,m1_entries,m2_entries):
+            if m1.get_col_no() == m2.get_row_no():
+                m1.insert_all(clean(m1_entries))
+                m2.insert_all(clean(m2_entries))
                 result_multiply = matrix_to_list(m1*m2)
                 return render(request, 'tmm/op_multiplication.html', {'content': result_multiply})
             else:
@@ -136,13 +135,13 @@ def bit_or(request):
         The rendered page view
     """
     if request.method == "POST":
-        m1 = Matrix(int(request.POST['m_rows']),  # request.POST['m1_rows'] gives the value entered in the m1_rows field in the html input
-                    int(request.POST['m_columns']))
-        m2 = Matrix(int(request.POST['m_rows']),
-                    int(request.POST['m_columns']))
-        if order_checker(request, m1, m2) == True:
-            m1.insert_all(clean(request.POST['m1_entry'], True))
-            m2.insert_all(clean(request.POST['m2_entry'], True))
+
+        m1,m1_entries = matrix_builder(request,"m","m1")
+        m2,m2_entries = matrix_builder(request,"m","m2")
+
+        if order_checker(m1,m2,m1_entries,m2_entries):
+            m1.insert_all(clean(m1_entries, True))
+            m2.insert_all(clean(m2_entries, True))
             result_bit_or = matrix_to_list(m1 | m2)
             return render(request, 'tmm/op_bitwise_OR.html', {'content': result_bit_or})
         else:
@@ -161,13 +160,12 @@ def bit_and(request):
         The rendered page view
     """
     if request.method == "POST":
-        m1 = Matrix(int(request.POST['m_rows']),  # request.POST['m1_rows'] gives the value entered in the m1_rows field in the html input
-                    int(request.POST['m_columns']))
-        m2 = Matrix(int(request.POST['m_rows']),
-                    int(request.POST['m_columns']))
-        if order_checker(request, m1, m2) == True:
-            m1.insert_all(clean(request.POST['m1_entry'], True))
-            m2.insert_all(clean(request.POST['m2_entry'], True))
+        m1,m1_entries = matrix_builder(request,"m","m1")
+        m2,m2_entries = matrix_builder(request,"m","m2")
+
+        if order_checker(m1,m2,m1_entries,m2_entries):
+            m1.insert_all(clean(m1_entries, True))
+            m2.insert_all(clean(m2_entries, True))
             result_bit_and = matrix_to_list(m1 & m2)
             return render(request, 'tmm/op_bitwise_AND.html', {'content': result_bit_and})
 
@@ -187,13 +185,12 @@ def bit_xor(request):
         The rendered page view
     """
     if request.method == "POST":
-        m1 = Matrix(int(request.POST['m_rows']),  # request.POST['m1_rows'] gives the value entered in the m1_rows field in the html input
-                    int(request.POST['m_columns']))
-        m2 = Matrix(int(request.POST['m_rows']),
-                    int(request.POST['m_columns']))
-        if order_checker(request, m1, m2) == True:
-            m1.insert_all(clean(request.POST['m1_entry'], True))
-            m2.insert_all(clean(request.POST['m2_entry'], True))
+        m1,m1_entries = matrix_builder(request,"m","m1")
+        m2,m2_entries = matrix_builder(request,"m","m2")
+
+        if order_checker(m1,m2,m1_entries,m2_entries):
+            m1.insert_all(clean(m1_entries, True))
+            m2.insert_all(clean(m2_entries, True))
             result_bit_xor = matrix_to_list(m1 ^ m2)
             return render(request, 'tmm/op_bitwise_XOR.html', {'content': result_bit_xor})
         else:
@@ -212,11 +209,12 @@ def power(request):
         The rendered page view
     """
     if request.method == "POST":
-        m1 = Matrix(int(request.POST['m1_rc']),  # request.POST['m1_rows'] gives the value entered in the m1_rows field in the html input
-                    int(request.POST['m1_rc']))
+
+        m1, m1_entries = matrix_builder(request,"m","m1", True)
         power = int(request.POST['pow'])
-        if int(request.POST['m1_rc']) == get_string_rows(request.POST['m1_entry']) and int(request.POST['m1_rc']) == get_string_columns(request.POST['m1_entry']):
-            m1.insert_all(clean(request.POST['m1_entry']))
+
+        if order_checker(m1,None,m1_entries,None):
+            m1.insert_all(clean(m1_entries))
             result_power = matrix_to_list(m1 ** power)
             return render(request, 'tmm/op_power.html', {'content': result_power})
         else:
