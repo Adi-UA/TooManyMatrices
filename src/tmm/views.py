@@ -55,12 +55,16 @@ def add(request):
     if request.method == "POST":
         m1 = Matrix(int(request.POST['m_rows']),  # request.POST['m1_rows'] gives the value entered in the m1_rows field in the html input
                     int(request.POST['m_columns']))
-        m1.insert_all(clean(request.POST['m1_entry']))
         m2 = Matrix(int(request.POST['m_rows']),
                     int(request.POST['m_columns']))
-        m2.insert_all(clean(request.POST['m2_entry']))
-        result_add = matrix_to_list(m1+m2)
-        return render(request, 'tmm/op_addition.html', {'content': result_add})
+        if m1.get_row_no() * m1.get_col_no() == len(clean(request.POST['m1_entry'])) and m2.get_row_no() * m2.get_col_no() == len(clean(request.POST['m2_entry'])):
+            m1.insert_all(clean(request.POST['m1_entry']))
+            m2.insert_all(clean(request.POST['m2_entry']))
+            result_add = matrix_to_list(m1+m2)
+            return render(request, 'tmm/op_addition.html', {'content': result_add})
+        else:
+            result_error = "Your specified and actual matrix dimensions differ"
+            return render(request, 'tmm/op_addition.html', {'content': [result_error]})
 
 
 def subtract(request):
@@ -76,12 +80,16 @@ def subtract(request):
     if request.method == "POST":
         m1 = Matrix(int(request.POST['m_rows']),  # request.POST['m1_rows'] gives the value entered in the m1_rows field in the html input
                     int(request.POST['m_columns']))
-        m1.insert_all(clean(request.POST['m1_entry']))
         m2 = Matrix(int(request.POST['m_rows']),
                     int(request.POST['m_columns']))
-        m2.insert_all(clean(request.POST['m2_entry']))
-        result_subtract = matrix_to_list(m1-m2)
-        return render(request, 'tmm/op_subtraction.html', {'content': result_subtract})
+        if m1.get_row_no() * m1.get_col_no() == len(clean(request.POST['m1_entry'])) and m2.get_row_no() * m2.get_col_no() == len(clean(request.POST['m2_entry'])):
+            m1.insert_all(clean(request.POST['m1_entry']))
+            m2.insert_all(clean(request.POST['m2_entry']))
+            result_subtract = matrix_to_list(m1-m2)
+            return render(request, 'tmm/op_subtraction.html', {'content': result_subtract})
+        else:
+            result_error = "Your specified and actual matrix dimensions differ"
+            return render(request, 'tmm/op_subtraction.html', {'content': [result_error]})
 
 
 def multiply(request):
@@ -97,12 +105,16 @@ def multiply(request):
     if request.method == "POST":
         m1 = Matrix(int(request.POST['m1_rows']),  # request.POST['m1_rows'] gives the value entered in the m1_rows field in the html input
                     int(request.POST['m1_columns']))
-        m1.insert_all(clean(request.POST['m1_entry']))
         m2 = Matrix(int(request.POST['m2_rows']),
                     int(request.POST['m2_columns']))
-        m2.insert_all(clean(request.POST['m2_entry']))
-        result_multiply = matrix_to_list(m1*m2)
-        return render(request, 'tmm/op_multiplication.html', {'content': result_multiply})
+        if m1.get_row_no() * m1.get_col_no() == len(clean(request.POST['m1_entry'])) and m2.get_row_no() * m2.get_col_no() == len(clean(request.POST['m2_entry'])):
+            m1.insert_all(clean(request.POST['m1_entry']))
+            m2.insert_all(clean(request.POST['m2_entry']))
+            result_multiply = matrix_to_list(m1*m2)
+            return render(request, 'tmm/op_multiplication.html', {'content': result_multiply})
+        else:
+            result_error = "Your specified and actual matrix dimensions differ"
+            return render(request, 'tmm/op_multiplication.html', {'content': [result_error]})
 
 
 def bit_or(request):
@@ -118,12 +130,16 @@ def bit_or(request):
     if request.method == "POST":
         m1 = Matrix(int(request.POST['m_rows']),  # request.POST['m1_rows'] gives the value entered in the m1_rows field in the html input
                     int(request.POST['m_columns']))
-        m1.insert_all(clean(request.POST['m1_entry'], True))
         m2 = Matrix(int(request.POST['m_rows']),
                     int(request.POST['m_columns']))
-        m2.insert_all(clean(request.POST['m2_entry'], True))
-        result_bit_or = matrix_to_list(m1 | m2)
-        return render(request, 'tmm/op_bitwise_OR.html', {'content': result_bit_or})
+        if m1.get_row_no() * m1.get_col_no() == len(clean(request.POST['m1_entry'])) and m2.get_row_no() * m2.get_col_no() == len(clean(request.POST['m2_entry'])):
+            m1.insert_all(clean(request.POST['m1_entry'], True))
+            m2.insert_all(clean(request.POST['m2_entry'], True))
+            result_bit_or = matrix_to_list(m1 | m2)
+            return render(request, 'tmm/op_bitwise_OR.html', {'content': result_bit_or})
+        else:
+            result_error = "Your specified and actual matrix dimensions differ"
+            return render(request, 'tmm/op_bitwise_OR.html', {'content': [result_error]})
 
 
 def bit_and(request):
@@ -139,12 +155,17 @@ def bit_and(request):
     if request.method == "POST":
         m1 = Matrix(int(request.POST['m_rows']),  # request.POST['m1_rows'] gives the value entered in the m1_rows field in the html input
                     int(request.POST['m_columns']))
-        m1.insert_all(clean(request.POST['m1_entry'], True))
         m2 = Matrix(int(request.POST['m_rows']),
                     int(request.POST['m_columns']))
-        m2.insert_all(clean(request.POST['m2_entry'], True))
-        result_bit_and = matrix_to_list(m1 & m2)
-        return render(request, 'tmm/op_bitwise_AND.html', {'content': result_bit_and})
+        if m1.get_row_no() * m1.get_col_no() == len(clean(request.POST['m1_entry'])) and m2.get_row_no() * m2.get_col_no() == len(clean(request.POST['m2_entry'])):
+            m1.insert_all(clean(request.POST['m1_entry'], True))
+            m2.insert_all(clean(request.POST['m2_entry'], True))
+            result_bit_and = matrix_to_list(m1 & m2)
+            return render(request, 'tmm/op_bitwise_AND.html', {'content': result_bit_and})
+
+        else:
+            result_error = "Your specified and actual matrix dimensions differ"
+            return render(request, 'tmm/op_bitwise_AND.html', {'content': [result_error]})
 
 
 def bit_xor(request):
@@ -160,12 +181,16 @@ def bit_xor(request):
     if request.method == "POST":
         m1 = Matrix(int(request.POST['m_rows']),  # request.POST['m1_rows'] gives the value entered in the m1_rows field in the html input
                     int(request.POST['m_columns']))
-        m1.insert_all(clean(request.POST['m1_entry'], True))
         m2 = Matrix(int(request.POST['m_rows']),
                     int(request.POST['m_columns']))
-        m2.insert_all(clean(request.POST['m2_entry'], True))
-        result_bit_xor = matrix_to_list(m1 ^ m2)
-        return render(request, 'tmm/op_bitwise_XOR.html', {'content': result_bit_xor})
+        if m1.get_row_no() * m1.get_col_no() == len(clean(request.POST['m1_entry'])) and m2.get_row_no() * m2.get_col_no() == len(clean(request.POST['m2_entry'])):
+            m1.insert_all(clean(request.POST['m1_entry'], True))
+            m2.insert_all(clean(request.POST['m2_entry'], True))
+            result_bit_xor = matrix_to_list(m1 ^ m2)
+            return render(request, 'tmm/op_bitwise_XOR.html', {'content': result_bit_xor})
+        else:
+            result_error = "Your specified and actual matrix dimensions differ"
+            return render(request, 'tmm/op_bitwise_XOR.html', {'content': [result_error]})
 
 
 def power(request):
@@ -181,7 +206,11 @@ def power(request):
     if request.method == "POST":
         m1 = Matrix(int(request.POST['m1_rows']),  # request.POST['m1_rows'] gives the value entered in the m1_rows field in the html input
                     int(request.POST['m1_columns']))
-        m1.insert_all(clean(request.POST['m1_entry']))
-        power = int(request.POST['pow'])
-        result_power = matrix_to_list(m1**power)
-        return render(request, 'tmm/op_power.html', {'content': result_power})
+        if m1.get_row_no() * m1.get_col_no() == len(clean(request.POST['m1_entry'])):
+            m1.insert_all(clean(request.POST['m1_entry']))
+            power = int(request.POST['pow'])
+            result_power = matrix_to_list(m1 ** power)
+            return render(request, 'tmm/op_power.html', {'content': result_power})
+        else:
+            result_error = "Your specified and actual matrix dimensions differ"
+            return render(request, 'tmm/op_power.html', {'content': [result_error]})
