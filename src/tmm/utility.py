@@ -7,8 +7,8 @@ __status__ = "Development"
 def clean(s, isInt=False):
     """
     This function takes the string input from the HTML text area
-    field and converts those entries into a list of floating-point numbers which
-    will be used to intialize the matrices.
+    field and converts those entries into a list of floating-point numbers or integers 
+    (for bitwise operations) which will be used to intialize the matrices.
 
     This function assumes the string only has number values separated by space.
 
