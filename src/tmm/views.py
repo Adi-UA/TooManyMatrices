@@ -57,7 +57,9 @@ def add(request):
                     int(request.POST['m_columns']))
         m2 = Matrix(int(request.POST['m_rows']),
                     int(request.POST['m_columns']))
-        if m1.get_row_no() * m1.get_col_no() == len(clean(request.POST['m1_entry'])) and m2.get_row_no() * m2.get_col_no() == len(clean(request.POST['m2_entry'])):
+        print(get_string_rows(request.POST['m1_entry']))
+        print(get_string_columns(request.POST['m1_entry']))
+        if order_checker(request, m1, m2) == True:
             m1.insert_all(clean(request.POST['m1_entry']))
             m2.insert_all(clean(request.POST['m2_entry']))
             result_add = matrix_to_list(m1+m2)
@@ -82,7 +84,7 @@ def subtract(request):
                     int(request.POST['m_columns']))
         m2 = Matrix(int(request.POST['m_rows']),
                     int(request.POST['m_columns']))
-        if m1.get_row_no() * m1.get_col_no() == len(clean(request.POST['m1_entry'])) and m2.get_row_no() * m2.get_col_no() == len(clean(request.POST['m2_entry'])):
+        if order_checker(request, m1, m2) == True:
             m1.insert_all(clean(request.POST['m1_entry']))
             m2.insert_all(clean(request.POST['m2_entry']))
             result_subtract = matrix_to_list(m1-m2)
@@ -107,11 +109,17 @@ def multiply(request):
                     int(request.POST['m1_columns']))
         m2 = Matrix(int(request.POST['m2_rows']),
                     int(request.POST['m2_columns']))
-        if m1.get_row_no() * m1.get_col_no() == len(clean(request.POST['m1_entry'])) and m2.get_row_no() * m2.get_col_no() == len(clean(request.POST['m2_entry'])):
-            m1.insert_all(clean(request.POST['m1_entry']))
-            m2.insert_all(clean(request.POST['m2_entry']))
-            result_multiply = matrix_to_list(m1*m2)
-            return render(request, 'tmm/op_multiplication.html', {'content': result_multiply})
+        if order_checker(request, m1, m2) == True:
+            if int(request.POST['m1_columns']) == int(request.POST['m2_rows']):
+                m1.insert_all(clean(request.POST['m1_entry']))
+                m2.insert_all(clean(request.POST['m2_entry']))
+                result_multiply = matrix_to_list(m1*m2)
+                return render(request, 'tmm/op_multiplication.html', {'content': result_multiply})
+            else:
+                multiplication_error_1 = "Matrix Multiplcation condition is not satisfied"
+                multiplication_error_2 = "Number of Columns in matrix 1 is not equal to number of rows in matrix 2."
+                return render(request, 'tmm/op_multiplication.html', {'content': [multiplication_error_1, multiplication_error_2]})
+
         else:
             result_error = "Your specified and actual matrix dimensions differ"
             return render(request, 'tmm/op_multiplication.html', {'content': [result_error]})
@@ -132,7 +140,7 @@ def bit_or(request):
                     int(request.POST['m_columns']))
         m2 = Matrix(int(request.POST['m_rows']),
                     int(request.POST['m_columns']))
-        if m1.get_row_no() * m1.get_col_no() == len(clean(request.POST['m1_entry'])) and m2.get_row_no() * m2.get_col_no() == len(clean(request.POST['m2_entry'])):
+        if order_checker(request, m1, m2) == True:
             m1.insert_all(clean(request.POST['m1_entry'], True))
             m2.insert_all(clean(request.POST['m2_entry'], True))
             result_bit_or = matrix_to_list(m1 | m2)
@@ -157,7 +165,7 @@ def bit_and(request):
                     int(request.POST['m_columns']))
         m2 = Matrix(int(request.POST['m_rows']),
                     int(request.POST['m_columns']))
-        if m1.get_row_no() * m1.get_col_no() == len(clean(request.POST['m1_entry'])) and m2.get_row_no() * m2.get_col_no() == len(clean(request.POST['m2_entry'])):
+        if order_checker(request, m1, m2) == True:
             m1.insert_all(clean(request.POST['m1_entry'], True))
             m2.insert_all(clean(request.POST['m2_entry'], True))
             result_bit_and = matrix_to_list(m1 & m2)
@@ -183,7 +191,7 @@ def bit_xor(request):
                     int(request.POST['m_columns']))
         m2 = Matrix(int(request.POST['m_rows']),
                     int(request.POST['m_columns']))
-        if m1.get_row_no() * m1.get_col_no() == len(clean(request.POST['m1_entry'])) and m2.get_row_no() * m2.get_col_no() == len(clean(request.POST['m2_entry'])):
+        if order_checker(request, m1, m2) == True:
             m1.insert_all(clean(request.POST['m1_entry'], True))
             m2.insert_all(clean(request.POST['m2_entry'], True))
             result_bit_xor = matrix_to_list(m1 ^ m2)
@@ -204,11 +212,11 @@ def power(request):
         The rendered page view
     """
     if request.method == "POST":
-        m1 = Matrix(int(request.POST['m1_rows']),  # request.POST['m1_rows'] gives the value entered in the m1_rows field in the html input
-                    int(request.POST['m1_columns']))
-        if m1.get_row_no() * m1.get_col_no() == len(clean(request.POST['m1_entry'])):
+        m1 = Matrix(int(request.POST['m1_rc']),  # request.POST['m1_rows'] gives the value entered in the m1_rows field in the html input
+                    int(request.POST['m1_rc']))
+        power = int(request.POST['pow'])
+        if int(request.POST['m1_rc']) == get_string_rows(request.POST['m1_entry']) and int(request.POST['m1_rc']) == get_string_columns(request.POST['m1_entry']):
             m1.insert_all(clean(request.POST['m1_entry']))
-            power = int(request.POST['pow'])
             result_power = matrix_to_list(m1 ** power)
             return render(request, 'tmm/op_power.html', {'content': result_power})
         else:

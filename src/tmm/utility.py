@@ -50,3 +50,51 @@ def matrix_to_list(m):
             s += str(m.get_value(i, j)) + " "
         matrix_string.append(s)
     return matrix_string
+
+
+def order_checker(request, m1, m2):
+    """
+    This Function takes the html request and two matrices and makes sure that that the 
+    order of each of the matrix is consistent with the order of the entered values
+
+    Arguments:
+        request {HTML request} -- HTML POST/GET request
+        m1 {matrix} -- The first Matrix for which you want to run the test
+        m2 {matrix} -- The second Matrix for which you want to run the test
+
+    Returns:
+        boolean -- returns true if the order are consistent with the input data.
+    """
+    if m1.get_row_no() == get_string_rows(request.POST['m1_entry']) and m1.get_col_no() == get_string_columns(request.POST['m1_entry']) and m2.get_row_no() == get_string_rows(request.POST['m2_entry']) and m2.get_col_no() == get_string_columns(request.POST['m2_entry']):
+        return True
+    else:
+        return False
+
+
+def get_string_rows(s):
+    """
+    This function takes the HTML matrix value string and computes the number of rows.
+
+    Arguments:
+        s {string} -- Martrix input string for which the number of rows needs to be computed.
+    
+    Returns:
+        int -- Number of rows
+    """
+    temp = s.split("\n")
+    return(int(len(temp)))
+
+
+def get_string_columns(s):
+    """
+    This function takes the HTML matrix value string and computes the number of columns.
+
+    Arguments:
+        s {string} -- Martrix input string for which the number of columns needs to be computed.
+    
+    Returns:
+        int -- Number of columns
+    """
+    temp = s.split("\n")
+    temp = temp[0].split()
+    return(len(temp))
