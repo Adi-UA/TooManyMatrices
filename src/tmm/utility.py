@@ -4,18 +4,19 @@ __author__ = "Ved Shah"
 __status__ = "Development"
 
 
-def matrix_builder(request,mindex,entry_index, isSquare = False):
-    m_row_no = int(request.POST[mindex+'_rows'])
+def matrix_builder(request, mindex, entry_index, isSquare=False):
+    m_row_no = int(request.POST[mindex + '_rows'])
 
     if isSquare:
-        m_col_no = int(request.POST[mindex+'_rows'])
+        m_col_no = int(request.POST[mindex + '_rows'])
     else:
-        m_col_no = int(request.POST[mindex+'_columns'])
+        m_col_no = int(request.POST[mindex + '_columns'])
 
-    m = Matrix(m_row_no,m_col_no)
-    m_entries = request.POST[entry_index+'_entry'].strip()
+    m = Matrix(m_row_no, m_col_no)
+    m_entries = request.POST[entry_index + '_entry'].strip()
 
-    return m,m_entries
+    return m, m_entries
+
 
 def clean(s, isInt=False):
     """
@@ -57,9 +58,9 @@ def matrix_to_list(m):
         list -- Python list of strings from floating-point numbers
     """
     matrix_string = []
-    for i in range(1, m.get_row_no()+1):
+    for i in range(1, m.get_row_no() + 1):
         s = ""
-        for j in range(1, m.get_col_no()+1):
+        for j in range(1, m.get_col_no() + 1):
             s += str(m.get_value(i, j)) + " "
         matrix_string.append(s)
     return matrix_string
@@ -86,17 +87,16 @@ def order_checker(m1, m2, m1_entries, m2_entries):
     m1_row_no = len(m1_new_line_split)
     m1_col_no = len(m1_new_line_split[0].split())
 
-    if m2 != None:
+    if m2 is not None:
         # Sanity chcek for input and actual dimensions of m2
         m2_new_line_split = m2_entries.split("\n")
         m2_row_no = len(m2_new_line_split)
         m2_col_no = len(m2_new_line_split[0].split())
 
         return (m1.get_row_no() == m1_row_no
-            and m1.get_col_no() == m1_col_no
-            and m2.get_row_no() == m2_row_no
-            and m2.get_col_no() == m2_col_no)
+                and m1.get_col_no() == m1_col_no
+                and m2.get_row_no() == m2_row_no
+                and m2.get_col_no() == m2_col_no)
     else:
         return (m1.get_row_no() == m1_row_no
                 and m1.get_col_no() == m1_col_no)
-

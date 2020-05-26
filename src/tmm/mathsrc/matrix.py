@@ -219,7 +219,7 @@ class Matrix:
             request was invalid
         """
         if self._row_no == self._col_no and self._row_no > 1 and self._col_no > 1:
-            if row >0 and column >0 and row <= self._row_no and column <= self._col_no:
+            if row > 0 and column > 0 and row <= self._row_no and column <= self._col_no:
                 retval = Matrix(self._row_no - 1, self._col_no - 1)
                 values = []
 
@@ -378,7 +378,7 @@ class Matrix:
             retval = self
             for i in range(pow - 1):
                 retval = retval * self
-                if retval == None:
+                if retval is None:
                     return None
             return retval
         else:
@@ -395,11 +395,11 @@ class Matrix:
         request was invalid
         """
 
-        if isinstance(shift_val,int):
+        if isinstance(shift_val, int):
             retval = Matrix(self._row_no, self._col_no)
             for i in range(self._row_no):
                 for j in range(self._col_no):
-                    if isinstance(self._matrix[i][j],np.int32):
+                    if isinstance(self._matrix[i][j], np.int32):
                         retval._matrix[i][j] = self._matrix[i][j] << shift_val
                     else:
                         return None
@@ -417,11 +417,11 @@ class Matrix:
         Returns: Matrix -- A reference to the resulting matrix. or None if the
         request was invalid
         """
-        if isinstance(shift_val,int):
+        if isinstance(shift_val, int):
             retval = Matrix(self._row_no, self._col_no)
             for i in range(self._row_no):
                 for j in range(self._col_no):
-                    if isinstance(self._matrix[i][j],np.int32):
+                    if isinstance(self._matrix[i][j], np.int32):
                         retval._matrix[i][j] = self._matrix[i][j] >> shift_val
                     else:
                         return None
@@ -498,7 +498,8 @@ def dimensions_match(matrix1, matrix2):
 
     Returns: boolean-- True or False depending on if their orders match or not.
     """
-    return matrix1.get_row_no() ==  matrix2.get_row_no() and matrix1.get_col_no() == matrix2.get_col_no()
+    return matrix1.get_row_no() == matrix2.get_row_no(
+    ) and matrix1.get_col_no() == matrix2.get_col_no()
 
 
 def get_identity_matrix(size):
