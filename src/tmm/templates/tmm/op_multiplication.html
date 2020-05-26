@@ -1,18 +1,23 @@
-<form action= "{% url 'op_add' %}" method="post">
+<form action= "{% url 'op_multiply' %}" method="post">
     {% csrf_token %}
-    <h1>Matrix Addition</h1>
-    <h2>Number of Rows </h2>
-    <input id="m_rows" name="m_rows">
-    <br>
-    <h2>Number of Columns </h2>
-    <input id="m_columns" name="m_columns">
+    <h1>Matrix Multiplication</h1>
     <br>
     <h1>Matrix 1</h1>
+    <h2>Number of Rows </h2>
+    <input id="m1_rows" name="m1_rows">
+    <br>
+    <h2>Number of Columns </h2>
+    <input id="m1_columns" name="m1_columns">
     <h2>Enter Matrix value</h2>
     <br>
     <textarea id="m1_entry" name="m1_entry" rows="4" cols="50" placeholder="Enter Matrix values" required></textarea>
     <br>
     <h1>Matrix 2</h1>
+    <h2>Number of Rows </h2>
+    <input id="m2_rows" name="m2_rows">
+    <br>
+    <h2>Number of Columns </h2>
+    <input id="m2_columns" name="m2_columns">
     <h2>Enter Matrix value</h2>
     <br>
     <textarea id="m2_entry" name="m2_entry" rows="4" cols="50" placeholder="Enter Matrix values" required></textarea>

@@ -1,0 +1,25 @@
+<form action= "{% url 'op_power' %}" method="post">
+    {% csrf_token %}
+    <h1>Matrix Power</h1>
+    <br>
+    <h2>Enter the power</h2>
+    <input id="pow" name="pow">
+    <br>
+    <h1>Matrix 1</h1>
+    <h2>Number of Rows/Columns </h2>
+    <input id="m_rows" name="m_rows">
+    <br>
+    <h2>Enter Matrix value</h2>
+    <br>
+    <textarea id="m1_entry" name="m1_entry" rows="4" cols="50" placeholder="Enter Matrix values" required></textarea>
+    <br>
+    <br>
+    <input type="submit">
+</form>
+<br>
+{% for c in content %}
+    {{c}}
+    <br>
+{% endfor %}
+<br>
+<a href="{% url 'tmm-home' %}">Try another operation</a>

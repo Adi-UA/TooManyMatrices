@@ -28,6 +28,18 @@ def choose(request):
             return render(request, 'tmm/home.html')
         if operation == "Matrix Addition":
             return render(request, 'tmm/op_addition.html')
+        if operation == "Matrix Subtraction":
+            return render(request, 'tmm/op_subtraction.html')
+        if operation == "Matrix Multiplication":
+            return render(request, 'tmm/op_multiplication.html')
+        if operation == "Matrix Bitwise OR":
+            return render(request, 'tmm/op_bitwise_OR.html')
+        if operation == "Matrix Bitwise AND":
+            return render(request, 'tmm/op_bitwise_AND.html')
+        if operation == "Matrix Bitwise XOR":
+            return render(request, 'tmm/op_bitwise_XOR.html')
+        if operation == "Matrix Power":
+            return render(request, 'tmm/op_power.html')
 
 
 def add(request):
@@ -41,15 +53,170 @@ def add(request):
         The rendered page view
     """
     if request.method == "POST":
-        m1 = Matrix(int(request.POST['m1_rows']),  # request.POST['m1_rows'] gives the value entered in the m1_rows field in the html input
-                    int(request.POST['m1_columns']))
-        m1.insert_all(clean(request.POST['m1_entry']))
-        m2 = Matrix(int(request.POST['m2_rows']),
-                    int(request.POST['m2_columns']))
-        m2.insert_all(clean(request.POST['m2_entry']))
-        c = m1 + m2
-        d = "Hi Aditya" + "\n" + "How are you"
-        k = matrix_to_list(c)
-        print(c)
-        print(k)
-        return render(request, 'tmm/op_addition.html', {'content': k})
+        m1,m1_entries = matrix_builder(request,"m","m1")
+        m2,m2_entries = matrix_builder(request,"m","m2")
+
+        print(str(m1) + "\n")
+        print(m2)
+
+        if order_checker(m1,m2,m1_entries,m2_entries):
+            m1.insert_all(clean(m1_entries))
+            m2.insert_all(clean(m2_entries))
+            result_add = matrix_to_list(m1+m2)
+            return render(request, 'tmm/op_addition.html', {'content': result_add})
+        else:
+            result_error = "Your specified and actual matrix dimensions differ"
+            return render(request, 'tmm/op_addition.html', {'content': [result_error]})
+
+
+def subtract(request):
+    """
+    This function is called when the user chooses matrix subtraction as
+    the desired operation and clicks the subtract button. It defines the
+    matrices, initializes them with values and subtracts and displays the
+    result.
+
+    Returns:
+        The rendered page view
+    """
+    if request.method == "POST":
+        m1,m1_entries = matrix_builder(request,"m","m1")
+        m2,m2_entries = matrix_builder(request,"m","m2")
+
+        if order_checker(m1,m2,m1_entries,m2_entries):
+            m1.insert_all(clean(m1_entries))
+            m2.insert_all(clean(m2_entries))
+
+            result_subtract = matrix_to_list(m1-m2)
+            return render(request, 'tmm/op_subtraction.html', {'content': result_subtract})
+        else:
+            result_error = "Your specified and actual matrix dimensions differ"
+            return render(request, 'tmm/op_subtraction.html', {'content': [result_error]})
+
+
+def multiply(request):
+    """
+    This function is called when the user chooses matrix multiplication as
+    the desired operation and clicks the multiply button. It defines the
+    matrices, initializes them with values and multiplies and displays the
+    result.
+
+    Returns:
+        The rendered page view
+    """
+    if request.method == "POST":
+        m1,m1_entries = matrix_builder(request,"m1","m1")
+        m2,m2_entries = matrix_builder(request,"m2","m2")
+
+        if order_checker(m1,m2,m1_entries,m2_entries):
+            if m1.get_col_no() == m2.get_row_no():
+                m1.insert_all(clean(m1_entries))
+                m2.insert_all(clean(m2_entries))
+                result_multiply = matrix_to_list(m1*m2)
+                return render(request, 'tmm/op_multiplication.html', {'content': result_multiply})
+            else:
+                multiplication_error_1 = "Matrix Multiplcation condition is not satisfied"
+                multiplication_error_2 = "Number of Columns in matrix 1 is not equal to number of rows in matrix 2."
+                return render(request, 'tmm/op_multiplication.html', {'content': [multiplication_error_1, multiplication_error_2]})
+
+        else:
+            result_error = "Your specified and actual matrix dimensions differ"
+            return render(request, 'tmm/op_multiplication.html', {'content': [result_error]})
+
+
+def bit_or(request):
+    """
+    This function is called when the user chooses matrix bitwise or as
+    the desired operation and clicks the submit button. It defines the
+    matrices, initializes them with values and computes and displays the
+    result.
+
+    Returns:
+        The rendered page view
+    """
+    if request.method == "POST":
+
+        m1,m1_entries = matrix_builder(request,"m","m1")
+        m2,m2_entries = matrix_builder(request,"m","m2")
+
+        if order_checker(m1,m2,m1_entries,m2_entries):
+            m1.insert_all(clean(m1_entries, True))
+            m2.insert_all(clean(m2_entries, True))
+            result_bit_or = matrix_to_list(m1 | m2)
+            return render(request, 'tmm/op_bitwise_OR.html', {'content': result_bit_or})
+        else:
+            result_error = "Your specified and actual matrix dimensions differ"
+            return render(request, 'tmm/op_bitwise_OR.html', {'content': [result_error]})
+
+
+def bit_and(request):
+    """
+    This function is called when the user chooses matrix bitwise and as
+    the desired operation and clicks the submit button. It defines the
+    matrices, initializes them with values and computes and displays the
+    result.
+
+    Returns:
+        The rendered page view
+    """
+    if request.method == "POST":
+        m1,m1_entries = matrix_builder(request,"m","m1")
+        m2,m2_entries = matrix_builder(request,"m","m2")
+
+        if order_checker(m1,m2,m1_entries,m2_entries):
+            m1.insert_all(clean(m1_entries, True))
+            m2.insert_all(clean(m2_entries, True))
+            result_bit_and = matrix_to_list(m1 & m2)
+            return render(request, 'tmm/op_bitwise_AND.html', {'content': result_bit_and})
+
+        else:
+            result_error = "Your specified and actual matrix dimensions differ"
+            return render(request, 'tmm/op_bitwise_AND.html', {'content': [result_error]})
+
+
+def bit_xor(request):
+    """
+    This function is called when the user chooses matrix bitwise xor as
+    the desired operation and clicks the submit button. It defines the
+    matrices, initializes them with values and computes and displays the
+    result.
+
+    Returns:
+        The rendered page view
+    """
+    if request.method == "POST":
+        m1,m1_entries = matrix_builder(request,"m","m1")
+        m2,m2_entries = matrix_builder(request,"m","m2")
+
+        if order_checker(m1,m2,m1_entries,m2_entries):
+            m1.insert_all(clean(m1_entries, True))
+            m2.insert_all(clean(m2_entries, True))
+            result_bit_xor = matrix_to_list(m1 ^ m2)
+            return render(request, 'tmm/op_bitwise_XOR.html', {'content': result_bit_xor})
+        else:
+            result_error = "Your specified and actual matrix dimensions differ"
+            return render(request, 'tmm/op_bitwise_XOR.html', {'content': [result_error]})
+
+
+def power(request):
+    """
+    This function is called when the user chooses matrix power as
+    the desired operation and clicks the submit button. It defines the
+    matrices, initializes them with values and computes and displays the
+    matrix raised to the power.
+
+    Returns:
+        The rendered page view
+    """
+    if request.method == "POST":
+
+        m1, m1_entries = matrix_builder(request,"m","m1", True)
+        power = int(request.POST['pow'])
+
+        if order_checker(m1,None,m1_entries,None):
+            m1.insert_all(clean(m1_entries))
+            result_power = matrix_to_list(m1 ** power)
+            return render(request, 'tmm/op_power.html', {'content': result_power})
+        else:
+            result_error = "Your specified and actual matrix dimensions differ"
+            return render(request, 'tmm/op_power.html', {'content': [result_error]})
