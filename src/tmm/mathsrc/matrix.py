@@ -41,8 +41,11 @@ class Matrix:
         Returns: boolean -- true if equal and false otherwise
         """
         if isinstance(other, Matrix):
-            comparison = self._matrix == other._matrix
-            return comparison.all()
+            if dimensions_match(self, other):
+                comparison = self._matrix == other._matrix
+                return comparison.all()
+            else:
+                return False
         else:
             return False
 
@@ -151,7 +154,7 @@ class Matrix:
         Returns: Matrix -- A reference to the Matrix object with scalar
             multiplication applied
         """
-        retval = Matrix(self._col_no, self._row_no)
+        retval = Matrix(self._row_no, self._col_no)
         retval._matrix = self._matrix * scalar
         return retval
 
@@ -215,19 +218,22 @@ class Matrix:
         Returns: Matrix -- A reference to the minor matrix or None if the
             request was invalid
         """
-        if self._row_no == self._col_no:
-            retval = Matrix(self._row_no - 1, self._col_no - 1)
-            values = []
+        if self._row_no == self._col_no and self._row_no > 1 and self._col_no > 1:
+            if row > 0 and column > 0 and row <= self._row_no and column <= self._col_no:
+                retval = Matrix(self._row_no - 1, self._col_no - 1)
+                values = []
 
-            for i in range(1, self._row_no + 1):
-                for j in range(1, self._col_no + 1):
-                    if i == row or j == column:
-                        pass
-                    else:
-                        values.append(self._matrix[i - 1][j - 1])
+                for i in range(1, self._row_no + 1):
+                    for j in range(1, self._col_no + 1):
+                        if i == row or j == column:
+                            pass
+                        else:
+                            values.append(self._matrix[i - 1][j - 1])
 
-            retval.insert_all(values)
-            return retval
+                retval.insert_all(values)
+                return retval
+            else:
+                return None
         else:
             return None
 
@@ -297,7 +303,6 @@ class Matrix:
                                 return None
                         values.append(res_val)
                 retval = Matrix(self._row_no, other._col_no)
-                print(values)
                 retval.insert_all(values)
                 return retval
             else:
@@ -373,40 +378,56 @@ class Matrix:
             retval = self
             for i in range(pow - 1):
                 retval = retval * self
+                if retval is None:
+                    return None
             return retval
         else:
             return None
 
-    def __ilshift__(self, shift_val):
+    def __lshift__(self, shift_val):
         """
         This method left shifts each value in the matrix. The calling object is
         NOT modified in place.
 
-        Arguments: shift_val -- The shift value
+        Arguments: shift_val {int} -- The shift value
 
-        Returns: Matrix -- A reference to the resulting matrix.
+        Returns: Matrix -- A reference to the resulting matrix. or None if the
+        request was invalid
         """
 
-        retval = Matrix(self._row_no, self._col_no)
-        for i in range(self._row_no):
-            for j in range(self._col_no):
-                retval._matrix[i][j] = self._matrix[i][j] << shift_val
-        return retval
+        if isinstance(shift_val, int):
+            retval = Matrix(self._row_no, self._col_no)
+            for i in range(self._row_no):
+                for j in range(self._col_no):
+                    if isinstance(self._matrix[i][j], np.int32):
+                        retval._matrix[i][j] = self._matrix[i][j] << shift_val
+                    else:
+                        return None
+            return retval
+        else:
+            return None
 
-    def __irshift__(self, shift_val):
+    def __rshift__(self, shift_val):
         """
         This method right shifts each value in the matrix. The calling object is
         NOT modified in place.
 
-        Arguments: shift_val -- The shift value
+        Arguments: shift_val {int} -- The shift value
 
-        Returns: Matrix -- A reference to the resulting matrix.
+        Returns: Matrix -- A reference to the resulting matrix. or None if the
+        request was invalid
         """
-        retval = Matrix(self._row_no, self._col_no)
-        for i in range(self._row_no):
-            for j in range(self._col_no):
-                retval._matrix[i][j] = self._matrix[i][j] >> shift_val
-        return retval
+        if isinstance(shift_val, int):
+            retval = Matrix(self._row_no, self._col_no)
+            for i in range(self._row_no):
+                for j in range(self._col_no):
+                    if isinstance(self._matrix[i][j], np.int32):
+                        retval._matrix[i][j] = self._matrix[i][j] >> shift_val
+                    else:
+                        return None
+            return retval
+        else:
+            return None
 
     def __and__(self, other):
         """
@@ -477,7 +498,8 @@ def dimensions_match(matrix1, matrix2):
 
     Returns: boolean-- True or False depending on if their orders match or not.
     """
-    return matrix1.get_row_no() ==  matrix2.get_row_no() and matrix1.get_col_no() == matrix2.get_col_no()
+    return matrix1.get_row_no() == matrix2.get_row_no(
+    ) and matrix1.get_col_no() == matrix2.get_col_no()
 
 
 def get_identity_matrix(size):
