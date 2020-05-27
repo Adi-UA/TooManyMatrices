@@ -1,0 +1,29 @@
+{% load static %}
+<html>
+    <head>
+        <meta charset=“UTF-8”>
+        <title>Home</title>
+    </head>
+    <body>
+    <link rel="stylesheet" type="text/css" href="{% static 'css/home_design.css' %}">
+    <link rel="stylesheet" type="text/css" href="{% static 'css/header.css' %}">
+    <div class="header_1">
+        <a class="logo" href="{% url 'tmm-home' %}" >[ Too Many Matrices ]</a>
+        <div class="header_1-right">
+          <p align="right" style="display:inline"></p><a align = "right" href="https://github.com/Adi-UA/TooManyMatrices" class="btn twtr" target="_b" style="font-size: 15px;">Support Us 🚀</a>
+          <p align="right" style="display:inline"></p><a align = "right" href="https://github.com/Adi-UA/TooManyMatrices" class="btn twtr" target="_b" style="font-size: 15px;">Report a bug 🐛</a>
+          <p align="right" style="display:inline"></p><a align = "right" href="https://github.com/Adi-UA/TooManyMatrices" class="btn twtr" target="_b" style="font-size: 15px;">Find the Code here 💾</a>
+        </div>
+    </div>
+        <div class="header">
+            <div class="info">
+                {% block content %}{% endblock %}
+            </div>
+          </div>
+          <section class="content">
+          <p>Welcome to Too Many Matrices ! <br> Begin by selecting the type of computation you want to perform</p>
+          <br>
+            <p><b>&lt;/&gt;</b> with <span style="color: #e25555;">&hearts;</span> by <b><a style="color: #56baed;" href="https://github.com/Adi-UA">Adi</a></b> and <b><a style="color: #56baed;" href = "https://github.com/dev-ved30">Ved</a></b></p> 
+          </section>
+    </body>
+</html>
