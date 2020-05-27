@@ -56,9 +56,6 @@ def add(request):
         m1, m1_entries = matrix_builder(request, "m", "m1")
         m2, m2_entries = matrix_builder(request, "m", "m2")
 
-        print(str(m1) + "\n")
-        print(m2)
-
         if order_checker(m1, m2, m1_entries, m2_entries):
             m1.insert_all(clean(m1_entries))
             m2.insert_all(clean(m2_entries))
@@ -69,7 +66,7 @@ def add(request):
         else:
             result_error = "Your specified and actual matrix dimensions differ"
             return render(request, 'tmm/op_addition.html',
-                          {'content': [result_error]})
+                          {'error': [result_error]})
 
 
 def subtract(request):
@@ -98,7 +95,7 @@ def subtract(request):
             result_error = "Your specified and actual matrix dimensions differ"
             return render(request,
                           'tmm/op_subtraction.html',
-                          {'content': [result_error]})
+                          {'error': [result_error]})
 
 
 def multiply(request):
@@ -128,14 +125,14 @@ def multiply(request):
                 multiplication_error_2 = "Number of Columns in matrix 1 is not equal to number of rows in matrix 2."
                 return render(request,
                               'tmm/op_multiplication.html',
-                              {'content': [multiplication_error_1,
-                                           multiplication_error_2]})
+                              {'error': [multiplication_error_1,
+                                         multiplication_error_2]})
 
         else:
             result_error = "Your specified and actual matrix dimensions differ"
             return render(request,
                           'tmm/op_multiplication.html',
-                          {'content': [result_error]})
+                          {'error': [result_error]})
 
 
 def bit_or(request):
@@ -164,7 +161,7 @@ def bit_or(request):
             result_error = "Your specified and actual matrix dimensions differ"
             return render(request,
                           'tmm/op_bitwise_OR.html',
-                          {'content': [result_error]})
+                          {'error': [result_error]})
 
 
 def bit_and(request):
@@ -193,7 +190,7 @@ def bit_and(request):
             result_error = "Your specified and actual matrix dimensions differ"
             return render(request,
                           'tmm/op_bitwise_AND.html',
-                          {'content': [result_error]})
+                          {'error': [result_error]})
 
 
 def bit_xor(request):
@@ -221,7 +218,7 @@ def bit_xor(request):
             result_error = "Your specified and actual matrix dimensions differ"
             return render(request,
                           'tmm/op_bitwise_XOR.html',
-                          {'content': [result_error]})
+                          {'error': [result_error]})
 
 
 def power(request):
@@ -247,4 +244,4 @@ def power(request):
         else:
             result_error = "Your specified and actual matrix dimensions differ"
             return render(request, 'tmm/op_power.html',
-                          {'content': [result_error]})
+                          {'error': [result_error]})
