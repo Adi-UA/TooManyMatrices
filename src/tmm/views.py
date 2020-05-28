@@ -256,10 +256,8 @@ def right_shift(request):
         shift = int(request.POST['shift'])
 
         if order_checker(m1, None, m1_entries, None):
-            m1.insert_all(clean(m1_entries))
-            print(type(m1))
-            print(m1 << shift)
-            result_right_shift = matrix_to_list(m1 << shift)
+            m1.insert_all(clean(m1_entries, True))
+            result_right_shift = matrix_to_list(m1 >> shift)
             return render(request, 'tmm/op_right_shift.html',
                           {'content': result_right_shift})
         else:
