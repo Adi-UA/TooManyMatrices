@@ -40,6 +40,8 @@ def choose(request):
             return render(request, 'tmm/op_bitwise_XOR.html')
         if operation == "Matrix Power":
             return render(request, 'tmm/op_power.html')
+        if operation == "Matrix Right Shift":
+            return render(request, 'tmm/op_right_shift.html')
 
 
 def add(request):
@@ -244,4 +246,23 @@ def power(request):
         else:
             result_error = "Your specified and actual matrix dimensions differ"
             return render(request, 'tmm/op_power.html',
+                          {'error': [result_error]})
+
+
+def right_shift(request):
+    if request.method == "POST":
+
+        m1, m1_entries = matrix_builder(request, "m", "m1", True)
+        shift = int(request.POST['shift'])
+
+        if order_checker(m1, None, m1_entries, None):
+            m1.insert_all(clean(m1_entries))
+            print(type(m1))
+            print(m1 << shift)
+            result_right_shift = matrix_to_list(m1 << shift)
+            return render(request, 'tmm/op_right_shift.html',
+                          {'content': result_right_shift})
+        else:
+            result_error = "Your specified and actual matrix dimensions differ"
+            return render(request, 'tmm/op_right_shift.html',
                           {'error': [result_error]})
