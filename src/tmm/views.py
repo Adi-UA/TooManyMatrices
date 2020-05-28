@@ -42,6 +42,10 @@ def choose(request):
             return render(request, 'tmm/op_power.html')
         if operation == "Matrix Right Shift":
             return render(request, 'tmm/op_right_shift.html')
+        if operation == "Matrix Left Shift":
+            return render(request, 'tmm/op_left_shift.html')
+        if operation == "Matrix Scalar Multiplication":
+            return render(request, 'tmm/op_scalar_multiplication.html')
 
 
 def add(request):
@@ -263,4 +267,56 @@ def right_shift(request):
         else:
             result_error = "Your specified and actual matrix dimensions differ"
             return render(request, 'tmm/op_right_shift.html',
+                          {'error': [result_error]})
+
+
+def right_shift(request):
+    if request.method == "POST":
+
+        m1, m1_entries = matrix_builder(request, "m", "m1", True)
+        shift = int(request.POST['shift'])
+
+        if order_checker(m1, None, m1_entries, None):
+            m1.insert_all(clean(m1_entries, True))
+            result_right_shift = matrix_to_list(m1 >> shift)
+            return render(request, 'tmm/op_right_shift.html',
+                          {'content': result_right_shift})
+        else:
+            result_error = "Your specified and actual matrix dimensions differ"
+            return render(request, 'tmm/op_right_shift.html',
+                          {'error': [result_error]})
+
+
+def left_shift(request):
+    if request.method == "POST":
+
+        m1, m1_entries = matrix_builder(request, "m", "m1", True)
+        shift = int(request.POST['shift'])
+
+        if order_checker(m1, None, m1_entries, None):
+            m1.insert_all(clean(m1_entries, True))
+            result_right_shift = matrix_to_list(m1 << shift)
+            return render(request, 'tmm/op_right_shift.html',
+                          {'content': result_right_shift})
+        else:
+            result_error = "Your specified and actual matrix dimensions differ"
+            return render(request, 'tmm/op_right_shift.html',
+                          {'error': [result_error]})
+
+
+def scalar_multiply(request):
+    if request.method == "POST":
+
+        m1, m1_entries = matrix_builder(request, "m", "m1", True)
+        multiplier = int(request.POST['multiplier'])
+
+        if order_checker(m1, None, m1_entries, None):
+            m1.insert_all(clean(m1_entries))
+            result_scalar_multiply = matrix_to_list(
+                m1.multiply_scalar(multiplier))
+            return render(request, 'tmm/op_scalar_multiplication.html',
+                          {'content': result_scalar_multiply})
+        else:
+            result_error = "Your specified and actual matrix dimensions differ"
+            return render(request, 'tmm/op_scalar_multiplication.html',
                           {'error': [result_error]})
