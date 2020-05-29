@@ -1,10 +1,9 @@
-
-
 @import url('https://fonts.googleapis.com/css?family=Poppins');
 
 /* BASIC */
 
-
+html {
+}
 body {
 font-family: "Poppins", sans-serif;
 height: 95vh;
@@ -268,22 +267,96 @@ width:60%;
 box-sizing: border-box;
 }
 
+
+@@import: url(https://fonts.googleapis.com/css?family=Roboto+Condensed);
 body {
-  background: linear-gradient(-45deg, #e73c7e, #23a6d5, #e73c7e);
-  background-size: 400% 400%;
-  animation: gradient 15s ease infinite;
+font-family: 'Roboto Condensed', sans-serif;
+height: 100%;
+background-color: black;
+color: #fff;
+text-transform: uppercase;
+
+}
+.container {
+text-align: center;
+}
+h1 {
+margin-left: 30px;
+margin-bottom: 50px;
+}
+.button {
+width: 170px;
+height: 2px;
+padding-top: 15px;
+padding-bottom: 30px;
+text-align: center;
+color: #000;
+text-transform: uppercase;
+font-weight: 600;
+font-size: 35;
+margin-bottom: 30px;
+cursor: pointer;
+display: inline-block;
+}
+
+.button-2 {
+color: #fff;
+border: 3px solid #92badd;
+background-image: -webkit-linear-gradient(30deg, #92badd 50%, transparent 50%);
+background-image: linear-gradient(30deg, #92badd 50%, transparent 50%);
+background-size: 500px;
+background-repeat: no-repeat;
+background-position: 0%;
+-webkit-transition: background 300ms ease-in-out;
+transition: background 300ms ease-in-out;
+}
+.button-2:hover {
+background-position: 100%;
+color: #92badd;
+}
+
+textarea {
+font-family: "Poppins", sans-serif;
+background-color: #f6f6f6;
+border: none;
+color: #0d0d0d;
+padding: 15px 32px;
+text-align: center;
+text-decoration: none;
+display: inline-block;
+font-size: 16px;
+margin: 5px;
+width: 85%;
+border: 2px solid #f6f6f6;
+-webkit-transition: all 0.5s ease-in-out;
+-moz-transition: all 0.5s ease-in-out;
+-ms-transition: all 0.5s ease-in-out;
+-o-transition: all 0.5s ease-in-out;
+transition: all 0.5s ease-in-out;
+-webkit-border-radius: 5px 5px 5px 5px;
+border-radius: 5px 5px 5px 5px;
+place hol
+}
+textarea[type=text]:focus {
+background-color: #fff;
+border-bottom: 2px solid #5fbae9;
+}
+
+
+body {
+background: linear-gradient(-45deg, #e73c7e, #23a6d5, #e73c7e);
+background-size: 400% 400%;
+animation: gradient 15s ease infinite;
 }
 
 @keyframes gradient {
-  0% {
-      background-position: 0% 50%;
-  }
-
-  50% {
-      background-position: 100% 50%;
-  }
-
-  100% {
-      background-position: 0% 50%;
-  }
+0% {
+background-position: 0% 50%;
+}
+50% {
+background-position: 100% 50%;
+}
+100% {
+background-position: 0% 50%;
+}
 }

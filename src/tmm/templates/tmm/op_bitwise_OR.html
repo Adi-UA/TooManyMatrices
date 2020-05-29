@@ -3,57 +3,45 @@
 {% load static %}
 <!DOCTYPE html>
 <html>
+
 <head>
-    <title>Matrix Bitwise OR</title>
-    <link rel="stylesheet" type="text/css" href="{% static 'css/style.css' %}">
-    <style>
-        body {
-        background: linear-gradient(-45deg, #e73c7e, #23a6d5, #e73c7e);
-        background-size: 400% 400%;
-        animation: gradient 15s ease infinite;
-        }
-        @keyframes gradient {
-        0% {
-        background-position: 0% 50%;
-        }
-        50% {
-        background-position: 100% 50%;
-        }
-        100% {
-        background-position: 0% 50%;
-        }
-        }
-    </style>
+  <title>Matrix Bitwise OR</title>
+  <link rel="stylesheet" type="text/css" href="{% static 'css/style.css' %}">
 </head>
+
 <body>
-<div class="wrapper fadeInDown">
-  <div id="formContent">
-    <!-- Tabs Titles -->
-    <h2 class="active"> Matrix Bitwise OR</h2>
-    <form action="{% url 'op_bitwiseOR' %}" method="post">
-      {% csrf_token %}
-      <input type="text" id="m_rows" class="fadeIn second" name="m_rows" placeholder="Number of Rows" required>
-      <input type="text" id="m_columns" class="fadeIn third" name="m_columns" placeholder="Number of Columns" required>
-      <br>
-      <textarea id="m1_entry" name="m1_entry" class="fadeIn third" rows="4" cols="50" placeholder="Matrix 1 Values" required></textarea>
-      <br>
-      <textarea id="m2_entry" name="m2_entry" class="fadeIn third" rows="4" cols="50" placeholder="Matrix 2 Values" required></textarea>
-      <br>
-      <input type="submit">
-      <br>
-    </form>
-    <!-- Remind Passowrd -->
-    <div id="formFooter">
-            {% for c in content %}
-                <p>{{c}}</p>
-            {% endfor %}
-            {% for e in error %}
-                <p style="color: #ff2640;">{{e}}</p>
-            {% endfor %}
-           <p><a href="{% url 'tmm-home' %}"><b>Try another operation</b></a></p>
+  <div class="wrapper fadeInDown">
+    <div id="formContent">
+      <!-- Tabs Titles -->
+      <h2 class="active"> Matrix Bitwise OR</h2>
+      <form action="{% url 'op_bitwiseOR' %}" method="post">
+        {% csrf_token %}
+        <input type="text" id="m_rows" class="fadeIn second" name="m_rows" placeholder="Number of Rows" required>
+        <input type="text" id="m_columns" class="fadeIn third" name="m_columns" placeholder="Number of Columns"
+          required>
+        <br>
+        <textarea id="m1_entry" name="m1_entry" class="fadeIn third" rows="4" cols="50" placeholder="Matrix 1 Values"
+          required></textarea>
+        <br>
+        <textarea id="m2_entry" name="m2_entry" class="fadeIn third" rows="4" cols="50" placeholder="Matrix 2 Values"
+          required></textarea>
+        <br>
+        <input type="submit">
+        <br>
+      </form>
+      <!-- Remind Passowrd -->
+      <div id="formFooter">
+        {% for c in content %}
+        <p>{{c}}</p>
+        {% endfor %}
+        {% for e in error %}
+        <p style="color: #ff2640;">{{e}}</p>
+        {% endfor %}
+        <p><a href="{% url 'tmm-home' %}"><b>Try another operation</b></a></p>
+      </div>
     </div>
   </div>
-</div>
 </body>
+
 </html>
 {%  endblock content %}
