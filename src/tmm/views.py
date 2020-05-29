@@ -256,24 +256,7 @@ def power(request):
 def right_shift(request):
     if request.method == "POST":
 
-        m1, m1_entries = matrix_builder(request, "m", "m1", True)
-        shift = int(request.POST['shift'])
-
-        if order_checker(m1, None, m1_entries, None):
-            m1.insert_all(clean(m1_entries, True))
-            result_right_shift = matrix_to_list(m1 >> shift)
-            return render(request, 'tmm/op_right_shift.html',
-                          {'content': result_right_shift})
-        else:
-            result_error = "Your specified and actual matrix dimensions differ"
-            return render(request, 'tmm/op_right_shift.html',
-                          {'error': [result_error]})
-
-
-def right_shift(request):
-    if request.method == "POST":
-
-        m1, m1_entries = matrix_builder(request, "m", "m1", True)
+        m1, m1_entries = matrix_builder(request, "m", "m1")
         shift = int(request.POST['shift'])
 
         if order_checker(m1, None, m1_entries, None):
@@ -290,30 +273,29 @@ def right_shift(request):
 def left_shift(request):
     if request.method == "POST":
 
-        m1, m1_entries = matrix_builder(request, "m", "m1", True)
+        m1, m1_entries = matrix_builder(request, "m", "m1")
         shift = int(request.POST['shift'])
 
         if order_checker(m1, None, m1_entries, None):
             m1.insert_all(clean(m1_entries, True))
-            result_right_shift = matrix_to_list(m1 << shift)
-            return render(request, 'tmm/op_right_shift.html',
-                          {'content': result_right_shift})
+            result_left_shift = matrix_to_list(m1 << shift)
+            return render(request, 'tmm/op_left_shift.html',
+                          {'content': result_left_shift})
         else:
             result_error = "Your specified and actual matrix dimensions differ"
-            return render(request, 'tmm/op_right_shift.html',
+            return render(request, 'tmm/op_left_shift.html',
                           {'error': [result_error]})
 
 
 def scalar_multiply(request):
     if request.method == "POST":
 
-        m1, m1_entries = matrix_builder(request, "m", "m1", True)
+        m1, m1_entries = matrix_builder(request, "m", "m1")
         multiplier = int(request.POST['multiplier'])
 
         if order_checker(m1, None, m1_entries, None):
             m1.insert_all(clean(m1_entries))
-            result_scalar_multiply = matrix_to_list(
-                m1.multiply_scalar(multiplier))
+            result_scalar_multiply = matrix_to_list(m1 * multiplier)
             return render(request, 'tmm/op_scalar_multiplication.html',
                           {'content': result_scalar_multiply})
         else:
