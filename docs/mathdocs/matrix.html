@@ -74,8 +74,7 @@ class Matrix:
         &#34;&#34;&#34;
         if isinstance(other, Matrix):
             if dimensions_match(self, other):
-                comparison = self._matrix == other._matrix
-                return comparison.all()
+                return np.allclose(self._matrix,other._matrix,0,1e-02)
             else:
                 return False
         else:
@@ -175,20 +174,6 @@ class Matrix:
             return round(np.linalg.det(self._matrix), 2)
         else:
             return None
-
-    def multiply_scalar(self, scalar):
-        &#34;&#34;&#34;
-        This method multiplies a scalar coefficient into the matrix.The calling
-        object is NOT modified in place.
-
-        Arguments: scalar -- The coefficient to multiply by
-
-        Returns: Matrix -- A reference to the Matrix object with scalar
-            multiplication applied
-        &#34;&#34;&#34;
-        retval = Matrix(self._row_no, self._col_no)
-        retval._matrix = self._matrix * scalar
-        return retval
 
     def inv(self):
         &#34;&#34;&#34;
@@ -378,7 +363,9 @@ class Matrix:
 
     def __mul__(self, other):
         &#34;&#34;&#34;
-        This method finds the multiplication of the given matries.The calling
+        This method finds the multiplication of the given matries. If instead of
+        a matrix a sclar is passed (int or float) then the scalar will be
+        multipled element-wise into the matrix. The calling
         object is NOT modified in place.
 
         Arguments: other -- The matrix object to be multiplied
@@ -386,12 +373,22 @@ class Matrix:
         Returns: Matrix -- A reference to the resulting matrix or None if the
             request was invalid.
         &#34;&#34;&#34;
-        if self._col_no == other._row_no:
-            retval = Matrix(self._row_no, other._col_no)
-            retval._matrix = np.dot(self._matrix, other._matrix)
-            return retval
+
+        if isinstance(other, Matrix):
+            if self._col_no == other._row_no:
+                retval = Matrix(self._row_no, other._col_no)
+                retval._matrix = np.dot(self._matrix, other._matrix)
+                return retval
+            else:
+                return None
         else:
-            return None
+            if isinstance(other, (int, float)):
+                retval = Matrix(self._row_no, self._col_no)
+                retval._matrix = self._matrix * other
+                return retval
+            else:
+                return None
+
 
     def __pow__(self, pow):
         &#34;&#34;&#34;
@@ -548,7 +545,13 @@ def get_identity_matrix(size):
         for j in range(1, size + 1):
             if i == j:
                 retval.set_value(i, j, 1)
-    return retval</code></pre>
+    return retval
+
+
+&#34;&#34;&#34; m = Matrix(2, 2)
+m.insert_all([1, 2, 3, 4])
+n = 2
+print(m &gt;&gt; 2) &#34;&#34;&#34;</code></pre>
 </details>
 </section>
 <section>
@@ -663,8 +666,7 @@ number of rows and columns needs to be given.</p>
         &#34;&#34;&#34;
         if isinstance(other, Matrix):
             if dimensions_match(self, other):
-                comparison = self._matrix == other._matrix
-                return comparison.all()
+                return np.allclose(self._matrix,other._matrix,0,1e-02)
             else:
                 return False
         else:
@@ -764,20 +766,6 @@ number of rows and columns needs to be given.</p>
             return round(np.linalg.det(self._matrix), 2)
         else:
             return None
-
-    def multiply_scalar(self, scalar):
-        &#34;&#34;&#34;
-        This method multiplies a scalar coefficient into the matrix.The calling
-        object is NOT modified in place.
-
-        Arguments: scalar -- The coefficient to multiply by
-
-        Returns: Matrix -- A reference to the Matrix object with scalar
-            multiplication applied
-        &#34;&#34;&#34;
-        retval = Matrix(self._row_no, self._col_no)
-        retval._matrix = self._matrix * scalar
-        return retval
 
     def inv(self):
         &#34;&#34;&#34;
@@ -967,7 +955,9 @@ number of rows and columns needs to be given.</p>
 
     def __mul__(self, other):
         &#34;&#34;&#34;
-        This method finds the multiplication of the given matries.The calling
+        This method finds the multiplication of the given matries. If instead of
+        a matrix a sclar is passed (int or float) then the scalar will be
+        multipled element-wise into the matrix. The calling
         object is NOT modified in place.
 
         Arguments: other -- The matrix object to be multiplied
@@ -975,12 +965,22 @@ number of rows and columns needs to be given.</p>
         Returns: Matrix -- A reference to the resulting matrix or None if the
             request was invalid.
         &#34;&#34;&#34;
-        if self._col_no == other._row_no:
-            retval = Matrix(self._row_no, other._col_no)
-            retval._matrix = np.dot(self._matrix, other._matrix)
-            return retval
+
+        if isinstance(other, Matrix):
+            if self._col_no == other._row_no:
+                retval = Matrix(self._row_no, other._col_no)
+                retval._matrix = np.dot(self._matrix, other._matrix)
+                return retval
+            else:
+                return None
         else:
-            return None
+            if isinstance(other, (int, float)):
+                retval = Matrix(self._row_no, self._col_no)
+                retval._matrix = self._matrix * other
+                return retval
+            else:
+                return None
+
 
     def __pow__(self, pow):
         &#34;&#34;&#34;
@@ -1480,34 +1480,6 @@ zero-one matrix or not</p></div>
     return True</code></pre>
 </details>
 </dd>
-<dt id="matrix.Matrix.multiply_scalar"><code class="name flex">
-<span>def <span class="ident">multiply_scalar</span></span>(<span>self, scalar)</span>
-</code></dt>
-<dd>
-<div class="desc"><p>This method multiplies a scalar coefficient into the matrix.The calling
-object is NOT modified in place.</p>
-<p>Arguments: scalar &ndash; The coefficient to multiply by</p>
-<p>Returns: Matrix &ndash; A reference to the Matrix object with scalar
-multiplication applied</p></div>
-<details class="source">
-<summary>
-<span>Expand source code</span>
-</summary>
-<pre><code class="python">def multiply_scalar(self, scalar):
-    &#34;&#34;&#34;
-    This method multiplies a scalar coefficient into the matrix.The calling
-    object is NOT modified in place.
-
-    Arguments: scalar -- The coefficient to multiply by
-
-    Returns: Matrix -- A reference to the Matrix object with scalar
-        multiplication applied
-    &#34;&#34;&#34;
-    retval = Matrix(self._row_no, self._col_no)
-    retval._matrix = self._matrix * scalar
-    return retval</code></pre>
-</details>
-</dd>
 <dt id="matrix.Matrix.set_value"><code class="name flex">
 <span>def <span class="ident">set_value</span></span>(<span>self, row, col, value)</span>
 </code></dt>
@@ -1589,7 +1561,6 @@ calling object is NOT modified in place.</p>
 <li><code><a title="matrix.Matrix.insert_all" href="#matrix.Matrix.insert_all">insert_all</a></code></li>
 <li><code><a title="matrix.Matrix.inv" href="#matrix.Matrix.inv">inv</a></code></li>
 <li><code><a title="matrix.Matrix.is_boolean" href="#matrix.Matrix.is_boolean">is_boolean</a></code></li>
-<li><code><a title="matrix.Matrix.multiply_scalar" href="#matrix.Matrix.multiply_scalar">multiply_scalar</a></code></li>
 <li><code><a title="matrix.Matrix.set_value" href="#matrix.Matrix.set_value">set_value</a></code></li>
 <li><code><a title="matrix.Matrix.transpose" href="#matrix.Matrix.transpose">transpose</a></code></li>
 </ul>

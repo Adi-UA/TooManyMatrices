@@ -42,8 +42,7 @@ class Matrix:
         """
         if isinstance(other, Matrix):
             if dimensions_match(self, other):
-                comparison = self._matrix == other._matrix
-                return comparison.all()
+                return np.allclose(self._matrix,other._matrix,0,1e-02)
             else:
                 return False
         else:
@@ -143,20 +142,6 @@ class Matrix:
             return round(np.linalg.det(self._matrix), 2)
         else:
             return None
-
-    def multiply_scalar(self, scalar):
-        """
-        This method multiplies a scalar coefficient into the matrix.The calling
-        object is NOT modified in place.
-
-        Arguments: scalar -- The coefficient to multiply by
-
-        Returns: Matrix -- A reference to the Matrix object with scalar
-            multiplication applied
-        """
-        retval = Matrix(self._row_no, self._col_no)
-        retval._matrix = self._matrix * scalar
-        return retval
 
     def inv(self):
         """
@@ -346,7 +331,9 @@ class Matrix:
 
     def __mul__(self, other):
         """
-        This method finds the multiplication of the given matries.The calling
+        This method finds the multiplication of the given matries. If instead of
+        a matrix a sclar is passed (int or float) then the scalar will be
+        multipled element-wise into the matrix. The calling
         object is NOT modified in place.
 
         Arguments: other -- The matrix object to be multiplied
@@ -354,12 +341,22 @@ class Matrix:
         Returns: Matrix -- A reference to the resulting matrix or None if the
             request was invalid.
         """
-        if self._col_no == other._row_no:
-            retval = Matrix(self._row_no, other._col_no)
-            retval._matrix = np.dot(self._matrix, other._matrix)
-            return retval
+
+        if isinstance(other, Matrix):
+            if self._col_no == other._row_no:
+                retval = Matrix(self._row_no, other._col_no)
+                retval._matrix = np.dot(self._matrix, other._matrix)
+                return retval
+            else:
+                return None
         else:
-            return None
+            if isinstance(other, (int, float)):
+                retval = Matrix(self._row_no, self._col_no)
+                retval._matrix = self._matrix * other
+                return retval
+            else:
+                return None
+
 
     def __pow__(self, pow):
         """
@@ -517,3 +514,9 @@ def get_identity_matrix(size):
             if i == j:
                 retval.set_value(i, j, 1)
     return retval
+
+
+""" m = Matrix(2, 2)
+m.insert_all([1, 2, 3, 4])
+n = 2
+print(m >> 2) """

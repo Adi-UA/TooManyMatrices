@@ -3,8 +3,32 @@ from tmm.mathsrc.matrix import *
 __author__ = "Ved Shah"
 __status__ = "Development"
 
+ERROR_DICT = {
+    0: "Your specified and actual matrix dimensions differ",
+    1: "Matrix Multiplcation condition is not satisfied",
+    2: "Number of Columns in matrix 1 is not equal to number of rows in matrix 2",
+    3: "Your matrices are not 0-1 matrices",
+
+}
+
 
 def matrix_builder(request, mindex, entry_index, isSquare=False):
+    """
+    This function takes the html inputs for the size and shape of the matrix and
+    instantiates an object of the class Matrix with the desired number of rows and
+    columns. It can also instantiate square matrices if so desired.
+
+    Arguments:
+        request {HTML request} -- POST/GET request from HTML form
+        mindex {string} -- Queries the HTML request at mindex_rows and mindex_columns
+        entry_index {string} -- Queries the HTML request at mindex_entry
+
+    Keyword Arguments:
+        isSquare {bool} -- Parameter to inform if the matrix needs to be a square (default: {False})
+
+    Returns:
+        tuple -- (matrix object, string of matrix entry)
+    """
     m_row_no = int(request.POST[mindex + '_rows'])
 
     if isSquare:
@@ -83,20 +107,26 @@ def order_checker(m1, m2, m1_entries, m2_entries):
     """
 
     # Sanity chcek for input and actual dimensions of m1
-    m1_new_line_split = m1_entries.split("\n")
-    m1_row_no = len(m1_new_line_split)
-    m1_col_no = len(m1_new_line_split[0].split())
+    m1_row_no = m1_entries.count("\n") + 1
+    total = len(m1_entries.split())
+    if total % m1_row_no == 0:
+        m1_col_no = total // m1_row_no
 
-    if m2 is not None:
-        # Sanity chcek for input and actual dimensions of m2
-        m2_new_line_split = m2_entries.split("\n")
-        m2_row_no = len(m2_new_line_split)
-        m2_col_no = len(m2_new_line_split[0].split())
+        if m2 is not None:
+            # Sanity chcek for input and actual dimensions of m2
+            m2_row_no = m2_entries.count("\n") + 1
+            total2 = len(m2_entries.split())
+            if total2 % m2_row_no == 0:
+                m2_col_no = total2 // m2_row_no
 
-        return (m1.get_row_no() == m1_row_no
-                and m1.get_col_no() == m1_col_no
-                and m2.get_row_no() == m2_row_no
-                and m2.get_col_no() == m2_col_no)
+                return (m1.get_row_no() == m1_row_no
+                        and m1.get_col_no() == m1_col_no
+                        and m2.get_row_no() == m2_row_no
+                        and m2.get_col_no() == m2_col_no)
+            else:
+                return False
+        else:
+            return (m1.get_row_no() == m1_row_no
+                    and m1.get_col_no() == m1_col_no)
     else:
-        return (m1.get_row_no() == m1_row_no
-                and m1.get_col_no() == m1_col_no)
+        return False

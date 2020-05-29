@@ -12,4 +12,10 @@ urlpatterns = [
     path('bitwiseand/', views.bit_and, name='op_bitwiseAND'),
     path('bitwisexor/', views.bit_xor, name='op_bitwiseXOR'),
     path('power/', views.power, name='op_power'),
+    path('rightshift/', views.right_shift, name='op_right_shift'),
+    path('leftshift/', views.left_shift, name='op_left_shift'),
+    path('scalarmultiply/', views.scalar_multiply, name='op_scalar_multiply'),
+    path('transpose/', views.transpose, name='op_transpose'),
+    path('boolmultiply/', views.boolean_multiply, name='op_boolean_multiply'),
+    path('boolpower/', views.boolean_power, name='op_boolean_power'),
 ]

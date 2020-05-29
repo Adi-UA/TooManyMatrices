@@ -32,8 +32,8 @@
     <h2 class="active"> Matrix Bitwise XOR</h2>
     <form action="{% url 'op_bitwiseAND' %}" method="post">
       {% csrf_token %}
-      <input type="text" id="m_rows" class="fadeIn second" name="m_rows" placeholder="Number of Rows in Matrix 1" required>
-      <input type="text" id="m_columns" class="fadeIn third" name="m_columns" placeholder="Number of Columns in Matrix 1" required>
+      <input type="text" id="m_rows" class="fadeIn second" name="m_rows" placeholder="Number of Rows" required>
+      <input type="text" id="m_columns" class="fadeIn third" name="m_columns" placeholder="Number of Columns" required>
       <br>
       <textarea id="m1_entry" name="m1_entry" class="fadeIn third" rows="4" cols="50" placeholder="Matrix 1 Values" required></textarea>
       <br>
