@@ -462,9 +462,23 @@ class MatrixTests(unittest.TestCase):
         m = Matrix(2, 3)
         m.insert_all([1, 2, 3, 4, 5, 6])
 
-        result = m.multiply_scalar(10)
+        result = m * 10
         expected = Matrix(2, 3)
         expected.insert_all([10, 20, 30, 40, 50, 60])
+
+        _check(self, expected, result)
+
+    def test_scalarmul_2(self):
+        """
+        Test scalar multiplication on a standard 2x3 matrix with float
+        """
+        m = Matrix(2, 3)
+        m.insert_all([1, 2, 3, 4, 5, 6])
+
+        result = m * 10.7
+
+        expected = Matrix(2, 3)
+        expected.insert_all([10.7,21.4,32.1,42.8,53.5,64.2])
 
         _check(self, expected, result)
 
