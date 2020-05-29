@@ -13,5 +13,6 @@ urlpatterns = [
     path('bitwisexor/', views.bit_xor, name='op_bitwiseXOR'),
     path('power/', views.power, name='op_power'),
     path('rightshift/', views.right_shift, name='op_right_shift'),
-
+    path('leftshift/', views.left_shift, name='op_left_shift'),
+    path('scalarmultiply/', views.scalar_multiply, name='op_scalar_multiply'),
 ]
