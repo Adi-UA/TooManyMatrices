@@ -8,7 +8,6 @@ __status__ = "Development"
 # def home(request):
 # return render(request, 'blog/home.html')
 
-
 def home(request):
     return render(request, 'tmm/home.html')
 
@@ -65,6 +64,7 @@ def add(request):
         The rendered page view
     """
     if request.method == "POST":
+        page = 'tmm/op_addition.html'
         m1, m1_entries = matrix_builder(request, "m", "m1")
         m2, m2_entries = matrix_builder(request, "m", "m2")
 
@@ -73,12 +73,11 @@ def add(request):
             m2.insert_all(clean(m2_entries))
             result_add = matrix_to_list(m1 + m2)
             return render(request,
-                          'tmm/op_addition.html',
+                           page,
                           {'content': result_add})
         else:
-            result_error = "Your specified and actual matrix dimensions differ"
-            return render(request, 'tmm/op_addition.html',
-                          {'error': [result_error]})
+            return render(request, page,
+                          {'error': [ERROR_DICT[0]]})
 
 
 def subtract(request):
@@ -92,6 +91,8 @@ def subtract(request):
         The rendered page view
     """
     if request.method == "POST":
+        page = 'tmm/op_subtraction.html'
+
         m1, m1_entries = matrix_builder(request, "m", "m1")
         m2, m2_entries = matrix_builder(request, "m", "m2")
 
@@ -101,13 +102,12 @@ def subtract(request):
 
             result_subtract = matrix_to_list(m1 - m2)
             return render(request,
-                          'tmm/op_subtraction.html',
+                          page,
                           {'content': result_subtract})
         else:
-            result_error = "Your specified and actual matrix dimensions differ"
             return render(request,
-                          'tmm/op_subtraction.html',
-                          {'error': [result_error]})
+                          page,
+                          {'error': [ERROR_DICT[0]]})
 
 
 def multiply(request):
@@ -121,6 +121,8 @@ def multiply(request):
         The rendered page view
     """
     if request.method == "POST":
+        page = 'tmm/op_multiplication.html'
+
         m1, m1_entries = matrix_builder(request, "m1", "m1")
         m2, m2_entries = matrix_builder(request, "m2", "m2")
 
@@ -129,22 +131,17 @@ def multiply(request):
                 m1.insert_all(clean(m1_entries))
                 m2.insert_all(clean(m2_entries))
                 result_multiply = matrix_to_list(m1 * m2)
-                return render(request,
-                              'tmm/op_multiplication.html',
-                              {'content': result_multiply})
+                return render(request, page, {'content': result_multiply})
             else:
-                multiplication_error_1 = "Matrix Multiplcation condition is not satisfied"
-                multiplication_error_2 = "Number of Columns in matrix 1 is not equal to number of rows in matrix 2."
                 return render(request,
-                              'tmm/op_multiplication.html',
-                              {'error': [multiplication_error_1,
-                                         multiplication_error_2]})
+                              page,
+                              {'error': [ERROR_DICT[1],
+                                         ERROR_DICT[2]]})
 
         else:
-            result_error = "Your specified and actual matrix dimensions differ"
             return render(request,
-                          'tmm/op_multiplication.html',
-                          {'error': [result_error]})
+                          page,
+                          {'error': [ERROR_DICT[0]]})
 
 
 def bit_or(request):
@@ -158,6 +155,7 @@ def bit_or(request):
         The rendered page view
     """
     if request.method == "POST":
+        page = 'tmm/op_bitwise_OR.html'
 
         m1, m1_entries = matrix_builder(request, "m", "m1")
         m2, m2_entries = matrix_builder(request, "m", "m2")
@@ -167,13 +165,12 @@ def bit_or(request):
             m2.insert_all(clean(m2_entries, True))
             result_bit_or = matrix_to_list(m1 | m2)
             return render(request,
-                          'tmm/op_bitwise_OR.html',
+                          page,
                           {'content': result_bit_or})
         else:
-            result_error = "Your specified and actual matrix dimensions differ"
             return render(request,
-                          'tmm/op_bitwise_OR.html',
-                          {'error': [result_error]})
+                          page,
+                          {'error': [ERROR_DICT[0]]})
 
 
 def bit_and(request):
@@ -187,6 +184,8 @@ def bit_and(request):
         The rendered page view
     """
     if request.method == "POST":
+        page = 'tmm/op_bitwise_AND.html'
+
         m1, m1_entries = matrix_builder(request, "m", "m1")
         m2, m2_entries = matrix_builder(request, "m", "m2")
 
@@ -195,14 +194,13 @@ def bit_and(request):
             m2.insert_all(clean(m2_entries, True))
             result_bit_and = matrix_to_list(m1 & m2)
             return render(request,
-                          'tmm/op_bitwise_AND.html',
+                          page,
                           {'content': result_bit_and})
 
         else:
-            result_error = "Your specified and actual matrix dimensions differ"
             return render(request,
-                          'tmm/op_bitwise_AND.html',
-                          {'error': [result_error]})
+                          page,
+                          {'error': [ERROR_DICT[0]]})
 
 
 def bit_xor(request):
@@ -216,6 +214,8 @@ def bit_xor(request):
         The rendered page view
     """
     if request.method == "POST":
+        page = 'tmm/op_bitwise_XOR.html'
+
         m1, m1_entries = matrix_builder(request, "m", "m1")
         m2, m2_entries = matrix_builder(request, "m", "m2")
 
@@ -224,13 +224,12 @@ def bit_xor(request):
             m2.insert_all(clean(m2_entries, True))
             result_bit_xor = matrix_to_list(m1 ^ m2)
             return render(request,
-                          'tmm/op_bitwise_XOR.html',
+                          page,
                           {'content': result_bit_xor})
         else:
-            result_error = "Your specified and actual matrix dimensions differ"
             return render(request,
-                          'tmm/op_bitwise_XOR.html',
-                          {'error': [result_error]})
+                          page,
+                          {'error': [ERROR_DICT[0]]})
 
 
 def power(request):
@@ -244,6 +243,7 @@ def power(request):
         The rendered page view
     """
     if request.method == "POST":
+        page = 'tmm/op_power.html'
 
         m1, m1_entries = matrix_builder(request, "m", "m1", True)
         power = int(request.POST['pow'])
@@ -251,12 +251,11 @@ def power(request):
         if order_checker(m1, None, m1_entries, None):
             m1.insert_all(clean(m1_entries))
             result_power = matrix_to_list(m1 ** power)
-            return render(request, 'tmm/op_power.html',
+            return render(request, page,
                           {'content': result_power})
         else:
-            result_error = "Your specified and actual matrix dimensions differ"
-            return render(request, 'tmm/op_power.html',
-                          {'error': [result_error]})
+            return render(request, page,
+                          {'error': [ERROR_DICT[0]]})
 
 
 def right_shift(request):
@@ -270,6 +269,7 @@ def right_shift(request):
         The rendered page view
     """
     if request.method == "POST":
+        page = 'tmm/op_right_shift.html'
 
         m1, m1_entries = matrix_builder(request, "m", "m1")
         shift = int(request.POST['shift'])
@@ -277,12 +277,11 @@ def right_shift(request):
         if order_checker(m1, None, m1_entries, None):
             m1.insert_all(clean(m1_entries, True))
             result_right_shift = matrix_to_list(m1 >> shift)
-            return render(request, 'tmm/op_right_shift.html',
+            return render(request, page,
                           {'content': result_right_shift})
         else:
-            result_error = "Your specified and actual matrix dimensions differ"
-            return render(request, 'tmm/op_right_shift.html',
-                          {'error': [result_error]})
+            return render(request, page,
+                          {'error': [ERROR_DICT[0]]})
 
 
 def left_shift(request):
@@ -296,6 +295,7 @@ def left_shift(request):
         The rendered page view
     """
     if request.method == "POST":
+        page = 'tmm/op_left_shift.html'
 
         m1, m1_entries = matrix_builder(request, "m", "m1")
         shift = int(request.POST['shift'])
@@ -303,12 +303,11 @@ def left_shift(request):
         if order_checker(m1, None, m1_entries, None):
             m1.insert_all(clean(m1_entries, True))
             result_left_shift = matrix_to_list(m1 << shift)
-            return render(request, 'tmm/op_left_shift.html',
+            return render(request, page,
                           {'content': result_left_shift})
         else:
-            result_error = "Your specified and actual matrix dimensions differ"
-            return render(request, 'tmm/op_left_shift.html',
-                          {'error': [result_error]})
+            return render(request, page,
+                          {'error': [ERROR_DICT[0]]})
 
 
 def scalar_multiply(request):
@@ -322,6 +321,7 @@ def scalar_multiply(request):
         The rendered page view
     """
     if request.method == "POST":
+        page = 'tmm/op_scalar_multiplication.html'
 
         m1, m1_entries = matrix_builder(request, "m", "m1")
         multiplier = int(request.POST['multiplier'])
@@ -329,12 +329,11 @@ def scalar_multiply(request):
         if order_checker(m1, None, m1_entries, None):
             m1.insert_all(clean(m1_entries))
             result_scalar_multiply = matrix_to_list(m1 * multiplier)
-            return render(request, 'tmm/op_scalar_multiplication.html',
+            return render(request, page,
                           {'content': result_scalar_multiply})
         else:
-            result_error = "Your specified and actual matrix dimensions differ"
-            return render(request, 'tmm/op_scalar_multiplication.html',
-                          {'error': [result_error]})
+            return render(request, page,
+                          {'error': [ERROR_DICT[0]]})
 
 
 def transpose(request):
@@ -348,18 +347,18 @@ def transpose(request):
         The rendered page view
     """
     if request.method == "POST":
+        page = 'tmm/op_transpose.html'
 
         m1, m1_entries = matrix_builder(request, "m", "m1")
 
         if order_checker(m1, None, m1_entries, None):
             m1.insert_all(clean(m1_entries))
             result_transpose = matrix_to_list(m1.transpose())
-            return render(request, 'tmm/op_transpose.html',
+            return render(request, page,
                           {'content': result_transpose})
         else:
-            result_error = "Your specified and actual matrix dimensions differ"
-            return render(request, 'tmm/op_transpose.html',
-                          {'error': [result_error]})
+            return render(request, page,
+                          {'error': [ERROR_DICT[0]]})
 
 
 def boolean_multiply(request):
@@ -373,6 +372,8 @@ def boolean_multiply(request):
         The rendered page view
     """
     if request.method == "POST":
+        page = 'tmm/op_bool_product.html'
+
         m1, m1_entries = matrix_builder(request, "m1", "m1")
         m2, m2_entries = matrix_builder(request, "m2", "m2")
 
@@ -383,25 +384,22 @@ def boolean_multiply(request):
                 result = m1.boolean_product(m2)
                 if result is None:
                     result_bool_error = "Your matrices are not 0-1 matrices"
-                    return render(request, 'tmm/op_bool_product.html',
+                    return render(request, page,
                                   {'error': [result_bool_error]})
                 else:
                     result_bool_product = matrix_to_list(result)
                     return render(request,
-                                  'tmm/op_bool_product.html',
+                                  page,
                                   {'content': result_bool_product})
             else:
-                multiplication_error_1 = "Matrix Multiplcation condition is not satisfied"
-                multiplication_error_2 = "Number of Columns in matrix 1 is not equal to number of rows in matrix 2."
                 return render(request,
-                              'tmm/op_bool_product.html',
-                              {'error': [multiplication_error_1,
-                                         multiplication_error_2]})
+                              page,
+                              {'error': [ERROR_DICT[1],
+                                         ERROR_DICT[2]]})
         else:
-            result_error = "Your specified and actual matrix dimensions differ"
             return render(request,
-                          'tmm/op_bool_product.html',
-                          {'error': [result_error]})
+                          page,
+                          {'error': [ERROR_DICT[0]]})
 
 
 def boolean_power(request):
@@ -415,22 +413,22 @@ def boolean_power(request):
         The rendered page view
     """
     if request.method == "POST":
+        page= 'tmm/op_bool_power.html'
 
-        m1, m1_entries = matrix_builder(request, "m", "m1", True)
-        power = int(request.POST['pow'])
+        m1, m1_entries= matrix_builder(request, "m", "m1", True)
+        power= int(request.POST['pow'])
 
         if order_checker(m1, None, m1_entries, None):
             m1.insert_all(clean(m1_entries, True))
-            result = m1.boolean_power(power)
+            result= m1.boolean_power(power)
             if result is None:
-                result_bool_error = "Your matrices are not 0-1 matrices"
-                return render(request, 'tmm/op_bool_power.html',
-                              {'error': [result_bool_error]})
+
+                return render(request, page,
+                              {'error': [ERROR_DICT[3]]})
             else:
-                result_power = matrix_to_list(result)
-                return render(request, 'tmm/op_bool_power.html',
+                result_power= matrix_to_list(result)
+                return render(request, page,
                               {'content': result_power})
         else:
-            result_error = "Your specified and actual matrix dimensions differ"
-            return render(request, 'tmm/op_bool_power.html',
-                          {'error': [result_error]})
+            return render(request, page,
+                          {'error': [ERROR_DICT[0]]})
