@@ -5,6 +5,22 @@ __status__ = "Development"
 
 
 def matrix_builder(request, mindex, entry_index, isSquare=False):
+    """
+    This function takes the html inputs for the size and shape of the matrix and 
+    instantiates an object of the class Matrix with the desired number of rows and
+    columns. It can also instantiate square matrices if so desired.             
+
+    Arguments:
+        request {HTML request} -- POST/GET request from HTML form
+        mindex {string} -- Queries the HTML request at mindex_rows and mindex_columns
+        entry_index {string} -- Queries the HTML request at mindex_entry
+
+    Keyword Arguments:
+        isSquare {bool} -- Parameter to inform if the matrix needs to be a square (default: {False})
+
+    Returns:
+        tuple -- (matrix object, string of matrix entry)
+    """
     m_row_no = int(request.POST[mindex + '_rows'])
 
     if isSquare:
@@ -85,14 +101,14 @@ def order_checker(m1, m2, m1_entries, m2_entries):
     # Sanity chcek for input and actual dimensions of m1
     m1_row_no = m1_entries.count("\n")+1
     total = len(m1_entries.split())
-    if total%m1_row_no == 0:
+    if total % m1_row_no == 0:
         m1_col_no = total//m1_row_no
 
         if m2 is not None:
             # Sanity chcek for input and actual dimensions of m2
             m2_row_no = m2_entries.count("\n")+1
             total2 = len(m2_entries.split())
-            if total2%m2_row_no == 0:
+            if total2 % m2_row_no == 0:
                 m2_col_no = total2//m2_row_no
 
                 return (m1.get_row_no() == m1_row_no

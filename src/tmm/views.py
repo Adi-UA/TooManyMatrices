@@ -46,6 +46,12 @@ def choose(request):
             return render(request, 'tmm/op_left_shift.html')
         if operation == "Matrix Scalar Multiplication":
             return render(request, 'tmm/op_scalar_multiplication.html')
+        if operation == "Transpose":
+            return render(request, 'tmm/op_transpose.html')
+        if operation == "Boolean Product":
+            return render(request, 'tmm/op_bool_product.html')
+        if operation == "Boolean Power":
+            return render(request, 'tmm/op_bool_power.html')
 
 
 def add(request):
@@ -254,6 +260,15 @@ def power(request):
 
 
 def right_shift(request):
+    """
+    This function is called when the user chooses matrix right shift as
+    the desired operation and clicks the submit button. It defines the
+    matrices, initializes them with values and computes and displays the
+    right shifted matrix.
+
+    Returns:
+        The rendered page view
+    """
     if request.method == "POST":
 
         m1, m1_entries = matrix_builder(request, "m", "m1")
@@ -271,6 +286,15 @@ def right_shift(request):
 
 
 def left_shift(request):
+    """
+    This function is called when the user chooses matrix left shift as
+    the desired operation and clicks the submit button. It defines the
+    matrices, initializes them with values and computes and displays the
+    left shifted matrix.
+
+    Returns:
+        The rendered page view
+    """
     if request.method == "POST":
 
         m1, m1_entries = matrix_builder(request, "m", "m1")
@@ -288,6 +312,15 @@ def left_shift(request):
 
 
 def scalar_multiply(request):
+    """
+    This function is called when the user chooses matrix scalar multiplication as
+    the desired operation and clicks the submit button. It defines the
+    matrices, initializes them with values and computes and displays the
+    right shifted matrix.
+
+    Returns:
+        The rendered page view
+    """
     if request.method == "POST":
 
         m1, m1_entries = matrix_builder(request, "m", "m1")
@@ -301,4 +334,103 @@ def scalar_multiply(request):
         else:
             result_error = "Your specified and actual matrix dimensions differ"
             return render(request, 'tmm/op_scalar_multiplication.html',
+                          {'error': [result_error]})
+
+
+def transpose(request):
+    """
+    This function is called when the user chooses matrix transpose as
+    the desired operation and clicks the submit button. It defines the
+    matrices, initializes them with values and computes and displays the
+    transpose of the matrix.
+
+    Returns:
+        The rendered page view
+    """
+    if request.method == "POST":
+
+        m1, m1_entries = matrix_builder(request, "m", "m1")
+
+        if order_checker(m1, None, m1_entries, None):
+            m1.insert_all(clean(m1_entries))
+            result_transpose = matrix_to_list(m1.transpose())
+            return render(request, 'tmm/op_transpose.html',
+                          {'content': result_transpose})
+        else:
+            result_error = "Your specified and actual matrix dimensions differ"
+            return render(request, 'tmm/op_transpose.html',
+                          {'error': [result_error]})
+
+
+def boolean_multiply(request):
+    """
+    This function is called when the user chooses boolean produuct as
+    the desired operation and clicks the multiply button. It defines the
+    matrices, initializes them with values and multiplies and displays the
+    result.
+
+    Returns:
+        The rendered page view
+    """
+    if request.method == "POST":
+        m1, m1_entries = matrix_builder(request, "m1", "m1")
+        m2, m2_entries = matrix_builder(request, "m2", "m2")
+
+        if order_checker(m1, m2, m1_entries, m2_entries):
+            if m1.get_col_no() == m2.get_row_no():
+                m1.insert_all(clean(m1_entries, True))
+                m2.insert_all(clean(m2_entries, True))
+                result = m1.boolean_product(m2)
+                if result is None:
+                    result_bool_error = "Your matrices are not 0-1 matrices"
+                    return render(request, 'tmm/op_bool_product.html',
+                                  {'error': [result_bool_error]})
+                else:
+                    result_bool_product = matrix_to_list(result)
+                    return render(request,
+                                  'tmm/op_bool_product.html',
+                                  {'content': result_bool_product})
+            else:
+                multiplication_error_1 = "Matrix Multiplcation condition is not satisfied"
+                multiplication_error_2 = "Number of Columns in matrix 1 is not equal to number of rows in matrix 2."
+                return render(request,
+                              'tmm/op_bool_product.html',
+                              {'error': [multiplication_error_1,
+                                         multiplication_error_2]})
+        else:
+            result_error = "Your specified and actual matrix dimensions differ"
+            return render(request,
+                          'tmm/op_bool_product.html',
+                          {'error': [result_error]})
+
+
+def boolean_power(request):
+    """
+    This function is called when the user chooses matrix power as
+    the desired operation and clicks the submit button. It defines the
+    matrices, initializes them with values and computes and displays the
+    matrix raised to the power.
+
+    Returns:
+        The rendered page view
+    """
+    if request.method == "POST":
+
+        m1, m1_entries = matrix_builder(request, "m", "m1", True)
+        power = int(request.POST['pow'])
+
+        if order_checker(m1, None, m1_entries, None):
+            m1.insert_all(clean(m1_entries, True))
+            result = m1.boolean_power(power)
+            if result is None:
+                result_bool_error = "Your matrices are not 0-1 matrices"
+                return render(request, 'tmm/op_bool_power.html',
+                              {'error': [result_bool_error]})
+            else:
+                result_power = matrix_to_list(result)
+                return render(request, 'tmm/op_bool_power.html',
+                              {'content': result_power})
+        else:
+            result_error = "Your specified and actual matrix dimensions differ"
+            return render(request, 'tmm/op_bool_power.html',
                           {'error': [result_error]})
