@@ -106,11 +106,11 @@ box-shadow: 0 10px 30px 0 rgba(95,186,233,0.4);
 -webkit-border-radius: 5px 5px 5px 5px;
 border-radius: 5px 5px 5px 5px;
 margin: 5px 20px 40px 20px;
--webkit-transition: all 0.3s ease-in-out;
--moz-transition: all 0.3s ease-in-out;
--ms-transition: all 0.3s ease-in-out;
--o-transition: all 0.3s ease-in-out;
-transition: all 0.3s ease-in-out;
+-webkit-transition: all 0.1s ease-in-out;
+-moz-transition: all 0.1s ease-in-out;
+-ms-transition: all 0.1s ease-in-out;
+-o-transition: all 0.1s ease-in-out;
+transition: all 0.1s ease-in-out;
 }
 input[type=button]:hover, input[type=submit]:hover, input[type=reset]:hover  {
 background-color: #39ace7;
@@ -134,11 +134,11 @@ font-size: 16px;
 margin: 5px;
 width: 85%;
 border: 2px solid #f6f6f6;
--webkit-transition: all 0.5s ease-in-out;
--moz-transition: all 0.5s ease-in-out;
--ms-transition: all 0.5s ease-in-out;
--o-transition: all 0.5s ease-in-out;
-transition: all 0.5s ease-in-out;
+-webkit-transition: all 0.3s ease-in-out;
+-moz-transition: all 0.3s ease-in-out;
+-ms-transition: all 0.3s ease-in-out;
+-o-transition: all 0.3s ease-in-out;
+transition: all 0.3s ease-in-out;
 -webkit-border-radius: 5px 5px 5px 5px;
 border-radius: 5px 5px 5px 5px;
 }
@@ -154,11 +154,11 @@ font-size: 16px;
 margin: 5px;
 width: 85%;
 border: 2px solid #f6f6f6;
--webkit-transition: all 0.5s ease-in-out;
--moz-transition: all 0.5s ease-in-out;
--ms-transition: all 0.5s ease-in-out;
--o-transition: all 0.5s ease-in-out;
-transition: all 0.5s ease-in-out;
+-webkit-transition: all 0.3s ease-in-out;
+-moz-transition: all 0.3s ease-in-out;
+-ms-transition: all 0.3s ease-in-out;
+-o-transition: all 0.3s ease-in-out;
+transition: all 0.3s ease-in-out;
 -webkit-border-radius: 5px 5px 5px 5px;
 border-radius: 5px 5px 5px 5px;
 }
@@ -185,8 +185,8 @@ color: #cccccc;
 .fadeInDown {
 -webkit-animation-name: fadeInDown;
 animation-name: fadeInDown;
--webkit-animation-duration: 1s;
-animation-duration: 1s;
+-webkit-animation-duration: 0.75s;
+animation-duration: 0.75s;
 -webkit-animation-fill-mode: both;
 animation-fill-mode: both;
 }
@@ -238,27 +238,27 @@ animation-duration:1s;
 }
 
 .fadeIn.first {
+-webkit-animation-delay: 0.2s;
+-moz-animation-delay: 0.2s;
+animation-delay: 0.2s;
+}
+
+.fadeIn.second {
 -webkit-animation-delay: 0.4s;
 -moz-animation-delay: 0.4s;
 animation-delay: 0.4s;
 }
 
-.fadeIn.second {
+.fadeIn.third {
 -webkit-animation-delay: 0.6s;
 -moz-animation-delay: 0.6s;
 animation-delay: 0.6s;
 }
 
-.fadeIn.third {
--webkit-animation-delay: 0.8s;
--moz-animation-delay: 0.8s;
-animation-delay: 0.8s;
-}
-
 .fadeIn.fourth {
--webkit-animation-delay: 1s;
--moz-animation-delay: 1s;
-animation-delay: 1s;
+-webkit-animation-delay: 0.8s;
+-moz-animation-delay: 0,8s;
+animation-delay: 0.8s;
 }
 
 /* Simple CSS3 Fade-in Animation */
@@ -270,7 +270,7 @@ width: 0;
 height: 2px;
 background-color: #56baed;
 content: "";
-transition: width 0.2s;
+transition: width 0.15s;
 }
 
 .underlineHover:hover {
@@ -308,11 +308,11 @@ font-size: 16px;
 margin: 5px;
 width: 85%;
 border: 2px solid #f6f6f6;
--webkit-transition: all 0.5s ease-in-out;
--moz-transition: all 0.5s ease-in-out;
--ms-transition: all 0.5s ease-in-out;
--o-transition: all 0.5s ease-in-out;
-transition: all 0.5s ease-in-out;
+-webkit-transition: all 0.3s ease-in-out;
+-moz-transition: all 0.3s ease-in-out;
+-ms-transition: all 0.3s ease-in-out;
+-o-transition: all 0.3s ease-in-out;
+transition: all 0.3s ease-in-out;
 -webkit-border-radius: 5px 5px 5px 5px;
 border-radius: 5px 5px 5px 5px;
 }
