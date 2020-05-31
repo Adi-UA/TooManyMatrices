@@ -42,7 +42,7 @@ class Matrix:
         """
         if isinstance(other, Matrix):
             if dimensions_match(self, other):
-                return np.allclose(self._matrix,other._matrix,0,1e-02)
+                return np.allclose(self._matrix, other._matrix, 0, 1e-02)
             else:
                 return False
         else:
@@ -139,7 +139,7 @@ class Matrix:
             if the request was invalid
         """
         if self._row_no == self._col_no:
-            result =  round(np.linalg.det(self._matrix), 2)
+            result = round(np.linalg.det(self._matrix), 2)
             if result == 0:
                 return 0.0
             else:
@@ -364,7 +364,6 @@ class Matrix:
                 return retval
             else:
                 return None
-
 
     def __pow__(self, pow):
         """
