@@ -624,7 +624,7 @@ class MatrixTests(unittest.TestCase):
 
     def test_adjoint_1(self):
         &#34;&#34;&#34;
-        Checks adjoint of a matrix.
+        Checks adjoint of a square matrix.
         &#34;&#34;&#34;
         m = Matrix(3, 3)
 
@@ -638,7 +638,7 @@ class MatrixTests(unittest.TestCase):
 
     def test_adjoint_2(self):
         &#34;&#34;&#34;
-        Checks adjoint of a matrix.
+        Checks adjoint of a non square matrix.
         &#34;&#34;&#34;
         m = Matrix(3, 2)
 
@@ -651,7 +651,7 @@ class MatrixTests(unittest.TestCase):
 
     def test_adjoint_3(self):
         &#34;&#34;&#34;
-        Checks adjoint of a matrix.
+        Checks adjoint of a matrix with float values.
         &#34;&#34;&#34;
         m = Matrix(3, 3)
 
@@ -666,7 +666,7 @@ class MatrixTests(unittest.TestCase):
 
     def test_adjoint_4(self):
         &#34;&#34;&#34;
-        Checks the adjoint of a matrix.
+        Checks the adjoint of a 4*4 matrix.
         &#34;&#34;&#34;
         m = Matrix(4, 4)
 
@@ -680,7 +680,7 @@ class MatrixTests(unittest.TestCase):
 
     def test_cofactor_1(self):
         &#34;&#34;&#34;
-        Checks the cofactor of a matrix.
+        Checks the cofactor of a square matrix.
         &#34;&#34;&#34;
         m = Matrix(3, 3)
 
@@ -694,7 +694,7 @@ class MatrixTests(unittest.TestCase):
 
     def test_cofactor_2(self):
         &#34;&#34;&#34;
-        Checks the cofactor of a matrix.
+        Checks the cofactor of a non square matrix.
         &#34;&#34;&#34;
         m = Matrix(3, 2)
 
@@ -707,7 +707,7 @@ class MatrixTests(unittest.TestCase):
 
     def test_cofactor_3(self):
         &#34;&#34;&#34;
-        Checks the cofactor of a matrix.
+        Checks the cofactor of a matrix with float values.
         &#34;&#34;&#34;
         m = Matrix(3, 3)
 
@@ -722,7 +722,7 @@ class MatrixTests(unittest.TestCase):
 
     def test_cofactor_4(self):
         &#34;&#34;&#34;
-        Checks the cofactor of a matrix.
+        Checks the cofactor of a 4*4 matrix.
         &#34;&#34;&#34;
         m = Matrix(4, 4)
 
@@ -736,7 +736,7 @@ class MatrixTests(unittest.TestCase):
 
     def test_inverse_1(self):
         &#34;&#34;&#34;
-        Checks the inverse of a matrix.
+        Checks the inverse of a square matrix.
         &#34;&#34;&#34;
         m = Matrix(3, 3)
 
@@ -750,7 +750,7 @@ class MatrixTests(unittest.TestCase):
 
     def test_inverse_2(self):
         &#34;&#34;&#34;
-        Checks the inverse of a matrix.
+        Checks the inverse of a non square matrix.
         &#34;&#34;&#34;
         m = Matrix(3, 2)
 
@@ -762,7 +762,7 @@ class MatrixTests(unittest.TestCase):
 
     def test_inverse_3(self):
         &#34;&#34;&#34;
-        Checks the inverse of a matrix.
+        Checks the inverse of an identity matrix.
         &#34;&#34;&#34;
         m = Matrix(3, 3)
 
@@ -775,7 +775,7 @@ class MatrixTests(unittest.TestCase):
 
     def test_inverse_4(self):
         &#34;&#34;&#34;
-        Checks the inverse of a matrix.
+        Checks the inverse of a matrix with determinant 0.
         &#34;&#34;&#34;
         m = Matrix(3, 3)
 
@@ -1417,7 +1417,7 @@ not have a method with the specified name.</p></div>
 
     def test_adjoint_1(self):
         &#34;&#34;&#34;
-        Checks adjoint of a matrix.
+        Checks adjoint of a square matrix.
         &#34;&#34;&#34;
         m = Matrix(3, 3)
 
@@ -1431,7 +1431,7 @@ not have a method with the specified name.</p></div>
 
     def test_adjoint_2(self):
         &#34;&#34;&#34;
-        Checks adjoint of a matrix.
+        Checks adjoint of a non square matrix.
         &#34;&#34;&#34;
         m = Matrix(3, 2)
 
@@ -1444,7 +1444,7 @@ not have a method with the specified name.</p></div>
 
     def test_adjoint_3(self):
         &#34;&#34;&#34;
-        Checks adjoint of a matrix.
+        Checks adjoint of a matrix with float values.
         &#34;&#34;&#34;
         m = Matrix(3, 3)
 
@@ -1459,7 +1459,7 @@ not have a method with the specified name.</p></div>
 
     def test_adjoint_4(self):
         &#34;&#34;&#34;
-        Checks the adjoint of a matrix.
+        Checks the adjoint of a 4*4 matrix.
         &#34;&#34;&#34;
         m = Matrix(4, 4)
 
@@ -1473,7 +1473,7 @@ not have a method with the specified name.</p></div>
 
     def test_cofactor_1(self):
         &#34;&#34;&#34;
-        Checks the cofactor of a matrix.
+        Checks the cofactor of a square matrix.
         &#34;&#34;&#34;
         m = Matrix(3, 3)
 
@@ -1487,7 +1487,7 @@ not have a method with the specified name.</p></div>
 
     def test_cofactor_2(self):
         &#34;&#34;&#34;
-        Checks the cofactor of a matrix.
+        Checks the cofactor of a non square matrix.
         &#34;&#34;&#34;
         m = Matrix(3, 2)
 
@@ -1500,7 +1500,7 @@ not have a method with the specified name.</p></div>
 
     def test_cofactor_3(self):
         &#34;&#34;&#34;
-        Checks the cofactor of a matrix.
+        Checks the cofactor of a matrix with float values.
         &#34;&#34;&#34;
         m = Matrix(3, 3)
 
@@ -1515,7 +1515,7 @@ not have a method with the specified name.</p></div>
 
     def test_cofactor_4(self):
         &#34;&#34;&#34;
-        Checks the cofactor of a matrix.
+        Checks the cofactor of a 4*4 matrix.
         &#34;&#34;&#34;
         m = Matrix(4, 4)
 
@@ -1529,7 +1529,7 @@ not have a method with the specified name.</p></div>
 
     def test_inverse_1(self):
         &#34;&#34;&#34;
-        Checks the inverse of a matrix.
+        Checks the inverse of a square matrix.
         &#34;&#34;&#34;
         m = Matrix(3, 3)
 
@@ -1543,7 +1543,7 @@ not have a method with the specified name.</p></div>
 
     def test_inverse_2(self):
         &#34;&#34;&#34;
-        Checks the inverse of a matrix.
+        Checks the inverse of a non square matrix.
         &#34;&#34;&#34;
         m = Matrix(3, 2)
 
@@ -1555,7 +1555,7 @@ not have a method with the specified name.</p></div>
 
     def test_inverse_3(self):
         &#34;&#34;&#34;
-        Checks the inverse of a matrix.
+        Checks the inverse of an identity matrix.
         &#34;&#34;&#34;
         m = Matrix(3, 3)
 
@@ -1568,7 +1568,7 @@ not have a method with the specified name.</p></div>
 
     def test_inverse_4(self):
         &#34;&#34;&#34;
-        Checks the inverse of a matrix.
+        Checks the inverse of a matrix with determinant 0.
         &#34;&#34;&#34;
         m = Matrix(3, 3)
 
@@ -1639,14 +1639,14 @@ not have a method with the specified name.</p></div>
 <span>def <span class="ident">test_adjoint_1</span></span>(<span>self)</span>
 </code></dt>
 <dd>
-<div class="desc"><p>Checks adjoint of a matrix.</p></div>
+<div class="desc"><p>Checks adjoint of a square matrix.</p></div>
 <details class="source">
 <summary>
 <span>Expand source code</span>
 </summary>
 <pre><code class="python">def test_adjoint_1(self):
     &#34;&#34;&#34;
-    Checks adjoint of a matrix.
+    Checks adjoint of a square matrix.
     &#34;&#34;&#34;
     m = Matrix(3, 3)
 
@@ -1663,14 +1663,14 @@ not have a method with the specified name.</p></div>
 <span>def <span class="ident">test_adjoint_2</span></span>(<span>self)</span>
 </code></dt>
 <dd>
-<div class="desc"><p>Checks adjoint of a matrix.</p></div>
+<div class="desc"><p>Checks adjoint of a non square matrix.</p></div>
 <details class="source">
 <summary>
 <span>Expand source code</span>
 </summary>
 <pre><code class="python">def test_adjoint_2(self):
     &#34;&#34;&#34;
-    Checks adjoint of a matrix.
+    Checks adjoint of a non square matrix.
     &#34;&#34;&#34;
     m = Matrix(3, 2)
 
@@ -1686,14 +1686,14 @@ not have a method with the specified name.</p></div>
 <span>def <span class="ident">test_adjoint_3</span></span>(<span>self)</span>
 </code></dt>
 <dd>
-<div class="desc"><p>Checks adjoint of a matrix.</p></div>
+<div class="desc"><p>Checks adjoint of a matrix with float values.</p></div>
 <details class="source">
 <summary>
 <span>Expand source code</span>
 </summary>
 <pre><code class="python">def test_adjoint_3(self):
     &#34;&#34;&#34;
-    Checks adjoint of a matrix.
+    Checks adjoint of a matrix with float values.
     &#34;&#34;&#34;
     m = Matrix(3, 3)
 
@@ -1711,14 +1711,14 @@ not have a method with the specified name.</p></div>
 <span>def <span class="ident">test_adjoint_4</span></span>(<span>self)</span>
 </code></dt>
 <dd>
-<div class="desc"><p>Checks the adjoint of a matrix.</p></div>
+<div class="desc"><p>Checks the adjoint of a 4*4 matrix.</p></div>
 <details class="source">
 <summary>
 <span>Expand source code</span>
 </summary>
 <pre><code class="python">def test_adjoint_4(self):
     &#34;&#34;&#34;
-    Checks the adjoint of a matrix.
+    Checks the adjoint of a 4*4 matrix.
     &#34;&#34;&#34;
     m = Matrix(4, 4)
 
@@ -2054,14 +2054,14 @@ not have a method with the specified name.</p></div>
 <span>def <span class="ident">test_cofactor_1</span></span>(<span>self)</span>
 </code></dt>
 <dd>
-<div class="desc"><p>Checks the cofactor of a matrix.</p></div>
+<div class="desc"><p>Checks the cofactor of a square matrix.</p></div>
 <details class="source">
 <summary>
 <span>Expand source code</span>
 </summary>
 <pre><code class="python">def test_cofactor_1(self):
     &#34;&#34;&#34;
-    Checks the cofactor of a matrix.
+    Checks the cofactor of a square matrix.
     &#34;&#34;&#34;
     m = Matrix(3, 3)
 
@@ -2078,14 +2078,14 @@ not have a method with the specified name.</p></div>
 <span>def <span class="ident">test_cofactor_2</span></span>(<span>self)</span>
 </code></dt>
 <dd>
-<div class="desc"><p>Checks the cofactor of a matrix.</p></div>
+<div class="desc"><p>Checks the cofactor of a non square matrix.</p></div>
 <details class="source">
 <summary>
 <span>Expand source code</span>
 </summary>
 <pre><code class="python">def test_cofactor_2(self):
     &#34;&#34;&#34;
-    Checks the cofactor of a matrix.
+    Checks the cofactor of a non square matrix.
     &#34;&#34;&#34;
     m = Matrix(3, 2)
 
@@ -2101,14 +2101,14 @@ not have a method with the specified name.</p></div>
 <span>def <span class="ident">test_cofactor_3</span></span>(<span>self)</span>
 </code></dt>
 <dd>
-<div class="desc"><p>Checks the cofactor of a matrix.</p></div>
+<div class="desc"><p>Checks the cofactor of a matrix with float values.</p></div>
 <details class="source">
 <summary>
 <span>Expand source code</span>
 </summary>
 <pre><code class="python">def test_cofactor_3(self):
     &#34;&#34;&#34;
-    Checks the cofactor of a matrix.
+    Checks the cofactor of a matrix with float values.
     &#34;&#34;&#34;
     m = Matrix(3, 3)
 
@@ -2126,14 +2126,14 @@ not have a method with the specified name.</p></div>
 <span>def <span class="ident">test_cofactor_4</span></span>(<span>self)</span>
 </code></dt>
 <dd>
-<div class="desc"><p>Checks the cofactor of a matrix.</p></div>
+<div class="desc"><p>Checks the cofactor of a 4*4 matrix.</p></div>
 <details class="source">
 <summary>
 <span>Expand source code</span>
 </summary>
 <pre><code class="python">def test_cofactor_4(self):
     &#34;&#34;&#34;
-    Checks the cofactor of a matrix.
+    Checks the cofactor of a 4*4 matrix.
     &#34;&#34;&#34;
     m = Matrix(4, 4)
 
@@ -2219,14 +2219,14 @@ not have a method with the specified name.</p></div>
 <span>def <span class="ident">test_inverse_1</span></span>(<span>self)</span>
 </code></dt>
 <dd>
-<div class="desc"><p>Checks the inverse of a matrix.</p></div>
+<div class="desc"><p>Checks the inverse of a square matrix.</p></div>
 <details class="source">
 <summary>
 <span>Expand source code</span>
 </summary>
 <pre><code class="python">def test_inverse_1(self):
     &#34;&#34;&#34;
-    Checks the inverse of a matrix.
+    Checks the inverse of a square matrix.
     &#34;&#34;&#34;
     m = Matrix(3, 3)
 
@@ -2243,14 +2243,14 @@ not have a method with the specified name.</p></div>
 <span>def <span class="ident">test_inverse_2</span></span>(<span>self)</span>
 </code></dt>
 <dd>
-<div class="desc"><p>Checks the inverse of a matrix.</p></div>
+<div class="desc"><p>Checks the inverse of a non square matrix.</p></div>
 <details class="source">
 <summary>
 <span>Expand source code</span>
 </summary>
 <pre><code class="python">def test_inverse_2(self):
     &#34;&#34;&#34;
-    Checks the inverse of a matrix.
+    Checks the inverse of a non square matrix.
     &#34;&#34;&#34;
     m = Matrix(3, 2)
 
@@ -2265,14 +2265,14 @@ not have a method with the specified name.</p></div>
 <span>def <span class="ident">test_inverse_3</span></span>(<span>self)</span>
 </code></dt>
 <dd>
-<div class="desc"><p>Checks the inverse of a matrix.</p></div>
+<div class="desc"><p>Checks the inverse of an identity matrix.</p></div>
 <details class="source">
 <summary>
 <span>Expand source code</span>
 </summary>
 <pre><code class="python">def test_inverse_3(self):
     &#34;&#34;&#34;
-    Checks the inverse of a matrix.
+    Checks the inverse of an identity matrix.
     &#34;&#34;&#34;
     m = Matrix(3, 3)
 
@@ -2288,14 +2288,14 @@ not have a method with the specified name.</p></div>
 <span>def <span class="ident">test_inverse_4</span></span>(<span>self)</span>
 </code></dt>
 <dd>
-<div class="desc"><p>Checks the inverse of a matrix.</p></div>
+<div class="desc"><p>Checks the inverse of a matrix with determinant 0.</p></div>
 <details class="source">
 <summary>
 <span>Expand source code</span>
 </summary>
 <pre><code class="python">def test_inverse_4(self):
     &#34;&#34;&#34;
-    Checks the inverse of a matrix.
+    Checks the inverse of a matrix with determinant 0.
     &#34;&#34;&#34;
     m = Matrix(3, 3)
 
