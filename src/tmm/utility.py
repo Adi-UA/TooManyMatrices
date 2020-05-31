@@ -8,6 +8,7 @@ ERROR_DICT = {
     1: "Matrix Multiplcation condition is not satisfied",
     2: "Number of Columns in matrix 1 is not equal to number of rows in matrix 2",
     3: "Your matrices are not 0-1 matrices",
+    4: "The inverse doesn't exist"
 
 }
 
