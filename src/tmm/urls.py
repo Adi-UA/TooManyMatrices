@@ -19,4 +19,6 @@ urlpatterns = [
     path('boolmultiply/', views.boolean_multiply, name='op_boolean_multiply'),
     path('boolpower/', views.boolean_power, name='op_boolean_power'),
     path('determinant/', views.determinant, name='op_determinant'),
+    path('cofactor/', views.cofactor, name='op_cofactor'),
+    path('adjoint/', views.adjoint, name='op_adjoint'),
 ]
