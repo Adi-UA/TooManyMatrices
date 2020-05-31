@@ -623,6 +623,77 @@ class MatrixTests(unittest.TestCase):
 
         _check(self, expected, result)
 
+    def test_adjoint_3(self):
+        """
+        Checks adjoint of a matrix.
+        """
+        m = Matrix(3, 3)
+
+        m.insert_all([1.0, 2.0, 3.0, 4.0, 5.0, 6.0, 7.0, 8.0, 9.0])
+
+        result = m.adjoint()
+        expected = Matrix(3, 3)
+        expected.insert_all(
+            [-3.0, 6.0, -3.0, 6.0, -12.0, 6.0, -3.0, 6.0, -3.0])
+
+        _check(self, expected, result)
+
+    def test_cofactor_1(self):
+        """
+        Checks the cofactor of a matrix.
+        """
+        m = Matrix(3, 3)
+
+        m.insert_all([9, 8, 7, 6, 5, 4, 3, 2, 1])
+
+        result = m.cofactor()
+        expected = Matrix(3, 3)
+        expected.insert_all([-3, 6, -3, 6, -12, 6, -3, 6, -3])
+
+        _check(self, expected, result)
+
+    def test_cofactor_2(self):
+        """
+        Checks the cofactor of a matrix.
+        """
+        m = Matrix(3, 2)
+
+        m.insert_all([1, 2, 3, 4, 5, 6])
+
+        result = m.cofactor()
+        expected = None
+
+        _check(self, expected, result)
+
+    def test_cofactor_3(self):
+        """
+        Checks the cofactor of a matrix.
+        """
+        m = Matrix(3, 3)
+
+        m.insert_all([9.0, 8.0, 7.0, 6.0, 5.0, 4.0, 3.0, 2.0, 1.0])
+
+        result = m.cofactor()
+        expected = Matrix(3, 3)
+        expected.insert_all(
+            [-3.0, 6.0, -3.0, 6.0, -12.0, 6.0, -3.0, 6.0, -3.0])
+
+        _check(self, expected, result)
+
+    def test_cofactor_4(self):
+        """
+        Checks the cofactor of a matrix
+        """
+        m = Matrix(4, 4)
+
+        m.insert_all([1, 2, 3, 4, 5, 6, 7, 8, 8, 7, 6, 5, 4, 3, 2, 1])
+
+        result = m.cofactor()
+        expected = Matrix(4, 4)
+        expected.insert_all([1, 2, 3, 4, 5, 6, 7, 8, 8, 7, 6, 5, 4, 3, 2, 1])
+
+        _check(self, expected, result)
+
 
 if __name__ == "__main__":
     unittest.main()
