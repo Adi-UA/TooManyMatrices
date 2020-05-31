@@ -478,7 +478,7 @@ class MatrixTests(unittest.TestCase):
         result = m * 10.7
 
         expected = Matrix(2, 3)
-        expected.insert_all([10.7,21.4,32.1,42.8,53.5,64.2])
+        expected.insert_all([10.7, 21.4, 32.1, 42.8, 53.5, 64.2])
 
         _check(self, expected, result)
 
@@ -592,6 +592,33 @@ class MatrixTests(unittest.TestCase):
         m.insert_all([1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12])
 
         result = m.det()
+        expected = None
+
+        _check(self, expected, result)
+
+    def test_adjoint_1(self):
+        """
+        Checks adjoint of a matrix.
+        """
+        m = Matrix(3, 3)
+
+        m.insert_all([1, 2, 3, 4, 5, 6, 7, 8, 9])
+
+        result = m.adjoint()
+        expected = Matrix(3, 3)
+        expected.insert_all([-3, 6, -3, 6, -12, 6, -3, 6, -3])
+
+        _check(self, expected, result)
+
+    def test_adjoint_2(self):
+        """
+        Checks adjoint of a matrix.
+        """
+        m = Matrix(3, 2)
+
+        m.insert_all([1, 2, 3, 4, 5, 6])
+
+        result = m.adjoint()
         expected = None
 
         _check(self, expected, result)
