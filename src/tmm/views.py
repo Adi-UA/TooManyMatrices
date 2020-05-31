@@ -57,6 +57,10 @@ def choose(request):
             return render(request, 'tmm/op_cofactor.html')
         if operation == "Matrix Adjoint":
             return render(request, 'tmm/op_adjoint.html')
+        if operation == "Matrix Minor":
+            return render(request, 'tmm/op_find_minor.html')
+        if operation == "Matrix Inverse":
+            return render(request, 'tmm/op_inverse.html')
 
 def determinant(request):
     """
@@ -74,14 +78,10 @@ def determinant(request):
         m1, m1_entries = matrix_builder(request, "m", "m1", True)
 
         if order_checker(m1, None, m1_entries, None):
-            if m1.get_row_no() == m1.get_col_no():
-                m1.insert_all(clean(m1_entries))
-                result = m1.det()
-                return render(request, page,
-                            {'content': [result]})
-            else:
-                return render(request, page,
-                          {'error': ['You matrix is not square']})
+            m1.insert_all(clean(m1_entries))
+            result = m1.det()
+            return render(request, page,
+                        {'content': [result]})
         else:
             return render(request, page,
                           {'error': [ERROR_DICT[0]]})
@@ -102,14 +102,10 @@ def cofactor(request):
         m1, m1_entries = matrix_builder(request, "m", "m1", True)
 
         if order_checker(m1, None, m1_entries, None):
-            if m1.get_row_no() == m1.get_col_no():
-                m1.insert_all(clean(m1_entries))
-                result = matrix_to_list(m1.cofactor())
-                return render(request, page,
-                            {'content': result})
-            else:
-                return render(request, page,
-                          {'error': ['You matrix is not square']})
+            m1.insert_all(clean(m1_entries))
+            result = matrix_to_list(m1.cofactor())
+            return render(request, page,
+                        {'content': result})
         else:
             return render(request, page,
                           {'error': [ERROR_DICT[0]]})
@@ -130,18 +126,73 @@ def adjoint(request):
         m1, m1_entries = matrix_builder(request, "m", "m1", True)
 
         if order_checker(m1, None, m1_entries, None):
-            if m1.get_row_no() == m1.get_col_no():
-                m1.insert_all(clean(m1_entries))
-                result = matrix_to_list(m1.adjoint())
-                return render(request, page,
-                            {'content': result})
-            else:
-                return render(request, page,
-                          {'error': ['You matrix is not square']})
+            m1.insert_all(clean(m1_entries))
+            result = matrix_to_list(m1.adjoint())
+            return render(request, page,
+                        {'content': result})
         else:
             return render(request, page,
                           {'error': [ERROR_DICT[0]]})
 
+def inverse(request):
+    """
+    This function is called when the user chooses matrix right shift as
+    the desired operation and clicks the submit button. It defines the
+    matrices, initializes them with values and computes and displays the
+    right shifted matrix.
+
+    Returns:
+        The rendered page view
+    """
+    if request.method == "POST":
+        page = 'tmm/op_inverse.html'
+
+        m1, m1_entries = matrix_builder(request, "m", "m1", True)
+
+        if order_checker(m1, None, m1_entries, None):
+            m1.insert_all(clean(m1_entries))
+            result = m1.inv()
+
+            if result is not None:
+                return render(request, page,
+                            {'content': matrix_to_list(result)})
+            else:
+                return render(request, page,
+                        {'error': ['Matrix determinant was 0']})
+        else:
+            return render(request, page,
+                          {'error': [ERROR_DICT[0]]})
+
+def find_minor(request):
+    """
+    This function is called when the user chooses matrix right shift as
+    the desired operation and clicks the submit button. It defines the
+    matrices, initializes them with values and computes and displays the
+    right shifted matrix.
+
+    Returns:
+        The rendered page view
+    """
+    if request.method == "POST":
+        page = 'tmm/op_find_minor.html'
+
+        m1, m1_entries = matrix_builder(request, "m", "m1", True)
+        r = int(request.POST['row'])
+        c = int(request.POST['col'])
+
+        if order_checker(m1, None, m1_entries, None):
+            m1.insert_all(clean(m1_entries))
+            result = m1.find_minor(r,c)
+
+            if result is not None:
+                return render(request, page,
+                            {'content': matrix_to_list(result)})
+            else:
+                return render(request, page,
+                          {'error': ['Your input was invalid']})
+        else:
+            return render(request, page,
+                          {'error': [ERROR_DICT[0]]})
 
 def add(request):
     """

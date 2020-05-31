@@ -21,4 +21,6 @@ urlpatterns = [
     path('determinant/', views.determinant, name='op_determinant'),
     path('cofactor/', views.cofactor, name='op_cofactor'),
     path('adjoint/', views.adjoint, name='op_adjoint'),
+    path('minor/', views.find_minor, name='op_find_minor'),
+    path('inverse/', views.inverse, name='op_inverse'),
 ]
