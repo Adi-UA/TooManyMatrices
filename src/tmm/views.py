@@ -391,9 +391,8 @@ def boolean_multiply(request):
                 m2.insert_all(clean(m2_entries, True))
                 result = m1.boolean_product(m2)
                 if result is None:
-                    result_bool_error = "Your matrices are not 0-1 matrices"
                     return render(request, page,
-                                  {'error': [result_bool_error]})
+                                  {'error': [ERROR_DICT[3]]})
                 else:
                     result_bool_product = matrix_to_list(result)
                     return render(request,
@@ -430,7 +429,6 @@ def boolean_power(request):
             m1.insert_all(clean(m1_entries, True))
             result = m1.boolean_power(power)
             if result is None:
-
                 return render(request, page,
                               {'error': [ERROR_DICT[3]]})
             else:
@@ -529,7 +527,7 @@ def inverse(request):
                               {'content': matrix_to_list(result)})
             else:
                 return render(request, page,
-                              {'error': ['Matrix determinant was 0']})
+                              {'error': [ERROR_DICT[4]]})
         else:
             return render(request, page,
                           {'error': [ERROR_DICT[0]]})
