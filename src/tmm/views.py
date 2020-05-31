@@ -51,7 +51,36 @@ def choose(request):
             return render(request, 'tmm/op_bool_product.html')
         if operation == "Boolean Power":
             return render(request, 'tmm/op_bool_power.html')
+        if operation == "Matrix Determinant":
+            return render(request, 'tmm/op_determinant.html')
 
+def determinant(request):
+    """
+    This function is called when the user chooses matrix right shift as
+    the desired operation and clicks the submit button. It defines the
+    matrices, initializes them with values and computes and displays the
+    right shifted matrix.
+
+    Returns:
+        The rendered page view
+    """
+    if request.method == "POST":
+        page = 'tmm/op_determinant.html'
+
+        m1, m1_entries = matrix_builder(request, "m", "m1", True)
+
+        if order_checker(m1, None, m1_entries, None):
+            if m1.get_row_no() == m1.get_col_no():
+                m1.insert_all(clean(m1_entries))
+                result = m1.det()
+                return render(request, page,
+                            {'content': [result]})
+            else:
+                return render(request, page,
+                          {'error': ['You matrix is not square']})
+        else:
+            return render(request, page,
+                          {'error': [ERROR_DICT[0]]})
 
 def add(request):
     """

@@ -18,4 +18,5 @@ urlpatterns = [
     path('transpose/', views.transpose, name='op_transpose'),
     path('boolmultiply/', views.boolean_multiply, name='op_boolean_multiply'),
     path('boolpower/', views.boolean_power, name='op_boolean_power'),
+    path('determinant/', views.determinant, name='op_determinant'),
 ]
