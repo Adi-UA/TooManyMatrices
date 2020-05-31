@@ -514,9 +514,3 @@ def get_identity_matrix(size):
             if i == j:
                 retval.set_value(i, j, 1)
     return retval
-
-
-""" m = Matrix(2, 2)
-m.insert_all([1, 2, 3, 4])
-n = 2
-print(m >> 2) """
