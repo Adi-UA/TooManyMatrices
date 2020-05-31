@@ -2,9 +2,6 @@ from django.shortcuts import render
 from tmm.mathsrc.matrix import *
 from .utility import *
 
-__author__ = "Ved Shah"
-__status__ = "Development"
-
 # def home(request):
 # return render(request, 'blog/home.html')
 
