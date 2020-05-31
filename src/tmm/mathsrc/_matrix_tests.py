@@ -478,7 +478,7 @@ class MatrixTests(unittest.TestCase):
         result = m * 10.7
 
         expected = Matrix(2, 3)
-        expected.insert_all([10.7,21.4,32.1,42.8,53.5,64.2])
+        expected.insert_all([10.7, 21.4, 32.1, 42.8, 53.5, 64.2])
 
         _check(self, expected, result)
 
@@ -594,6 +594,169 @@ class MatrixTests(unittest.TestCase):
         result = m.det()
         expected = None
 
+        _check(self, expected, result)
+
+    def test_adjoint_1(self):
+        """
+        Checks adjoint of a square matrix.
+        """
+        m = Matrix(3, 3)
+
+        m.insert_all([1, 2, 3, 4, 5, 6, 7, 8, 9])
+
+        result = m.adjoint()
+        expected = Matrix(3, 3)
+        expected.insert_all([-3, 6, -3, 6, -12, 6, -3, 6, -3])
+
+        _check(self, expected, result)
+
+    def test_adjoint_2(self):
+        """
+        Checks adjoint of a non square matrix.
+        """
+        m = Matrix(3, 2)
+
+        m.insert_all([1, 2, 3, 4, 5, 6])
+
+        result = m.adjoint()
+        expected = None
+
+        _check(self, expected, result)
+
+    def test_adjoint_3(self):
+        """
+        Checks adjoint of a matrix with float values.
+        """
+        m = Matrix(3, 3)
+
+        m.insert_all([1.0, 2.0, 3.0, 4.0, 5.0, 6.0, 7.0, 8.0, 9.0])
+
+        result = m.adjoint()
+        expected = Matrix(3, 3)
+        expected.insert_all(
+            [-3.0, 6.0, -3.0, 6.0, -12.0, 6.0, -3.0, 6.0, -3.0])
+
+        _check(self, expected, result)
+
+    def test_adjoint_4(self):
+        """
+        Checks the adjoint of a 4*4 matrix.
+        """
+        m = Matrix(4, 4)
+
+        m.insert_all([1, 2, 3, 4, 5, 6, 7, 8, 8, 7, 6, 5, 4, 3, 2, 1])
+
+        result = m.adjoint()
+        expected = Matrix(4, 4)
+        expected.insert_all([0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0])
+
+        _check(self, expected, result)
+
+    def test_cofactor_1(self):
+        """
+        Checks the cofactor of a square matrix.
+        """
+        m = Matrix(3, 3)
+
+        m.insert_all([9, 8, 7, 6, 5, 4, 3, 2, 1])
+
+        result = m.cofactor()
+        expected = Matrix(3, 3)
+        expected.insert_all([-3, 6, -3, 6, -12, 6, -3, 6, -3])
+
+        _check(self, expected, result)
+
+    def test_cofactor_2(self):
+        """
+        Checks the cofactor of a non square matrix.
+        """
+        m = Matrix(3, 2)
+
+        m.insert_all([1, 2, 3, 4, 5, 6])
+
+        result = m.cofactor()
+        expected = None
+
+        _check(self, expected, result)
+
+    def test_cofactor_3(self):
+        """
+        Checks the cofactor of a matrix with float values.
+        """
+        m = Matrix(3, 3)
+
+        m.insert_all([9.0, 8.0, 7.0, 6.0, 5.0, 4.0, 3.0, 2.0, 1.0])
+
+        result = m.cofactor()
+        expected = Matrix(3, 3)
+        expected.insert_all(
+            [-3.0, 6.0, -3.0, 6.0, -12.0, 6.0, -3.0, 6.0, -3.0])
+
+        _check(self, expected, result)
+
+    def test_cofactor_4(self):
+        """
+        Checks the cofactor of a 4*4 matrix.
+        """
+        m = Matrix(4, 4)
+
+        m.insert_all([1, 2, 3, 4, 5, 6, 7, 8, 8, 7, 6, 5, 4, 3, 2, 1])
+
+        result = m.cofactor()
+        expected = Matrix(4, 4)
+        expected.insert_all([0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0])
+
+        _check(self, expected, result)
+
+    def test_inverse_1(self):
+        """
+        Checks the inverse of a square matrix.
+        """
+        m = Matrix(3, 3)
+
+        m.insert_all([1, 2, 3, 4, 5, 6, 4, 2, 1])
+
+        result = m.inv()
+        expected = Matrix(3, 3)
+        expected.insert_all([2.33, -1.33, 1, -6.67, 3.67, -2, 4, -2, 1])
+
+        _check(self, expected, result)
+
+    def test_inverse_2(self):
+        """
+        Checks the inverse of a non square matrix.
+        """
+        m = Matrix(3, 2)
+
+        m.insert_all([1, 2, 3, 4, 5, 6])
+
+        result = m.inv()
+        expected = None
+        _check(self, expected, result)
+
+    def test_inverse_3(self):
+        """
+        Checks the inverse of an identity matrix.
+        """
+        m = Matrix(3, 3)
+
+        m.insert_all([1, 0, 0, 0, 1, 0, 0, 0, 1])
+
+        result = m.inv()
+        expected = Matrix(3, 3)
+        expected.insert_all([1, 0, 0, 0, 1, 0, 0, 0, 1])
+        _check(self, expected, result)
+
+    def test_inverse_4(self):
+        """
+        Checks the inverse of a matrix with determinant 0.
+        """
+        m = Matrix(3, 3)
+
+        m.insert_all([1, 0, 0, 1, 0, 0, 3, 2, 1])
+
+        result = m.inv()
+        expected = None
         _check(self, expected, result)
 
 

@@ -74,7 +74,7 @@ class Matrix:
         &#34;&#34;&#34;
         if isinstance(other, Matrix):
             if dimensions_match(self, other):
-                return np.allclose(self._matrix,other._matrix,0,1e-02)
+                return np.allclose(self._matrix, other._matrix, 0, 1e-02)
             else:
                 return False
         else:
@@ -171,7 +171,11 @@ class Matrix:
             if the request was invalid
         &#34;&#34;&#34;
         if self._row_no == self._col_no:
-            return round(np.linalg.det(self._matrix), 2)
+            result = round(np.linalg.det(self._matrix), 2)
+            if result == 0:
+                return 0.0
+            else:
+                return result
         else:
             return None
 
@@ -223,7 +227,11 @@ class Matrix:
         Returns: Matrix -- A reference to the adjoint matrix or None if the
             request was invalid
         &#34;&#34;&#34;
-        return self.cofactor().transpose()
+        result = self.cofactor()
+        if result is None:
+            return None
+        else:
+            return result.transpose()
 
     def find_minor(self, row, column):
         &#34;&#34;&#34;
@@ -388,7 +396,6 @@ class Matrix:
                 return retval
             else:
                 return None
-
 
     def __pow__(self, pow):
         &#34;&#34;&#34;
@@ -545,13 +552,7 @@ def get_identity_matrix(size):
         for j in range(1, size + 1):
             if i == j:
                 retval.set_value(i, j, 1)
-    return retval
-
-
-&#34;&#34;&#34; m = Matrix(2, 2)
-m.insert_all([1, 2, 3, 4])
-n = 2
-print(m &gt;&gt; 2) &#34;&#34;&#34;</code></pre>
+    return retval</code></pre>
 </details>
 </section>
 <section>
@@ -666,7 +667,7 @@ number of rows and columns needs to be given.</p>
         &#34;&#34;&#34;
         if isinstance(other, Matrix):
             if dimensions_match(self, other):
-                return np.allclose(self._matrix,other._matrix,0,1e-02)
+                return np.allclose(self._matrix, other._matrix, 0, 1e-02)
             else:
                 return False
         else:
@@ -763,7 +764,11 @@ number of rows and columns needs to be given.</p>
             if the request was invalid
         &#34;&#34;&#34;
         if self._row_no == self._col_no:
-            return round(np.linalg.det(self._matrix), 2)
+            result = round(np.linalg.det(self._matrix), 2)
+            if result == 0:
+                return 0.0
+            else:
+                return result
         else:
             return None
 
@@ -815,7 +820,11 @@ number of rows and columns needs to be given.</p>
         Returns: Matrix -- A reference to the adjoint matrix or None if the
             request was invalid
         &#34;&#34;&#34;
-        return self.cofactor().transpose()
+        result = self.cofactor()
+        if result is None:
+            return None
+        else:
+            return result.transpose()
 
     def find_minor(self, row, column):
         &#34;&#34;&#34;
@@ -981,7 +990,6 @@ number of rows and columns needs to be given.</p>
             else:
                 return None
 
-
     def __pow__(self, pow):
         &#34;&#34;&#34;
         This method finds the power of the given matrix raised to the pow
@@ -1131,7 +1139,11 @@ request was invalid</p></div>
     Returns: Matrix -- A reference to the adjoint matrix or None if the
         request was invalid
     &#34;&#34;&#34;
-    return self.cofactor().transpose()</code></pre>
+    result = self.cofactor()
+    if result is None:
+        return None
+    else:
+        return result.transpose()</code></pre>
 </details>
 </dd>
 <dt id="matrix.Matrix.boolean_power"><code class="name flex">
@@ -1277,7 +1289,11 @@ if the request was invalid</p></div>
         if the request was invalid
     &#34;&#34;&#34;
     if self._row_no == self._col_no:
-        return round(np.linalg.det(self._matrix), 2)
+        result = round(np.linalg.det(self._matrix), 2)
+        if result == 0:
+            return 0.0
+        else:
+            return result
     else:
         return None</code></pre>
 </details>

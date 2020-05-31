@@ -1,11 +1,10 @@
 {% extends "tmm/home_design.html" %}
-{% block content %}
+{% block list %}
 {% load static %}
 <link rel="stylesheet" type="text/css" href="{% static 'css/dropdown.css' %}">
 <form action="{% url 'choose' %}" method="post">
         {% csrf_token %}
-        <h2>Select operation type</h2>
-        <br>
+        <h2>Welcome to Too Many Matrices!<br>Begin by choosing the operation type</h2>
         <label for="choice"></label>
         <select id="choice" name="choice" class="select-css">
                 <option class="select-items" value="0">None</option>
@@ -30,7 +29,6 @@
         </select>
         <br>
         <br>
-        <br>
         <input type="submit">
 </form>
-{%  endblock content %}
+{%  endblock list %}

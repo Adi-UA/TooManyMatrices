@@ -42,7 +42,7 @@ class Matrix:
         """
         if isinstance(other, Matrix):
             if dimensions_match(self, other):
-                return np.allclose(self._matrix,other._matrix,0,1e-02)
+                return np.allclose(self._matrix, other._matrix, 0, 1e-02)
             else:
                 return False
         else:
@@ -139,7 +139,11 @@ class Matrix:
             if the request was invalid
         """
         if self._row_no == self._col_no:
-            return round(np.linalg.det(self._matrix), 2)
+            result = round(np.linalg.det(self._matrix), 2)
+            if result == 0:
+                return 0.0
+            else:
+                return result
         else:
             return None
 
@@ -191,7 +195,11 @@ class Matrix:
         Returns: Matrix -- A reference to the adjoint matrix or None if the
             request was invalid
         """
-        return self.cofactor().transpose()
+        result = self.cofactor()
+        if result is None:
+            return None
+        else:
+            return result.transpose()
 
     def find_minor(self, row, column):
         """
@@ -356,7 +364,6 @@ class Matrix:
                 return retval
             else:
                 return None
-
 
     def __pow__(self, pow):
         """
