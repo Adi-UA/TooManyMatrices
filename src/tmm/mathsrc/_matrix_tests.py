@@ -709,6 +709,9 @@ class MatrixTests(unittest.TestCase):
         _check(self, expected, result)
 
     def test_inverse_1(self):
+        """
+        Checks the inverse of a matrix.
+        """
         m = Matrix(3, 3)
 
         m.insert_all([1, 2, 3, 4, 5, 6, 4, 2, 1])
@@ -717,6 +720,43 @@ class MatrixTests(unittest.TestCase):
         expected = Matrix(3, 3)
         expected.insert_all([2.33, -1.33, 1, -6.67, 3.67, -2, 4, -2, 1])
 
+        _check(self, expected, result)
+
+    def test_inverse_2(self):
+        """
+        Checks the inverse of a matrix.
+        """
+        m = Matrix(3, 2)
+
+        m.insert_all([1, 2, 3, 4, 5, 6])
+
+        result = m.inv()
+        expected = None
+        _check(self, expected, result)
+
+    def test_inverse_3(self):
+        """
+        Checks the inverse of a matrix.
+        """
+        m = Matrix(3, 3)
+
+        m.insert_all([1, 0, 0, 0, 1, 0, 0, 0, 1])
+
+        result = m.inv()
+        expected = Matrix(3, 3)
+        expected.insert_all([1, 0, 0, 0, 1, 0, 0, 0, 1])
+        _check(self, expected, result)
+
+    def test_inverse_4(self):
+        """
+        Checks the inverse of a matrix.
+        """
+        m = Matrix(3, 3)
+
+        m.insert_all([1, 0, 0, 1, 0, 0, 3, 2, 1])
+
+        result = m.inv()
+        expected = None
         _check(self, expected, result)
 
 
