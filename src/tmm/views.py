@@ -2,11 +2,9 @@ from django.shortcuts import render
 from tmm.mathsrc.matrix import *
 from .utility import *
 
-__author__ = "Ved Shah"
-__status__ = "Development"
-
 # def home(request):
 # return render(request, 'blog/home.html')
+
 
 def home(request):
     return render(request, 'tmm/home.html')
@@ -51,6 +49,16 @@ def choose(request):
             return render(request, 'tmm/op_bool_product.html')
         if operation == "Boolean Power":
             return render(request, 'tmm/op_bool_power.html')
+        if operation == "Matrix Determinant":
+            return render(request, 'tmm/op_determinant.html')
+        if operation == "Matrix Cofactor":
+            return render(request, 'tmm/op_cofactor.html')
+        if operation == "Matrix Adjoint":
+            return render(request, 'tmm/op_adjoint.html')
+        if operation == "Matrix Minor":
+            return render(request, 'tmm/op_find_minor.html')
+        if operation == "Matrix Inverse":
+            return render(request, 'tmm/op_inverse.html')
 
 
 def add(request):
@@ -73,7 +81,7 @@ def add(request):
             m2.insert_all(clean(m2_entries))
             result_add = matrix_to_list(m1 + m2)
             return render(request,
-                           page,
+                          page,
                           {'content': result_add})
         else:
             return render(request, page,
@@ -383,9 +391,8 @@ def boolean_multiply(request):
                 m2.insert_all(clean(m2_entries, True))
                 result = m1.boolean_product(m2)
                 if result is None:
-                    result_bool_error = "Your matrices are not 0-1 matrices"
                     return render(request, page,
-                                  {'error': [result_bool_error]})
+                                  {'error': [ERROR_DICT[3]]})
                 else:
                     result_bool_product = matrix_to_list(result)
                     return render(request,
@@ -413,22 +420,144 @@ def boolean_power(request):
         The rendered page view
     """
     if request.method == "POST":
-        page= 'tmm/op_bool_power.html'
+        page = 'tmm/op_bool_power.html'
 
-        m1, m1_entries= matrix_builder(request, "m", "m1", True)
-        power= int(request.POST['pow'])
+        m1, m1_entries = matrix_builder(request, "m", "m1", True)
+        power = int(request.POST['pow'])
 
         if order_checker(m1, None, m1_entries, None):
             m1.insert_all(clean(m1_entries, True))
-            result= m1.boolean_power(power)
+            result = m1.boolean_power(power)
             if result is None:
-
                 return render(request, page,
                               {'error': [ERROR_DICT[3]]})
             else:
-                result_power= matrix_to_list(result)
+                result_power = matrix_to_list(result)
                 return render(request, page,
                               {'content': result_power})
+        else:
+            return render(request, page,
+                          {'error': [ERROR_DICT[0]]})
+
+
+def determinant(request):
+    """
+    This function handles the matrix determinant request from the user.
+
+    Returns:
+        The rendered page view
+    """
+    if request.method == "POST":
+        page = 'tmm/op_determinant.html'
+
+        m1, m1_entries = matrix_builder(request, "m", "m1", True)
+
+        if order_checker(m1, None, m1_entries, None):
+            m1.insert_all(clean(m1_entries))
+            result = m1.det()
+            return render(request, page,
+                          {'content': [result]})
+        else:
+            return render(request, page,
+                          {'error': [ERROR_DICT[0]]})
+
+
+def cofactor(request):
+    """
+    This function handles the matrix cofactor request from the user.
+
+    Returns:
+        The rendered page view
+    """
+    if request.method == "POST":
+        page = 'tmm/op_cofactor.html'
+
+        m1, m1_entries = matrix_builder(request, "m", "m1", True)
+
+        if order_checker(m1, None, m1_entries, None):
+            m1.insert_all(clean(m1_entries))
+            result = matrix_to_list(m1.cofactor())
+            return render(request, page,
+                          {'content': result})
+        else:
+            return render(request, page,
+                          {'error': [ERROR_DICT[0]]})
+
+
+def adjoint(request):
+    """
+    This function handles the matrix adjoint request from the user.
+
+    Returns:
+        The rendered page view
+    """
+    if request.method == "POST":
+        page = 'tmm/op_adjoint.html'
+
+        m1, m1_entries = matrix_builder(request, "m", "m1", True)
+
+        if order_checker(m1, None, m1_entries, None):
+            m1.insert_all(clean(m1_entries))
+            result = matrix_to_list(m1.adjoint())
+            return render(request, page,
+                          {'content': result})
+        else:
+            return render(request, page,
+                          {'error': [ERROR_DICT[0]]})
+
+
+def inverse(request):
+    """
+    This function handles the matrix inverse request from the user.
+
+    Returns:
+        The rendered page view
+    """
+    if request.method == "POST":
+        page = 'tmm/op_inverse.html'
+
+        m1, m1_entries = matrix_builder(request, "m", "m1", True)
+
+        if order_checker(m1, None, m1_entries, None):
+            m1.insert_all(clean(m1_entries))
+            result = m1.inv()
+
+            if result is not None:
+                return render(request, page,
+                              {'content': matrix_to_list(result)})
+            else:
+                return render(request, page,
+                              {'error': [ERROR_DICT[4]]})
+        else:
+            return render(request, page,
+                          {'error': [ERROR_DICT[0]]})
+
+
+def find_minor(request):
+    """
+    This function handles the matrix minor request from the user at the
+    specified row and column.
+
+    Returns:
+        The rendered page view
+    """
+    if request.method == "POST":
+        page = 'tmm/op_find_minor.html'
+
+        m1, m1_entries = matrix_builder(request, "m", "m1", True)
+        r = int(request.POST['row'])
+        c = int(request.POST['col'])
+
+        if order_checker(m1, None, m1_entries, None):
+            m1.insert_all(clean(m1_entries))
+            result = m1.find_minor(r, c)
+
+            if result is not None:
+                return render(request, page,
+                              {'content': matrix_to_list(result)})
+            else:
+                return render(request, page,
+                              {'error': ['Your row or column was invalid']})
         else:
             return render(request, page,
                           {'error': [ERROR_DICT[0]]})
