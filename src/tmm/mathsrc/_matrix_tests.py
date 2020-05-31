@@ -598,7 +598,7 @@ class MatrixTests(unittest.TestCase):
 
     def test_adjoint_1(self):
         """
-        Checks adjoint of a matrix.
+        Checks adjoint of a square matrix.
         """
         m = Matrix(3, 3)
 
@@ -612,7 +612,7 @@ class MatrixTests(unittest.TestCase):
 
     def test_adjoint_2(self):
         """
-        Checks adjoint of a matrix.
+        Checks adjoint of a non square matrix.
         """
         m = Matrix(3, 2)
 
@@ -625,7 +625,7 @@ class MatrixTests(unittest.TestCase):
 
     def test_adjoint_3(self):
         """
-        Checks adjoint of a matrix.
+        Checks adjoint of a matrix with float values.
         """
         m = Matrix(3, 3)
 
@@ -640,7 +640,7 @@ class MatrixTests(unittest.TestCase):
 
     def test_adjoint_4(self):
         """
-        Checks the adjoint of a matrix.
+        Checks the adjoint of a 4*4 matrix.
         """
         m = Matrix(4, 4)
 
@@ -654,7 +654,7 @@ class MatrixTests(unittest.TestCase):
 
     def test_cofactor_1(self):
         """
-        Checks the cofactor of a matrix.
+        Checks the cofactor of a square matrix.
         """
         m = Matrix(3, 3)
 
@@ -668,7 +668,7 @@ class MatrixTests(unittest.TestCase):
 
     def test_cofactor_2(self):
         """
-        Checks the cofactor of a matrix.
+        Checks the cofactor of a non square matrix.
         """
         m = Matrix(3, 2)
 
@@ -681,7 +681,7 @@ class MatrixTests(unittest.TestCase):
 
     def test_cofactor_3(self):
         """
-        Checks the cofactor of a matrix.
+        Checks the cofactor of a matrix with float values.
         """
         m = Matrix(3, 3)
 
@@ -696,7 +696,7 @@ class MatrixTests(unittest.TestCase):
 
     def test_cofactor_4(self):
         """
-        Checks the cofactor of a matrix.
+        Checks the cofactor of a 4*4 matrix.
         """
         m = Matrix(4, 4)
 
@@ -710,7 +710,7 @@ class MatrixTests(unittest.TestCase):
 
     def test_inverse_1(self):
         """
-        Checks the inverse of a matrix.
+        Checks the inverse of a square matrix.
         """
         m = Matrix(3, 3)
 
@@ -724,7 +724,7 @@ class MatrixTests(unittest.TestCase):
 
     def test_inverse_2(self):
         """
-        Checks the inverse of a matrix.
+        Checks the inverse of a non square matrix.
         """
         m = Matrix(3, 2)
 
@@ -736,7 +736,7 @@ class MatrixTests(unittest.TestCase):
 
     def test_inverse_3(self):
         """
-        Checks the inverse of a matrix.
+        Checks the inverse of an identity matrix.
         """
         m = Matrix(3, 3)
 
@@ -749,7 +749,7 @@ class MatrixTests(unittest.TestCase):
 
     def test_inverse_4(self):
         """
-        Checks the inverse of a matrix.
+        Checks the inverse of a matrix with determinant 0.
         """
         m = Matrix(3, 3)
 
