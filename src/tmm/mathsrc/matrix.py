@@ -191,7 +191,11 @@ class Matrix:
         Returns: Matrix -- A reference to the adjoint matrix or None if the
             request was invalid
         """
-        return self.cofactor().transpose()
+        result = self.cofactor()
+        if result is None:
+            return None
+        else:
+            return result.transpose()
 
     def find_minor(self, row, column):
         """
@@ -514,9 +518,3 @@ def get_identity_matrix(size):
             if i == j:
                 retval.set_value(i, j, 1)
     return retval
-
-
-""" m = Matrix(2, 2)
-m.insert_all([1, 2, 3, 4])
-n = 2
-print(m >> 2) """
