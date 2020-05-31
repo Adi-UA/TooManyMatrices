@@ -735,6 +735,9 @@ class MatrixTests(unittest.TestCase):
         _check(self, expected, result)
 
     def test_inverse_1(self):
+        &#34;&#34;&#34;
+        Checks the inverse of a matrix.
+        &#34;&#34;&#34;
         m = Matrix(3, 3)
 
         m.insert_all([1, 2, 3, 4, 5, 6, 4, 2, 1])
@@ -743,6 +746,43 @@ class MatrixTests(unittest.TestCase):
         expected = Matrix(3, 3)
         expected.insert_all([2.33, -1.33, 1, -6.67, 3.67, -2, 4, -2, 1])
 
+        _check(self, expected, result)
+
+    def test_inverse_2(self):
+        &#34;&#34;&#34;
+        Checks the inverse of a matrix.
+        &#34;&#34;&#34;
+        m = Matrix(3, 2)
+
+        m.insert_all([1, 2, 3, 4, 5, 6])
+
+        result = m.inv()
+        expected = None
+        _check(self, expected, result)
+
+    def test_inverse_3(self):
+        &#34;&#34;&#34;
+        Checks the inverse of a matrix.
+        &#34;&#34;&#34;
+        m = Matrix(3, 3)
+
+        m.insert_all([1, 0, 0, 0, 1, 0, 0, 0, 1])
+
+        result = m.inv()
+        expected = Matrix(3, 3)
+        expected.insert_all([1, 0, 0, 0, 1, 0, 0, 0, 1])
+        _check(self, expected, result)
+
+    def test_inverse_4(self):
+        &#34;&#34;&#34;
+        Checks the inverse of a matrix.
+        &#34;&#34;&#34;
+        m = Matrix(3, 3)
+
+        m.insert_all([1, 0, 0, 1, 0, 0, 3, 2, 1])
+
+        result = m.inv()
+        expected = None
         _check(self, expected, result)
 
 
@@ -1488,6 +1528,9 @@ not have a method with the specified name.</p></div>
         _check(self, expected, result)
 
     def test_inverse_1(self):
+        &#34;&#34;&#34;
+        Checks the inverse of a matrix.
+        &#34;&#34;&#34;
         m = Matrix(3, 3)
 
         m.insert_all([1, 2, 3, 4, 5, 6, 4, 2, 1])
@@ -1496,6 +1539,43 @@ not have a method with the specified name.</p></div>
         expected = Matrix(3, 3)
         expected.insert_all([2.33, -1.33, 1, -6.67, 3.67, -2, 4, -2, 1])
 
+        _check(self, expected, result)
+
+    def test_inverse_2(self):
+        &#34;&#34;&#34;
+        Checks the inverse of a matrix.
+        &#34;&#34;&#34;
+        m = Matrix(3, 2)
+
+        m.insert_all([1, 2, 3, 4, 5, 6])
+
+        result = m.inv()
+        expected = None
+        _check(self, expected, result)
+
+    def test_inverse_3(self):
+        &#34;&#34;&#34;
+        Checks the inverse of a matrix.
+        &#34;&#34;&#34;
+        m = Matrix(3, 3)
+
+        m.insert_all([1, 0, 0, 0, 1, 0, 0, 0, 1])
+
+        result = m.inv()
+        expected = Matrix(3, 3)
+        expected.insert_all([1, 0, 0, 0, 1, 0, 0, 0, 1])
+        _check(self, expected, result)
+
+    def test_inverse_4(self):
+        &#34;&#34;&#34;
+        Checks the inverse of a matrix.
+        &#34;&#34;&#34;
+        m = Matrix(3, 3)
+
+        m.insert_all([1, 0, 0, 1, 0, 0, 3, 2, 1])
+
+        result = m.inv()
+        expected = None
         _check(self, expected, result)</code></pre>
 </details>
 <h3>Ancestors</h3>
@@ -2139,12 +2219,15 @@ not have a method with the specified name.</p></div>
 <span>def <span class="ident">test_inverse_1</span></span>(<span>self)</span>
 </code></dt>
 <dd>
-<div class="desc"></div>
+<div class="desc"><p>Checks the inverse of a matrix.</p></div>
 <details class="source">
 <summary>
 <span>Expand source code</span>
 </summary>
 <pre><code class="python">def test_inverse_1(self):
+    &#34;&#34;&#34;
+    Checks the inverse of a matrix.
+    &#34;&#34;&#34;
     m = Matrix(3, 3)
 
     m.insert_all([1, 2, 3, 4, 5, 6, 4, 2, 1])
@@ -2153,6 +2236,73 @@ not have a method with the specified name.</p></div>
     expected = Matrix(3, 3)
     expected.insert_all([2.33, -1.33, 1, -6.67, 3.67, -2, 4, -2, 1])
 
+    _check(self, expected, result)</code></pre>
+</details>
+</dd>
+<dt id="_matrix_tests.MatrixTests.test_inverse_2"><code class="name flex">
+<span>def <span class="ident">test_inverse_2</span></span>(<span>self)</span>
+</code></dt>
+<dd>
+<div class="desc"><p>Checks the inverse of a matrix.</p></div>
+<details class="source">
+<summary>
+<span>Expand source code</span>
+</summary>
+<pre><code class="python">def test_inverse_2(self):
+    &#34;&#34;&#34;
+    Checks the inverse of a matrix.
+    &#34;&#34;&#34;
+    m = Matrix(3, 2)
+
+    m.insert_all([1, 2, 3, 4, 5, 6])
+
+    result = m.inv()
+    expected = None
+    _check(self, expected, result)</code></pre>
+</details>
+</dd>
+<dt id="_matrix_tests.MatrixTests.test_inverse_3"><code class="name flex">
+<span>def <span class="ident">test_inverse_3</span></span>(<span>self)</span>
+</code></dt>
+<dd>
+<div class="desc"><p>Checks the inverse of a matrix.</p></div>
+<details class="source">
+<summary>
+<span>Expand source code</span>
+</summary>
+<pre><code class="python">def test_inverse_3(self):
+    &#34;&#34;&#34;
+    Checks the inverse of a matrix.
+    &#34;&#34;&#34;
+    m = Matrix(3, 3)
+
+    m.insert_all([1, 0, 0, 0, 1, 0, 0, 0, 1])
+
+    result = m.inv()
+    expected = Matrix(3, 3)
+    expected.insert_all([1, 0, 0, 0, 1, 0, 0, 0, 1])
+    _check(self, expected, result)</code></pre>
+</details>
+</dd>
+<dt id="_matrix_tests.MatrixTests.test_inverse_4"><code class="name flex">
+<span>def <span class="ident">test_inverse_4</span></span>(<span>self)</span>
+</code></dt>
+<dd>
+<div class="desc"><p>Checks the inverse of a matrix.</p></div>
+<details class="source">
+<summary>
+<span>Expand source code</span>
+</summary>
+<pre><code class="python">def test_inverse_4(self):
+    &#34;&#34;&#34;
+    Checks the inverse of a matrix.
+    &#34;&#34;&#34;
+    m = Matrix(3, 3)
+
+    m.insert_all([1, 0, 0, 1, 0, 0, 3, 2, 1])
+
+    result = m.inv()
+    expected = None
     _check(self, expected, result)</code></pre>
 </details>
 </dd>
@@ -2758,6 +2908,9 @@ where i!=j</p></div>
 <li><code><a title="_matrix_tests.MatrixTests.test_det_2" href="#_matrix_tests.MatrixTests.test_det_2">test_det_2</a></code></li>
 <li><code><a title="_matrix_tests.MatrixTests.test_det_3" href="#_matrix_tests.MatrixTests.test_det_3">test_det_3</a></code></li>
 <li><code><a title="_matrix_tests.MatrixTests.test_inverse_1" href="#_matrix_tests.MatrixTests.test_inverse_1">test_inverse_1</a></code></li>
+<li><code><a title="_matrix_tests.MatrixTests.test_inverse_2" href="#_matrix_tests.MatrixTests.test_inverse_2">test_inverse_2</a></code></li>
+<li><code><a title="_matrix_tests.MatrixTests.test_inverse_3" href="#_matrix_tests.MatrixTests.test_inverse_3">test_inverse_3</a></code></li>
+<li><code><a title="_matrix_tests.MatrixTests.test_inverse_4" href="#_matrix_tests.MatrixTests.test_inverse_4">test_inverse_4</a></code></li>
 <li><code><a title="_matrix_tests.MatrixTests.test_lshift_1" href="#_matrix_tests.MatrixTests.test_lshift_1">test_lshift_1</a></code></li>
 <li><code><a title="_matrix_tests.MatrixTests.test_lshift_2" href="#_matrix_tests.MatrixTests.test_lshift_2">test_lshift_2</a></code></li>
 <li><code><a title="_matrix_tests.MatrixTests.test_lshift_3" href="#_matrix_tests.MatrixTests.test_lshift_3">test_lshift_3</a></code></li>
