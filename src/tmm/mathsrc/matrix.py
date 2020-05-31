@@ -139,7 +139,11 @@ class Matrix:
             if the request was invalid
         """
         if self._row_no == self._col_no:
-            return round(np.linalg.det(self._matrix), 2)
+            result =  round(np.linalg.det(self._matrix), 2)
+            if result == 0:
+                return 0.0
+            else:
+                return result
         else:
             return None
 
