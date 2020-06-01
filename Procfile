@@ -1,0 +1,1 @@
+web: gunicorn --pythonpath src django_base.wsgi
