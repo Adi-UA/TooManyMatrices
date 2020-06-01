@@ -145,7 +145,8 @@ a {
 }
 
 .twtr {
-	margin-top: 100px;
+	margin-top: 10px;
+	margin-left: 5px;
 }
 .btn.twtr:after {
 	font-family: "Poppins", sans-serif;
