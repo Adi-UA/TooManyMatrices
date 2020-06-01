@@ -26,7 +26,7 @@ SECRET_KEY = os.environ.get('SECRET_KEY')
 
 DEBUG = True
 
-ALLOWED_HOSTS = ['toomanymatrices.herokuapp.com']
+ALLOWED_HOSTS = ['toomanymatrices.herokuapp.com', 'localhost']
 
 STATICFILES_DIRS = []
 # Application definition
