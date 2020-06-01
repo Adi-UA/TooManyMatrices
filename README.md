@@ -22,8 +22,8 @@ From inside the repo on your computer, go to `src`, open `a terminal and run:
 
 **Note:** This command works as is on `CMD`, and can work as is in a `Bash` environment if you have your `python3` alias set to `python`.
 
-Finally, open a browser and go to `localhost:8000/tmm/` to get started.
+Finally, open a browser and go to `localhost:8000` to get started.
 
 ## Current Status
 
-At this stage, we have matrix functionality, some basic calculations like factorial, r-permutations and r-combinations (WIP), and a primitive web interface using `django`. We are currently refining the interactions between the front and back end and are working on adding a better UI with more functionality.
+At this stage, we have complete working matrix functionality and stable interactions between the front and back end. The initial version of this webapp with only support matrix functions, but the rest are coming! A release should be coming soon and project setup for Heroku deployment is almost complete. We will host the website as soon as we finish polishing and tweaking a few aspects of the UI and code.
