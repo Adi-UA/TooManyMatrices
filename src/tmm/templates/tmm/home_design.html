@@ -6,13 +6,14 @@
 <head>
   <meta charset=“UTF-8”>
   <title>Home</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
 </head>
 
 <body>
   <link rel="stylesheet" type="text/css" href="{% static 'css/home_design.css' %}">
   <link rel="stylesheet" type="text/css" href="{% static 'css/header.css' %}">
   <link rel="stylesheet" type="text/css" href="{% static 'css/matrix.css' %}">
-
+  <link rel="stylesheet" type="text/css" href="{% static 'css/matrix.css' %}" media="screen and (device-height: 600px)">
   <div class="header">
     <div class="info">
       {% block list %}{% endblock %}
