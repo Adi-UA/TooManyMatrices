@@ -13,12 +13,13 @@
   <div class="wrapper fadeInDown">
     <div id="formContent">
       <!-- Tabs Titles -->
-      <h2>Operation:</h2>
+      <h2 class="Active">Choose an operation:</h2>
       <form action="{% url 'choose' %}" method="post">
         {% csrf_token %}
+        <br>
         <label for="choice"></label>
         <select id="choice" name="choice" class="select-css" onchange="this.form.submit();">
-          <option class="select-items" value="0">{{ op_1 }}</option>
+          <option class="select-items" value="0">Matrix Bitwise AND</option>
           <option class="select-items" value="Matrix Addition">Matrix Addition</option>
           <option class="select-items" value="Matrix Subtraction">Matrix Subtraction</option>
           <option class="select-items" value="Matrix Multiplication">Matrix Multiplication</option>
@@ -39,7 +40,6 @@
         </select>
       </form>
       <form action="{% url 'op_bitwiseAND' %}" method="post">
-        <h2 class="active"> Matrix Btiwise AND</h2>
         {% csrf_token %}
         <input type="text" id="m_rows" class="fadeIn second" name="m_rows" placeholder="Number of Rows" required>
         <input type="text" id="m_columns" class="fadeIn third" name="m_columns" placeholder="Number of Columns"
