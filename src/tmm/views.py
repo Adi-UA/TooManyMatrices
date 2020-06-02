@@ -24,41 +24,77 @@ def choose(request):
         if operation == "0":
             return render(request, 'tmm/home.html')
         if operation == "Matrix Addition":
-            return render(request, 'tmm/op_addition.html')
+            op = {}
+            op['op_1'] = operation
+            return render(request, 'tmm/op_addition.html', op)
         if operation == "Matrix Subtraction":
-            return render(request, 'tmm/op_subtraction.html')
+            op = {}
+            op['op_1'] = operation
+            return render(request, 'tmm/op_subtraction.html', op)
         if operation == "Matrix Multiplication":
-            return render(request, 'tmm/op_multiplication.html')
+            op = {}
+            op['op_1'] = operation
+            return render(request, 'tmm/op_multiplication.html', op)
         if operation == "Matrix Bitwise OR":
-            return render(request, 'tmm/op_bitwise_OR.html')
+            op = {}
+            op['op_1'] = operation
+            return render(request, 'tmm/op_bitwise_OR.html', op)
         if operation == "Matrix Bitwise AND":
-            return render(request, 'tmm/op_bitwise_AND.html')
+            op = {}
+            op['op_1'] = operation
+            return render(request, 'tmm/op_bitwise_AND.html', op)
         if operation == "Matrix Bitwise XOR":
-            return render(request, 'tmm/op_bitwise_XOR.html')
+            op = {}
+            op['op_1'] = operation
+            return render(request, 'tmm/op_bitwise_XOR.html', op)
         if operation == "Matrix Power":
-            return render(request, 'tmm/op_power.html')
+            op = {}
+            op['op_1'] = operation
+            return render(request, 'tmm/op_power.html', op)
         if operation == "Matrix Right Shift":
-            return render(request, 'tmm/op_right_shift.html')
+            op = {}
+            op['op_1'] = operation
+            return render(request, 'tmm/op_right_shift.html', op)
         if operation == "Matrix Left Shift":
-            return render(request, 'tmm/op_left_shift.html')
+            op = {}
+            op['op_1'] = operation
+            return render(request, 'tmm/op_left_shift.html', op)
         if operation == "Matrix Scalar Multiplication":
-            return render(request, 'tmm/op_scalar_multiplication.html')
+            op = {}
+            op['op_1'] = operation
+            return render(request, 'tmm/op_scalar_multiplication.html', op)
         if operation == "Transpose":
-            return render(request, 'tmm/op_transpose.html')
+            op = {}
+            op['op_1'] = operation
+            return render(request, 'tmm/op_transpose.html', op)
         if operation == "Boolean Product":
-            return render(request, 'tmm/op_bool_product.html')
+            op = {}
+            op['op_1'] = operation
+            return render(request, 'tmm/op_bool_product.html', op)
         if operation == "Boolean Power":
-            return render(request, 'tmm/op_bool_power.html')
+            op = {}
+            op['op_1'] = operation
+            return render(request, 'tmm/op_bool_power.html', op)
         if operation == "Matrix Determinant":
-            return render(request, 'tmm/op_determinant.html')
+            op = {}
+            op['op_1'] = operation
+            return render(request, 'tmm/op_determinant.html', op)
         if operation == "Matrix Cofactor":
-            return render(request, 'tmm/op_cofactor.html')
+            op = {}
+            op['op_1'] = operation
+            return render(request, 'tmm/op_cofactor.html', op)
         if operation == "Matrix Adjoint":
-            return render(request, 'tmm/op_adjoint.html')
+            op = {}
+            op['op_1'] = operation
+            return render(request, 'tmm/op_adjoint.html', op)
         if operation == "Matrix Minor":
-            return render(request, 'tmm/op_find_minor.html')
+            op = {}
+            op['op_1'] = operation
+            return render(request, 'tmm/op_find_minor.html', op)
         if operation == "Matrix Inverse":
-            return render(request, 'tmm/op_inverse.html')
+            op = {}
+            op['op_1'] = operation
+            return render(request, 'tmm/op_inverse.html', op)
 
 
 def add(request):
