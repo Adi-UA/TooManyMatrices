@@ -54,7 +54,9 @@
       <!-- Remind Passowrd -->
       <div id="formFooter">
         {% for c in content %}
-        <p>{{c}}</p>
+        <p>
+        <pre>{{c}}</pre>
+        </p>
         {% endfor %}
         {% for e in error %}
         <p style="color: #ff2640;">{{e}}</p>

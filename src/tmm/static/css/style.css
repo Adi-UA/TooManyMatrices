@@ -322,3 +322,12 @@ textarea[type=text]:focus {
 background-color: #fff;
 border-bottom: 2px solid #5fbae9;
 }
+
+pre{
+  font-family: "Poppins", sans-serif;
+  text-align: center;
+  display: flex;
+  align-items: center;
+  flex-direction: column;
+  justify-content: center;
+}
