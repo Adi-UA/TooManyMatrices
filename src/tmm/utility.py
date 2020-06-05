@@ -87,7 +87,7 @@ def matrix_to_list(m):
         s = ""
         for j in range(1, m.get_col_no() + 1):
             s += str(m.get_value(i, j)) + "    "
-        matrix_string.append(s)
+        matrix_string.append(s.rstrip())
     return matrix_string
 
 

@@ -61,11 +61,17 @@
       </form>
       <!-- Remind Passowrd -->
       <div id="formFooter">
-        {% for c in content %}
-        <p>
-        <pre>{{c}}</pre>
-        </p>
-        {% endfor %}
+        <div id="div2">
+          <table class="matrix">
+            {% for c in content %}
+            <tr>
+              <td>
+                <pre>{{c}}</pre>
+              </td>
+            </tr>
+            {% endfor %}
+        </div>
+        </table>
         {% for e in error %}
         <p style="color: #ff2640;">{{e}}</p>
         {% endfor %}
