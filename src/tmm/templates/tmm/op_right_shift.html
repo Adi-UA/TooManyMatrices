@@ -55,6 +55,7 @@
       <!-- Remind Passowrd -->
       <div id="formFooter">
         <div id="div2">
+          {% if content %}
           <table class="matrix">
             {% for c in content %}
             <tr>
@@ -63,8 +64,9 @@
               </td>
             </tr>
             {% endfor %}
+          </table>
+          {% endif %}
         </div>
-        </table>
         {% for e in error %}
         <p style="color: #ff2640;">{{e}}</p>
         {% endfor %}
