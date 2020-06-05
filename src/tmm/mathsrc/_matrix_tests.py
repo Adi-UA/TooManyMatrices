@@ -112,6 +112,22 @@ class MatrixTests(unittest.TestCase):
 
         _check(self, expected, result)
 
+    def test_mul_3(self):
+        """
+        Tests multiplcation on matrices with mismatched dimensions
+        """
+        m1 = Matrix(4, 3)
+        m2 = Matrix(3, 4)
+
+        m1.insert_all([1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12])
+        m2.insert_all([1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12])
+
+        result = m1 * m2
+        expected = Matrix(4,4)
+        expected.insert_all([38, 44, 50, 56, 83, 98, 113, 128, 128, 152, 176, 200, 173, 206, 239, 272])
+
+        _check(self, expected, result)
+
     def test_boolmul_1(self):
         """
         Tests boolean multiplication on standard 3x3 matrices
@@ -155,6 +171,22 @@ class MatrixTests(unittest.TestCase):
 
         result = m1.boolean_product(m2)
         expected = None
+
+        _check(self, expected, result)
+
+    def test_boolmul_4(self):
+        """
+        Tests boolean multiplcation on non square matrices
+        """
+        m1 = Matrix(3, 4)
+        m2 = Matrix(4, 3)
+
+        m1.insert_all([0, 0, 0, 1, 0, 1, 0, 0, 1])
+        m2.insert_all([0, 0, 0, 1, 0, 1, 0, 0, 0])
+
+        result = m1.boolean_product(m2)
+        expected = Matrix(3,3)
+        expected.insert_all([0,0,0,0,0,0,0,0,0])
 
         _check(self, expected, result)
 

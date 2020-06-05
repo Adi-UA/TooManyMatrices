@@ -284,7 +284,7 @@ class Matrix:
             if self._col_no == other._row_no:
                 values = []
                 for i in range(1, self._row_no + 1):
-                    for j in range(1, self._col_no + 1):
+                    for j in range(1, other._col_no + 1):
                         res_val = 0
                         for k in range(1, self._col_no + 1):
                             value1 = self._matrix[i - 1][k - 1]
@@ -403,7 +403,7 @@ class Matrix:
             retval = Matrix(self._row_no, self._col_no)
             for i in range(self._row_no):
                 for j in range(self._col_no):
-                    if isinstance(self._matrix[i][j], np.int32):
+                    if isinstance(self._matrix[i][j], (np.int8, np.int16 ,np.int32, np.int64)):
                         retval._matrix[i][j] = self._matrix[i][j] << shift_val
                     else:
                         return None
@@ -425,7 +425,7 @@ class Matrix:
             retval = Matrix(self._row_no, self._col_no)
             for i in range(self._row_no):
                 for j in range(self._col_no):
-                    if isinstance(self._matrix[i][j], np.int32):
+                    if isinstance(self._matrix[i][j], (np.int8, np.int16 ,np.int32, np.int64)):
                         retval._matrix[i][j] = self._matrix[i][j] >> shift_val
                     else:
                         return None
