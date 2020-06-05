@@ -9,11 +9,14 @@ from .utility import *
 def home(request):
     return render(request, 'tmm/home.html')
 
+
 def handler404(request, exception):
     return render(request, 'tmm/404.html', status=404)
 
+
 def handler500(request):
-    return render(request, 'tmm404.html', status=500)  # TOTO CHANGE WHEN YOU ADD THE 500.HTML
+    return render(request, 'tmm/500.html', status=500)
+
 
 def choose(request):
     """
