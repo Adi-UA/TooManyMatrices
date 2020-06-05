@@ -16,10 +16,12 @@ Including another URLconf
 from django.contrib import admin
 from django.urls import path, include
 
+handler404 = 'tmm.views.handler404'
+handler500 = 'tmm.views.handler500'
+
 urlpatterns = [
-    path('admin/', admin.site.urls),
     path('', include('tmm.urls')),
-    # Redirects to blogs.url for the localhost:8000 without the /blog part. Basically empty stuff redirects to blog home
+    # Redirects to tmm.url for the localhost:8000 without the /tmm part. Basically empty stuff redirects to tmm home
     path('tmm/', include('tmm.urls')),
-    # Redirects to blogs.url for the localhost:8000/blog/
+    # Redirects to tmm.url for the localhost:8000/tmm/
 ]

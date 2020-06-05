@@ -31,7 +31,6 @@ DEBUG = os.environ.get('DEBUG_VALUE') == 'True'
 
 ALLOWED_HOSTS = ['localhost']
 
-CSRF_COOKIE_SECURE = True
 SESSION_COOKIE_SECURE= True
 
 STATICFILES_DIRS = []
