@@ -114,7 +114,7 @@ class MatrixTests(unittest.TestCase):
 
     def test_mul_3(self):
         """
-        Tests multiplcation on matrices with mismatched dimensions
+        Tests multiplcation on non square matrices
         """
         m1 = Matrix(4, 3)
         m2 = Matrix(3, 4)
