@@ -8,7 +8,8 @@ ERROR_DICT = {
     1: "Matrix Multiplcation condition is not satisfied",
     2: "Number of Columns in matrix 1 is not equal to number of rows in matrix 2",
     3: "Your matrices are not 0-1 matrices",
-    4: "The inverse doesn't exist"
+    4: "The inverse doesn't exist",
+    5: "Invalid Input."
 
 }
 
@@ -30,17 +31,26 @@ def matrix_builder(request, mindex, entry_index, isSquare=False):
     Returns:
         tuple -- (matrix object, string of matrix entry)
     """
-    m_row_no = int(request.POST[mindex + '_rows'])
+    temp_rows = request.POST[mindex + '_rows']
 
-    if isSquare:
-        m_col_no = int(request.POST[mindex + '_rows'])
+    if input_checker(temp_rows) == False:
+        return False, False
     else:
-        m_col_no = int(request.POST[mindex + '_columns'])
+        m_row_no = int(temp_rows)
 
-    m = Matrix(m_row_no, m_col_no)
-    m_entries = request.POST[entry_index + '_entry'].strip()
+        if isSquare:
+            temp_columns = request.POST[mindex + '_rows']
+        else:
+            temp_columns = request.POST[mindex + '_columns']
 
-    return m, m_entries
+        if input_checker(temp_columns) == False:
+            return False, False
+        else:
+            m_col_no = int(temp_columns)
+            m = Matrix(m_row_no, m_col_no)
+            m_entries = request.POST[entry_index + '_entry'].strip()
+
+            return m, m_entries
 
 
 def clean(s, isInt=False):
@@ -131,3 +141,23 @@ def order_checker(m1, m2, m1_entries, m2_entries):
                     and m1.get_col_no() == m1_col_no)
     else:
         return False
+
+
+def input_checker(s):
+    """
+    This function takes a string input and returns false if it contains one or more non terminal spaces.
+    If not, the function returns an integer.
+
+    Args:
+        s (string): string which needs to be checked
+
+    Returns:
+        boolean: False if the string contains one or more non terminal spaces
+        int: Value of the number in the string if the string does not contain any non terminal spaces
+    """
+    s = s.strip()
+    temp = s.split()
+    if len(temp) > 1:
+        return False
+    else:
+        return int(s)
