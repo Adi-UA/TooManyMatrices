@@ -39,7 +39,7 @@
           <option class="select-items" value="Matrix Inverse">Matrix Inverse</option>
         </select>
       </form>
-      <form action="{% url 'op_bitwiseAND' %}" method="post">
+      <form action="{% url 'op_bitwiseXOR' %}" method="post">
         {% csrf_token %}
         <input type="text" id="m_rows" class="fadeIn second" name="m_rows" placeholder="Number of Rows" required>
         <input type="text" id="m_columns" class="fadeIn third" name="m_columns" placeholder="Number of Columns"
