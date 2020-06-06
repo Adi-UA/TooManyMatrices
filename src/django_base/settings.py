@@ -19,19 +19,14 @@ BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 # Quick-start development settings - unsuitable for production
 # See https://docs.djangoproject.com/en/3.0/howto/deployment/checklist/
 
-temp = os.environ.get('SECRET_KEY')
+# SECURITY WARNING: keep the secret key used in production secret!
+# SECRET_KEY = 'x-w0v5hc9!m^w(ms2v3n&0l=%kd)aq706(&n6wa6k!h6fkj4)y'
+SECRET_KEY = os.environ.get('SECRET_KEY')
+# SECURITY WARNING: don't run with debug turned on in production!
 
-if temp is None:
-    SECRET_KEY = 'obviously_not_the_production_key'
-else:
-    SECRET_KEY = temp
+DEBUG = True
 
-
-DEBUG = os.environ.get('DEBUG_VALUE') == 'True'
-
-ALLOWED_HOSTS = ['localhost']
-
-SESSION_COOKIE_SECURE= True
+ALLOWED_HOSTS = ['toomanymatrices.herokuapp.com', 'localhost']
 
 STATICFILES_DIRS = []
 # Application definition
@@ -62,7 +57,7 @@ ROOT_URLCONF = 'django_base.urls'
 TEMPLATES = [
     {
         'BACKEND': 'django.template.backends.django.DjangoTemplates',
-        'DIRS': [os.path.join(BASE_DIR, '../tmm/templates/tmm')],
+        'DIRS': [],
         'APP_DIRS': True,
         'OPTIONS': {
             'context_processors': [
@@ -125,6 +120,6 @@ USE_TZ = True
 # Static files (CSS, JavaScript, Images)
 # https://docs.djangoproject.com/en/3.0/howto/static-files/
 
-STATICFILES_STORAGE = 'whitenoise.storage.CompressedStaticFilesStorage'
+STATICFILES_STORAGE = 'whitenoise.storage.CompressedManifestStaticFilesStorage'
 STATIC_ROOT = os.path.join(BASE_DIR, 'staticfiles')
 STATIC_URL = '/static/'

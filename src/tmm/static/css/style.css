@@ -8,7 +8,6 @@ height: 95vh;
 background: linear-gradient(-45deg, #e73c7e, #23a6d5, #e73c7e);
 background-size: 400% 400%;
 animation: gradient 15s ease infinite;
-
 }
 
 @keyframes gradient {
@@ -323,11 +322,5 @@ background-color: #fff;
 border-bottom: 2px solid #5fbae9;
 }
 
-pre{
-  font-family: "Poppins", sans-serif;
-  text-align: center;
-  display: flex;
-  align-items: center;
-  flex-direction: column;
-  justify-content: center;
-}
+
+

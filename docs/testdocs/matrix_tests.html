@@ -138,22 +138,6 @@ class MatrixTests(unittest.TestCase):
 
         _check(self, expected, result)
 
-    def test_mul_3(self):
-        &#34;&#34;&#34;
-        Tests multiplcation on non square matrices
-        &#34;&#34;&#34;
-        m1 = Matrix(4, 3)
-        m2 = Matrix(3, 4)
-
-        m1.insert_all([1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12])
-        m2.insert_all([1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12])
-
-        result = m1 * m2
-        expected = Matrix(4,4)
-        expected.insert_all([38, 44, 50, 56, 83, 98, 113, 128, 128, 152, 176, 200, 173, 206, 239, 272])
-
-        _check(self, expected, result)
-
     def test_boolmul_1(self):
         &#34;&#34;&#34;
         Tests boolean multiplication on standard 3x3 matrices
@@ -197,22 +181,6 @@ class MatrixTests(unittest.TestCase):
 
         result = m1.boolean_product(m2)
         expected = None
-
-        _check(self, expected, result)
-
-    def test_boolmul_4(self):
-        &#34;&#34;&#34;
-        Tests boolean multiplcation on non square matrices
-        &#34;&#34;&#34;
-        m1 = Matrix(3, 4)
-        m2 = Matrix(4, 3)
-
-        m1.insert_all([0, 0, 0, 1, 0, 1, 0, 0, 1])
-        m2.insert_all([0, 0, 0, 1, 0, 1, 0, 0, 0])
-
-        result = m1.boolean_product(m2)
-        expected = Matrix(3,3)
-        expected.insert_all([0,0,0,0,0,0,0,0,0])
 
         _check(self, expected, result)
 
@@ -963,22 +931,6 @@ not have a method with the specified name.</p></div>
 
         _check(self, expected, result)
 
-    def test_mul_3(self):
-        &#34;&#34;&#34;
-        Tests multiplcation on non square matrices
-        &#34;&#34;&#34;
-        m1 = Matrix(4, 3)
-        m2 = Matrix(3, 4)
-
-        m1.insert_all([1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12])
-        m2.insert_all([1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12])
-
-        result = m1 * m2
-        expected = Matrix(4,4)
-        expected.insert_all([38, 44, 50, 56, 83, 98, 113, 128, 128, 152, 176, 200, 173, 206, 239, 272])
-
-        _check(self, expected, result)
-
     def test_boolmul_1(self):
         &#34;&#34;&#34;
         Tests boolean multiplication on standard 3x3 matrices
@@ -1022,22 +974,6 @@ not have a method with the specified name.</p></div>
 
         result = m1.boolean_product(m2)
         expected = None
-
-        _check(self, expected, result)
-
-    def test_boolmul_4(self):
-        &#34;&#34;&#34;
-        Tests boolean multiplcation on non square matrices
-        &#34;&#34;&#34;
-        m1 = Matrix(3, 4)
-        m2 = Matrix(4, 3)
-
-        m1.insert_all([0, 0, 0, 1, 0, 1, 0, 0, 1])
-        m2.insert_all([0, 0, 0, 1, 0, 1, 0, 0, 0])
-
-        result = m1.boolean_product(m2)
-        expected = Matrix(3,3)
-        expected.insert_all([0,0,0,0,0,0,0,0,0])
 
         _check(self, expected, result)
 
@@ -2024,32 +1960,6 @@ not have a method with the specified name.</p></div>
     _check(self, expected, result)</code></pre>
 </details>
 </dd>
-<dt id="_matrix_tests.MatrixTests.test_boolmul_4"><code class="name flex">
-<span>def <span class="ident">test_boolmul_4</span></span>(<span>self)</span>
-</code></dt>
-<dd>
-<div class="desc"><p>Tests boolean multiplcation on non square matrices</p></div>
-<details class="source">
-<summary>
-<span>Expand source code</span>
-</summary>
-<pre><code class="python">def test_boolmul_4(self):
-    &#34;&#34;&#34;
-    Tests boolean multiplcation on non square matrices
-    &#34;&#34;&#34;
-    m1 = Matrix(3, 4)
-    m2 = Matrix(4, 3)
-
-    m1.insert_all([0, 0, 0, 1, 0, 1, 0, 0, 1])
-    m2.insert_all([0, 0, 0, 1, 0, 1, 0, 0, 0])
-
-    result = m1.boolean_product(m2)
-    expected = Matrix(3,3)
-    expected.insert_all([0,0,0,0,0,0,0,0,0])
-
-    _check(self, expected, result)</code></pre>
-</details>
-</dd>
 <dt id="_matrix_tests.MatrixTests.test_boolpow_1"><code class="name flex">
 <span>def <span class="ident">test_boolpow_1</span></span>(<span>self)</span>
 </code></dt>
@@ -2651,32 +2561,6 @@ where i!=j</p></div>
     _check(self, expected, result)</code></pre>
 </details>
 </dd>
-<dt id="_matrix_tests.MatrixTests.test_mul_3"><code class="name flex">
-<span>def <span class="ident">test_mul_3</span></span>(<span>self)</span>
-</code></dt>
-<dd>
-<div class="desc"><p>Tests multiplcation on non square matrices</p></div>
-<details class="source">
-<summary>
-<span>Expand source code</span>
-</summary>
-<pre><code class="python">def test_mul_3(self):
-    &#34;&#34;&#34;
-    Tests multiplcation on non square matrices
-    &#34;&#34;&#34;
-    m1 = Matrix(4, 3)
-    m2 = Matrix(3, 4)
-
-    m1.insert_all([1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12])
-    m2.insert_all([1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12])
-
-    result = m1 * m2
-    expected = Matrix(4,4)
-    expected.insert_all([38, 44, 50, 56, 83, 98, 113, 128, 128, 152, 176, 200, 173, 206, 239, 272])
-
-    _check(self, expected, result)</code></pre>
-</details>
-</dd>
 <dt id="_matrix_tests.MatrixTests.test_pow_1"><code class="name flex">
 <span>def <span class="ident">test_pow_1</span></span>(<span>self)</span>
 </code></dt>
@@ -3012,7 +2896,6 @@ where i!=j</p></div>
 <li><code><a title="_matrix_tests.MatrixTests.test_boolmul_1" href="#_matrix_tests.MatrixTests.test_boolmul_1">test_boolmul_1</a></code></li>
 <li><code><a title="_matrix_tests.MatrixTests.test_boolmul_2" href="#_matrix_tests.MatrixTests.test_boolmul_2">test_boolmul_2</a></code></li>
 <li><code><a title="_matrix_tests.MatrixTests.test_boolmul_3" href="#_matrix_tests.MatrixTests.test_boolmul_3">test_boolmul_3</a></code></li>
-<li><code><a title="_matrix_tests.MatrixTests.test_boolmul_4" href="#_matrix_tests.MatrixTests.test_boolmul_4">test_boolmul_4</a></code></li>
 <li><code><a title="_matrix_tests.MatrixTests.test_boolpow_1" href="#_matrix_tests.MatrixTests.test_boolpow_1">test_boolpow_1</a></code></li>
 <li><code><a title="_matrix_tests.MatrixTests.test_boolpow_2" href="#_matrix_tests.MatrixTests.test_boolpow_2">test_boolpow_2</a></code></li>
 <li><code><a title="_matrix_tests.MatrixTests.test_boolpow_3" href="#_matrix_tests.MatrixTests.test_boolpow_3">test_boolpow_3</a></code></li>
@@ -3039,7 +2922,6 @@ where i!=j</p></div>
 <li><code><a title="_matrix_tests.MatrixTests.test_minor_6" href="#_matrix_tests.MatrixTests.test_minor_6">test_minor_6</a></code></li>
 <li><code><a title="_matrix_tests.MatrixTests.test_mul_1" href="#_matrix_tests.MatrixTests.test_mul_1">test_mul_1</a></code></li>
 <li><code><a title="_matrix_tests.MatrixTests.test_mul_2" href="#_matrix_tests.MatrixTests.test_mul_2">test_mul_2</a></code></li>
-<li><code><a title="_matrix_tests.MatrixTests.test_mul_3" href="#_matrix_tests.MatrixTests.test_mul_3">test_mul_3</a></code></li>
 <li><code><a title="_matrix_tests.MatrixTests.test_pow_1" href="#_matrix_tests.MatrixTests.test_pow_1">test_pow_1</a></code></li>
 <li><code><a title="_matrix_tests.MatrixTests.test_pow_2" href="#_matrix_tests.MatrixTests.test_pow_2">test_pow_2</a></code></li>
 <li><code><a title="_matrix_tests.MatrixTests.test_pow_3" href="#_matrix_tests.MatrixTests.test_pow_3">test_pow_3</a></code></li>
