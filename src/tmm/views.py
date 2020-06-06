@@ -10,14 +10,6 @@ def home(request):
     return render(request, 'tmm/home.html')
 
 
-def handler404(request, exception):
-    return render(request, 'tmm/404.html', status=404)
-
-
-def handler500(request):
-    return render(request, 'tmm/500.html', status=500)
-
-
 def choose(request):
     """
     This function takes the choice of operation from home.html
@@ -84,20 +76,16 @@ def add(request):
         m1, m1_entries = matrix_builder(request, "m", "m1")
         m2, m2_entries = matrix_builder(request, "m", "m2")
 
-        if m1 == False:
-            return render(request, page,
-                          {'error': [ERROR_DICT[5]]})
+        if order_checker(m1, m2, m1_entries, m2_entries):
+            m1.insert_all(clean(m1_entries))
+            m2.insert_all(clean(m2_entries))
+            result_add = matrix_to_list(m1 + m2)
+            return render(request,
+                          page,
+                          {'content': result_add})
         else:
-            if order_checker(m1, m2, m1_entries, m2_entries):
-                m1.insert_all(clean(m1_entries))
-                m2.insert_all(clean(m2_entries))
-                result_add = matrix_to_list(m1 + m2)
-                return render(request,
-                              page,
-                              {'content': result_add})
-            else:
-                return render(request, page,
-                              {'error': [ERROR_DICT[0]]})
+            return render(request, page,
+                          {'error': [ERROR_DICT[0]]})
 
 
 def subtract(request):
@@ -116,23 +104,18 @@ def subtract(request):
         m1, m1_entries = matrix_builder(request, "m", "m1")
         m2, m2_entries = matrix_builder(request, "m", "m2")
 
-        if m1 == False:
-            return render(request, page,
-                          {'error': [ERROR_DICT[5]]})
+        if order_checker(m1, m2, m1_entries, m2_entries):
+            m1.insert_all(clean(m1_entries))
+            m2.insert_all(clean(m2_entries))
 
+            result_subtract = matrix_to_list(m1 - m2)
+            return render(request,
+                          page,
+                          {'content': result_subtract})
         else:
-            if order_checker(m1, m2, m1_entries, m2_entries):
-                m1.insert_all(clean(m1_entries))
-                m2.insert_all(clean(m2_entries))
-
-                result_subtract = matrix_to_list(m1 - m2)
-                return render(request,
-                              page,
-                              {'content': result_subtract})
-            else:
-                return render(request,
-                              page,
-                              {'error': [ERROR_DICT[0]]})
+            return render(request,
+                          page,
+                          {'error': [ERROR_DICT[0]]})
 
 
 def multiply(request):
@@ -151,26 +134,22 @@ def multiply(request):
         m1, m1_entries = matrix_builder(request, "m1", "m1")
         m2, m2_entries = matrix_builder(request, "m2", "m2")
 
-        if m1 == False or m2 == False:
-            return render(request, page,
-                          {'error': [ERROR_DICT[5]]})
-        else:
-            if order_checker(m1, m2, m1_entries, m2_entries):
-                if m1.get_col_no() == m2.get_row_no():
-                    m1.insert_all(clean(m1_entries))
-                    m2.insert_all(clean(m2_entries))
-                    result_multiply = matrix_to_list(m1 * m2)
-                    return render(request, page, {'content': result_multiply})
-                else:
-                    return render(request,
-                                  page,
-                                  {'error': [ERROR_DICT[1],
-                                             ERROR_DICT[2]]})
-
+        if order_checker(m1, m2, m1_entries, m2_entries):
+            if m1.get_col_no() == m2.get_row_no():
+                m1.insert_all(clean(m1_entries))
+                m2.insert_all(clean(m2_entries))
+                result_multiply = matrix_to_list(m1 * m2)
+                return render(request, page, {'content': result_multiply})
             else:
                 return render(request,
                               page,
-                              {'error': [ERROR_DICT[0]]})
+                              {'error': [ERROR_DICT[1],
+                                         ERROR_DICT[2]]})
+
+        else:
+            return render(request,
+                          page,
+                          {'error': [ERROR_DICT[0]]})
 
 
 def bit_or(request):
@@ -189,22 +168,17 @@ def bit_or(request):
         m1, m1_entries = matrix_builder(request, "m", "m1")
         m2, m2_entries = matrix_builder(request, "m", "m2")
 
-        if m1 == False:
-            return render(request, page,
-                          {'error': [ERROR_DICT[5]]})
-
+        if order_checker(m1, m2, m1_entries, m2_entries):
+            m1.insert_all(clean(m1_entries, True))
+            m2.insert_all(clean(m2_entries, True))
+            result_bit_or = matrix_to_list(m1 | m2)
+            return render(request,
+                          page,
+                          {'content': result_bit_or})
         else:
-            if order_checker(m1, m2, m1_entries, m2_entries):
-                m1.insert_all(clean(m1_entries, True))
-                m2.insert_all(clean(m2_entries, True))
-                result_bit_or = matrix_to_list(m1 | m2)
-                return render(request,
-                              page,
-                              {'content': result_bit_or})
-            else:
-                return render(request,
-                              page,
-                              {'error': [ERROR_DICT[0]]})
+            return render(request,
+                          page,
+                          {'error': [ERROR_DICT[0]]})
 
 
 def bit_and(request):
@@ -223,23 +197,18 @@ def bit_and(request):
         m1, m1_entries = matrix_builder(request, "m", "m1")
         m2, m2_entries = matrix_builder(request, "m", "m2")
 
-        if m1 == False:
-            return render(request, page,
-                          {'error': [ERROR_DICT[5]]})
+        if order_checker(m1, m2, m1_entries, m2_entries):
+            m1.insert_all(clean(m1_entries, True))
+            m2.insert_all(clean(m2_entries, True))
+            result_bit_and = matrix_to_list(m1 & m2)
+            return render(request,
+                          page,
+                          {'content': result_bit_and})
 
         else:
-            if order_checker(m1, m2, m1_entries, m2_entries):
-                m1.insert_all(clean(m1_entries, True))
-                m2.insert_all(clean(m2_entries, True))
-                result_bit_and = matrix_to_list(m1 & m2)
-                return render(request,
-                              page,
-                              {'content': result_bit_and})
-
-            else:
-                return render(request,
-                              page,
-                              {'error': [ERROR_DICT[0]]})
+            return render(request,
+                          page,
+                          {'error': [ERROR_DICT[0]]})
 
 
 def bit_xor(request):
@@ -258,22 +227,17 @@ def bit_xor(request):
         m1, m1_entries = matrix_builder(request, "m", "m1")
         m2, m2_entries = matrix_builder(request, "m", "m2")
 
-        if m1 == False:
-            return render(request, page,
-                          {'error': [ERROR_DICT[5]]})
-
+        if order_checker(m1, m2, m1_entries, m2_entries):
+            m1.insert_all(clean(m1_entries, True))
+            m2.insert_all(clean(m2_entries, True))
+            result_bit_xor = matrix_to_list(m1 ^ m2)
+            return render(request,
+                          page,
+                          {'content': result_bit_xor})
         else:
-            if order_checker(m1, m2, m1_entries, m2_entries):
-                m1.insert_all(clean(m1_entries, True))
-                m2.insert_all(clean(m2_entries, True))
-                result_bit_xor = matrix_to_list(m1 ^ m2)
-                return render(request,
-                              page,
-                              {'content': result_bit_xor})
-            else:
-                return render(request,
-                              page,
-                              {'error': [ERROR_DICT[0]]})
+            return render(request,
+                          page,
+                          {'error': [ERROR_DICT[0]]})
 
 
 def power(request):
@@ -290,23 +254,16 @@ def power(request):
         page = 'tmm/op_power.html'
 
         m1, m1_entries = matrix_builder(request, "m", "m1", True)
-        power = request.POST['pow']
+        power = int(request.POST['pow'])
 
-        if m1 == False or input_checker(power) == False:
+        if order_checker(m1, None, m1_entries, None):
+            m1.insert_all(clean(m1_entries))
+            result_power = matrix_to_list(m1 ** power)
             return render(request, page,
-                          {'error': [ERROR_DICT[5]]})
-
+                          {'content': result_power})
         else:
-            if order_checker(m1, None, m1_entries, None):
-                m1.insert_all(clean(m1_entries))
-                power = int(power)
-
-                result_power = matrix_to_list(m1 ** power)
-                return render(request, page,
-                              {'content': result_power})
-            else:
-                return render(request, page,
-                              {'error': [ERROR_DICT[0]]})
+            return render(request, page,
+                          {'error': [ERROR_DICT[0]]})
 
 
 def right_shift(request):
@@ -323,23 +280,16 @@ def right_shift(request):
         page = 'tmm/op_right_shift.html'
 
         m1, m1_entries = matrix_builder(request, "m", "m1")
-        shift = request.POST['shift']
+        shift = int(request.POST['shift'])
 
-        if m1 == False or input_checker(shift) == False:
+        if order_checker(m1, None, m1_entries, None):
+            m1.insert_all(clean(m1_entries, True))
+            result_right_shift = matrix_to_list(m1 >> shift)
             return render(request, page,
-                          {'error': [ERROR_DICT[5]]})
-
+                          {'content': result_right_shift})
         else:
-            if order_checker(m1, None, m1_entries, None):
-                m1.insert_all(clean(m1_entries, True))
-                shift = int(shift)
-
-                result_right_shift = matrix_to_list(m1 >> shift)
-                return render(request, page,
-                              {'content': result_right_shift})
-            else:
-                return render(request, page,
-                              {'error': [ERROR_DICT[0]]})
+            return render(request, page,
+                          {'error': [ERROR_DICT[0]]})
 
 
 def left_shift(request):
@@ -356,23 +306,16 @@ def left_shift(request):
         page = 'tmm/op_left_shift.html'
 
         m1, m1_entries = matrix_builder(request, "m", "m1")
-        shift = request.POST['shift']
+        shift = int(request.POST['shift'])
 
-        if m1 == False or input_checker(shift) == False:
+        if order_checker(m1, None, m1_entries, None):
+            m1.insert_all(clean(m1_entries, True))
+            result_left_shift = matrix_to_list(m1 << shift)
             return render(request, page,
-                          {'error': [ERROR_DICT[5]]})
-
+                          {'content': result_left_shift})
         else:
-            if order_checker(m1, None, m1_entries, None):
-                m1.insert_all(clean(m1_entries, True))
-                shift = int(shift)
-
-                result_left_shift = matrix_to_list(m1 << shift)
-                return render(request, page,
-                              {'content': result_left_shift})
-            else:
-                return render(request, page,
-                              {'error': [ERROR_DICT[0]]})
+            return render(request, page,
+                          {'error': [ERROR_DICT[0]]})
 
 
 def scalar_multiply(request):
@@ -389,23 +332,16 @@ def scalar_multiply(request):
         page = 'tmm/op_scalar_multiplication.html'
 
         m1, m1_entries = matrix_builder(request, "m", "m1")
-        multiplier = request.POST['multiplier']
+        multiplier = int(request.POST['multiplier'])
 
-        if m1 == False or input_checker(multiplier) == False:
+        if order_checker(m1, None, m1_entries, None):
+            m1.insert_all(clean(m1_entries))
+            result_scalar_multiply = matrix_to_list(m1 * multiplier)
             return render(request, page,
-                          {'error': [ERROR_DICT[5]]})
-
+                          {'content': result_scalar_multiply})
         else:
-            if order_checker(m1, None, m1_entries, None):
-                m1.insert_all(clean(m1_entries))
-                multiplier = int(multiplier)
-
-                result_scalar_multiply = matrix_to_list(m1 * multiplier)
-                return render(request, page,
-                              {'content': result_scalar_multiply})
-            else:
-                return render(request, page,
-                              {'error': [ERROR_DICT[0]]})
+            return render(request, page,
+                          {'error': [ERROR_DICT[0]]})
 
 
 def transpose(request):
@@ -423,19 +359,14 @@ def transpose(request):
 
         m1, m1_entries = matrix_builder(request, "m", "m1")
 
-        if m1 == False:
+        if order_checker(m1, None, m1_entries, None):
+            m1.insert_all(clean(m1_entries))
+            result_transpose = matrix_to_list(m1.transpose())
             return render(request, page,
-                          {'error': [ERROR_DICT[5]]})
-
+                          {'content': result_transpose})
         else:
-            if order_checker(m1, None, m1_entries, None):
-                m1.insert_all(clean(m1_entries))
-                result_transpose = matrix_to_list(m1.transpose())
-                return render(request, page,
-                              {'content': result_transpose})
-            else:
-                return render(request, page,
-                              {'error': [ERROR_DICT[0]]})
+            return render(request, page,
+                          {'error': [ERROR_DICT[0]]})
 
 
 def boolean_multiply(request):
@@ -454,33 +385,28 @@ def boolean_multiply(request):
         m1, m1_entries = matrix_builder(request, "m1", "m1")
         m2, m2_entries = matrix_builder(request, "m2", "m2")
 
-        if m1 == False or m2 == False:
-            return render(request, page,
-                          {'error': [ERROR_DICT[5]]})
-
-        else:
-            if order_checker(m1, m2, m1_entries, m2_entries):
-                if m1.get_col_no() == m2.get_row_no():
-                    m1.insert_all(clean(m1_entries, True))
-                    m2.insert_all(clean(m2_entries, True))
-                    result = m1.boolean_product(m2)
-                    if result is None:
-                        return render(request, page,
-                                      {'error': [ERROR_DICT[3]]})
-                    else:
-                        result_bool_product = matrix_to_list(result)
-                        return render(request,
-                                      page,
-                                      {'content': result_bool_product})
+        if order_checker(m1, m2, m1_entries, m2_entries):
+            if m1.get_col_no() == m2.get_row_no():
+                m1.insert_all(clean(m1_entries, True))
+                m2.insert_all(clean(m2_entries, True))
+                result = m1.boolean_product(m2)
+                if result is None:
+                    return render(request, page,
+                                  {'error': [ERROR_DICT[3]]})
                 else:
+                    result_bool_product = matrix_to_list(result)
                     return render(request,
                                   page,
-                                  {'error': [ERROR_DICT[1],
-                                             ERROR_DICT[2]]})
+                                  {'content': result_bool_product})
             else:
                 return render(request,
                               page,
-                              {'error': [ERROR_DICT[0]]})
+                              {'error': [ERROR_DICT[1],
+                                         ERROR_DICT[2]]})
+        else:
+            return render(request,
+                          page,
+                          {'error': [ERROR_DICT[0]]})
 
 
 def boolean_power(request):
@@ -497,28 +423,21 @@ def boolean_power(request):
         page = 'tmm/op_bool_power.html'
 
         m1, m1_entries = matrix_builder(request, "m", "m1", True)
-        power = request.POST['pow']
+        power = int(request.POST['pow'])
 
-        if m1 == False or input_checker(power) == False:
-            return render(request, page,
-                          {'error': [ERROR_DICT[5]]})
-
-        else:
-            if order_checker(m1, None, m1_entries, None):
-                m1.insert_all(clean(m1_entries, True))
-                power = int(power)
-
-                result = m1.boolean_power(power)
-                if result is None:
-                    return render(request, page,
-                                  {'error': [ERROR_DICT[3]]})
-                else:
-                    result_power = matrix_to_list(result)
-                    return render(request, page,
-                                  {'content': result_power})
-            else:
+        if order_checker(m1, None, m1_entries, None):
+            m1.insert_all(clean(m1_entries, True))
+            result = m1.boolean_power(power)
+            if result is None:
                 return render(request, page,
-                              {'error': [ERROR_DICT[0]]})
+                              {'error': [ERROR_DICT[3]]})
+            else:
+                result_power = matrix_to_list(result)
+                return render(request, page,
+                              {'content': result_power})
+        else:
+            return render(request, page,
+                          {'error': [ERROR_DICT[0]]})
 
 
 def determinant(request):
@@ -533,19 +452,14 @@ def determinant(request):
 
         m1, m1_entries = matrix_builder(request, "m", "m1", True)
 
-        if m1 == False:
+        if order_checker(m1, None, m1_entries, None):
+            m1.insert_all(clean(m1_entries))
+            result = m1.det()
             return render(request, page,
-                          {'error': [ERROR_DICT[5]]})
-
+                          {'content': [result]})
         else:
-            if order_checker(m1, None, m1_entries, None):
-                m1.insert_all(clean(m1_entries))
-                result = m1.det()
-                return render(request, page,
-                              {'content': [result]})
-            else:
-                return render(request, page,
-                              {'error': [ERROR_DICT[0]]})
+            return render(request, page,
+                          {'error': [ERROR_DICT[0]]})
 
 
 def cofactor(request):
@@ -560,19 +474,14 @@ def cofactor(request):
 
         m1, m1_entries = matrix_builder(request, "m", "m1", True)
 
-        if m1 == False:
+        if order_checker(m1, None, m1_entries, None):
+            m1.insert_all(clean(m1_entries))
+            result = matrix_to_list(m1.cofactor())
             return render(request, page,
-                          {'error': [ERROR_DICT[5]]})
-
+                          {'content': result})
         else:
-            if order_checker(m1, None, m1_entries, None):
-                m1.insert_all(clean(m1_entries))
-                result = matrix_to_list(m1.cofactor())
-                return render(request, page,
-                              {'content': result})
-            else:
-                return render(request, page,
-                              {'error': [ERROR_DICT[0]]})
+            return render(request, page,
+                          {'error': [ERROR_DICT[0]]})
 
 
 def adjoint(request):
@@ -587,19 +496,14 @@ def adjoint(request):
 
         m1, m1_entries = matrix_builder(request, "m", "m1", True)
 
-        if m1 == False:
+        if order_checker(m1, None, m1_entries, None):
+            m1.insert_all(clean(m1_entries))
+            result = matrix_to_list(m1.adjoint())
             return render(request, page,
-                          {'error': [ERROR_DICT[5]]})
-
+                          {'content': result})
         else:
-            if order_checker(m1, None, m1_entries, None):
-                m1.insert_all(clean(m1_entries))
-                result = matrix_to_list(m1.adjoint())
-                return render(request, page,
-                              {'content': result})
-            else:
-                return render(request, page,
-                              {'error': [ERROR_DICT[0]]})
+            return render(request, page,
+                          {'error': [ERROR_DICT[0]]})
 
 
 def inverse(request):
@@ -614,24 +518,19 @@ def inverse(request):
 
         m1, m1_entries = matrix_builder(request, "m", "m1", True)
 
-        if m1 == False:
-            return render(request, page,
-                          {'error': [ERROR_DICT[5]]})
+        if order_checker(m1, None, m1_entries, None):
+            m1.insert_all(clean(m1_entries))
+            result = m1.inv()
 
-        else:
-            if order_checker(m1, None, m1_entries, None):
-                m1.insert_all(clean(m1_entries))
-                result = m1.inv()
-
-                if result is not None:
-                    return render(request, page,
-                                  {'content': matrix_to_list(result)})
-                else:
-                    return render(request, page,
-                                  {'error': [ERROR_DICT[4]]})
+            if result is not None:
+                return render(request, page,
+                              {'content': matrix_to_list(result)})
             else:
                 return render(request, page,
-                              {'error': [ERROR_DICT[0]]})
+                              {'error': [ERROR_DICT[4]]})
+        else:
+            return render(request, page,
+                          {'error': [ERROR_DICT[0]]})
 
 
 def find_minor(request):
@@ -646,26 +545,19 @@ def find_minor(request):
         page = 'tmm/op_find_minor.html'
 
         m1, m1_entries = matrix_builder(request, "m", "m1", True)
-        r = request.POST['row']
-        c = request.POST['col']
+        r = int(request.POST['row'])
+        c = int(request.POST['col'])
 
-        if m1 == False or input_checker(r) == False or input_checker(c) == False:
-            return render(request, page,
-                          {'error': [ERROR_DICT[5]]})
+        if order_checker(m1, None, m1_entries, None):
+            m1.insert_all(clean(m1_entries))
+            result = m1.find_minor(r, c)
 
-        else:
-            if order_checker(m1, None, m1_entries, None):
-                m1.insert_all(clean(m1_entries))
-                r = int(r)
-                c = int(c)
-                result = m1.find_minor(r, c)
-
-                if result is not None:
-                    return render(request, page,
-                                  {'content': matrix_to_list(result)})
-                else:
-                    return render(request, page,
-                                  {'error': ['Your row or column was invalid']})
+            if result is not None:
+                return render(request, page,
+                              {'content': matrix_to_list(result)})
             else:
                 return render(request, page,
-                              {'error': [ERROR_DICT[0]]})
+                              {'error': ['Your row or column was invalid']})
+        else:
+            return render(request, page,
+                          {'error': [ERROR_DICT[0]]})
