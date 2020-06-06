@@ -26,8 +26,10 @@ Finally, open a browser and go to `localhost:8000` to get started.
 
 ## Current Status
 
-At this stage, we have complete working matrix functionality and stable interactions between the front and back end. The initial version of this webapp with only support matrix functions, but the rest are coming soon! Please refer to the releases page for the latest stable version. We will host the website as soon as we finish polishing and tweaking a few aspects of the UI and code.
+At this stage, we have complete matrix functionality and stable interactions between the front and back end. The initial version of this webapp will only support matrix operations, but more functions are coming soon! 
 
-We are commited to adding more support for discrete math functions and are currently exploring the possibility of adding BODMAS functionality over time. 
+Please refer to the releases page for the latest stable version. We will host the website as soon as we finish polishing a few aspects of the UI and code.
 
-In the mean time, we would appreciate any support in the form of bug reports, both mathemtaical and user interface based, in order to provide the best possible experience. Any bugs can be reported in the `Issues` tab.
+We are commited to adding support for more discrete math functions and are currently exploring the possibility of adding BODMAS functionality. 
+
+In the mean time, we would appreciate any support in the form of bug reports, both mathemtaical and user interface based, in order to provide the best possible experience. Bugs can be reported in the `Issues` tab.
