@@ -29,7 +29,6 @@ a {
 	bottom: 0;
 	left: 0;
 	z-index: -1;
-	background: linear-gradient(to bottom, rgba(0, 0, 0, 0.12) 40%, rgba(27, 32, 48, 1) 100%);
 }
 .header:before {
 	content: "";
@@ -43,15 +42,27 @@ a {
 	backface-visibility: hidden;
 	scale: (1.0, 1.0);
 	transform: translateZ(0);
-	background: #1b2030
-		url(https://images.unsplash.com/photo-1571993142257-eae0b44cf0f1?ixlib=rb-1.2.1&q=85&fm=jpg&crop=entropy&cs=srgb&ixid=eyJhcHBfaWQiOjE0NTg5fQ)
-		50% 0 no-repeat;
-	background-size: 100%;
-	background-attachment: fixed;
-	animation: grow 360s linear 10ms infinite;
+	background: linear-gradient(-45deg, #e73c7e, #23a6d5, #e73c7e);
+	background-size: 400% 400%;
+	animation: gradient 15s ease infinite;
 	transition: all 0.4s ease-in-out;
 	z-index: -2;
 }
+
+@keyframes gradient {
+	0% {
+	  background-position: 0% 50%;
+	}
+	
+	50% {
+	  background-position: 100% 50%;
+	}
+	
+	100% {
+	  background-position: 0% 50%;
+	}
+	}
+
 .header a {
 	color: #eee;
 }
@@ -86,8 +97,6 @@ a {
 	display: inline-flex;
 	align-items: flex-start;
 	align-content: center;
-	margin: 20px;
-	padding: 0px 10px;
 	font-weight: 900;
 	font-size: 1.1em;
 	line-height: 1;
@@ -131,7 +140,7 @@ a {
 	}
 }
 .content {
-	padding: 5% 10%;
+	padding: 1% 10%;
 	text-align: center;
 }
 .btn {
@@ -145,7 +154,8 @@ a {
 }
 
 .twtr {
-	margin-top: 100px;
+	margin-top: 10px;
+	margin-left: 5px;
 }
 .btn.twtr:after {
 	font-family: "Poppins", sans-serif;

@@ -20,3 +20,26 @@
     right: -6px;
     border-left: 0;
   }
+#wrapper {
+  display: inline;
+}
+#div1 {
+    display: inline-block;
+    margin-left: 10px;
+    margin-right: 10px;
+}
+#div2 {
+    display: inline-block;
+    margin-left: 10px;
+    margin-right: 10px;
+    vertical-align: text-bottom;
+    margin-bottom: 10px;
+}
+#div3 {
+  display: inline-block;
+  vertical-align: text-bottom;
+  margin-left: 10px;
+  margin-right: 10px;
+  margin-top: 12px;
+  margin-bottom: 1px;
+}
