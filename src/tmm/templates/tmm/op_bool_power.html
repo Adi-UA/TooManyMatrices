@@ -5,7 +5,7 @@
 <html>
 
 <head>
-    <title>Boolean Power</title>
+    <title>Matrix Boolean Power</title>
     <link rel="stylesheet" type="text/css" href="{% static 'css/style.css' %}">
 </head>
 
@@ -13,12 +13,37 @@
     <div class="wrapper fadeInDown">
         <div id="formContent">
             <!-- Tabs Titles -->
-            <h2 class="active">Boolean Power</h2>
+            <h2 class="Active">Choose an operation:</h2>
+            <form action="{% url 'choose' %}" method="post">
+                {% csrf_token %}
+                <br>
+                <label for="choice"></label>
+                <select id="choice" name="choice" class="select-css" onchange="this.form.submit();">
+                    <option class="select-items" value="0">Matrix Boolean Power</option>
+                    <option class="select-items" value="Matrix Addition">Matrix Addition</option>
+                    <option class="select-items" value="Matrix Subtraction">Matrix Subtraction</option>
+                    <option class="select-items" value="Matrix Multiplication">Matrix Product</option>
+                    <option class="select-items" value="Matrix Bitwise OR">Matrix Bitwise OR</option>
+                    <option class="select-items" value="Matrix Bitwise AND">Matrix Bitwise AND</option>
+                    <option class="select-items" value="Matrix Bitwise XOR">Matrix Bitwise XOR</option>
+                    <option class="select-items" value="Matrix Power">Matrix Power</option>
+                    <option class="select-items" value="Matrix Right Shift">Matrix Right Shift</option>
+                    <option class="select-items" value="Matrix Left Shift">Matrix Left Shift</option>
+                    <option class="select-items" value="Matrix Scalar Multiplication">Matrix Scalar Product
+                    </option>
+                    <option class="select-items" value="Transpose">Matrix Transpose</option>
+                    <option class="select-items" value="Boolean Product">Matrix Boolean Product</option>
+                    <option class="select-items" value="Matrix Determinant">Matrix Determinant</option>
+                    <option class="select-items" value="Matrix Cofactor">Matrix Cofactor</option>
+                    <option class="select-items" value="Matrix Adjoint">Matrix Adjoint</option>
+                    <option class="select-items" value="Matrix Minor">Matrix Minor</option>
+                    <option class="select-items" value="Matrix Inverse">Matrix Inverse</option>
+                </select>
+            </form>
             <form action="{% url 'op_boolean_power' %}" method="post">
                 {% csrf_token %}
                 <input type="text" id="pow" class="fadeIn second" name="pow" placeholder="Power" required>
-                <input type="text" id="m_rows" class="fadeIn third" name="m_rows" placeholder="Number of Rows/Columns"
-                    required>
+                <input type="text" id="m_rows" class="fadeIn third" name="m_rows" placeholder="Size" required>
                 <br>
                 <textarea id="m1_entry" name="m1_entry" class="fadeIn third" rows="4" cols="50"
                     placeholder="Matrix Values" required></textarea>
@@ -28,13 +53,23 @@
             </form>
             <!-- Remind Passowrd -->
             <div id="formFooter">
-                {% for c in content %}
-                <p>{{c}}</p>
-                {% endfor %}
+                <div id="div2">
+                    {% if content %}
+                    <table class="matrix">
+                        {% for c in content %}
+                        <tr>
+                            <td>
+                                <pre>{{c}}</pre>
+                            </td>
+                        </tr>
+                        {% endfor %}
+                    </table>
+                    {% endif %}
+                </div>
                 {% for e in error %}
                 <p style="color: #ff2640;">{{e}}</p>
                 {% endfor %}
-                <p><a href="{% url 'tmm-home' %}"><b>Try another operation</b></a></p>
+                <p><a href="{% url 'tmm-home' %}"><b>Home</b></a></p>
             </div>
         </div>
     </div>

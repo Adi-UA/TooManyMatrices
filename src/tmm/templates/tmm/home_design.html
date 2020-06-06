@@ -12,29 +12,35 @@
   <link rel="stylesheet" type="text/css" href="{% static 'css/home_design.css' %}">
   <link rel="stylesheet" type="text/css" href="{% static 'css/header.css' %}">
   <link rel="stylesheet" type="text/css" href="{% static 'css/matrix.css' %}">
-
+  <link rel="stylesheet" type="text/css" href="{% static 'css/matrix.css' %}" media="screen and (device-height: 600px)">
   <div class="header">
     <div class="info">
       {% block list %}{% endblock %}
     </div>
   </div>
   <section class="content">
-    <b>
-      <p>Instructions:</p>
-    </b>
-    <div align=center>
-      <table class="matrix">
-        <tr>
-          <td> 1 </td>
-          <td> 2 </td>
-        </tr>
-        <tr>
-          <td> 3 </td>
-          <td> 4 </td>
-        </tr>
-      </table>
-      <p>becomes <br> 1 </t> 2 <br> 3 </t> 4 </p>
+    <p><b>Note:</b> Enter matrix values in plain text</p>
+    <div id="wrapper">
+      <div id="div1">
+        <table class="matrix">
+          <tr>
+            <td> 1 </td>
+            <td> 2 </td>
+          </tr>
+          <tr>
+            <td> 3 </td>
+            <td> 4 </td>
+          </tr>
+        </table>
+      </div>
+      <div id="div2">
+        <p>becomes</p>
+      </div>
+      <div id="div3">
+        <p> 1 </t> 2 <br> 3 </t> 4 </p>
+      </div>
     </div>
+    <br>
     <br>
     <p><b>&lt;/&gt;</b> with <span style="color: #e25555;">&hearts;</span> by <b><a style="color: #56baed;"
           href="https://github.com/Adi-UA" target="_blank">Adi</a></b> and <b><a style="color: #56baed;"
