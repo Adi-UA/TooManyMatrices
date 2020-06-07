@@ -14,20 +14,25 @@ Have you ever looked at a particularly gnarly math problem and thought, "there i
 * Run `pip install wheel`
 * Run `pip install django`
 * Run `pip install numpy`
+* Run `pip install whitenoise`
 
 Then, clone the repo with: `git clone https://github.com/Adi-UA/TooManyMatrices.git`
 
-**Note:** We are using `python 3.7.4`, `wheel 0.34.2`, `django 3.0.6` and `numpy 1.18.4`
+**Note:** We are using `python 3.7.4`, `wheel 0.34.2`, `django 3.0.7`, `numpy 1.18.4`, and `whitenoise 5.1.0`
 
 ### Running 
 
 From inside the repo on your computer, go to `src`, open a `terminal` and run:
+
+`python manage.py collectstatic`
 
 `python manage.py runserver`
 
 **Note:** This command works as is on `CMD`, and can work as is in a `Bash` environment if you have your `python3` alias set to `python`.
 
 Finally, open a browser and go to `localhost:8000` to get started.
+
+**Note:** The website itself should work within any browser, but you might see some UI inconsistencies on non-Chromium based browsers (Ex. Safari).
 
 ## Current Status
 
@@ -37,7 +42,7 @@ Please refer to the releases page for the latest stable version. We will host th
 
 We are commited to adding support for more discrete math functions and are currently exploring the possibility of adding BODMAS functionality. 
 
-In the mean time, we would appreciate any support in the form of bug reports, both mathemtaical and user interface based, in order to provide the best possible experience. Bugs can be reported in the `Issues` tab.
+In the mean time, we would appreciate any support in the form of bug reports, both mathemtaical and user interface based in order to provide the best possible experience. Bugs can be reported in the `Issues` tab.
 
 ### Supported Opertaions
 We currently support:
