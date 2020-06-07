@@ -13,6 +13,7 @@ Have you ever looked at a particularly gnarly math problem and thought, "there i
 ## Using 
 
 ### Before Running (Assuming you have pip and git)
+
 * Run `pip install wheel`
 * Run `pip install django`
 * Run `pip install numpy`
@@ -47,6 +48,7 @@ We are commited to adding support for more discrete math functions and are curre
 In the mean time, we would appreciate any support in the form of bug reports, both mathemtaical and user interface based in order to provide the best possible experience. Bugs can be reported in the `Issues` tab.
 
 ### Supported Opertaions
+
 We currently support:
 * Matrix Addition
 * Matrix Subtraction
