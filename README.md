@@ -3,6 +3,11 @@
 Have you ever looked at a particularly gnarly math problem and thought, "there is _no way_ I can manually calculate _that_ without messing up"? If you have, then `TooManyMatrices` might ease your woes (your discrete math woes anyway) by running those calculations for you.
 
 `TooManyMatrices` is a project in discrete mathematics where we ([@AdiUA](https://github.com/Adi-UA) and [@dev-ved30](https://github.com/dev-ved30)) build a website to solve all kinds of discrete math problems that are annoying to compute by hand or calculator.
+
+![](images/Homepage.png)
+
+![](images/operation.png)
+
 ## Using 
 
 ### Before Running (Assuming you have pip and git)
@@ -33,3 +38,20 @@ Please refer to the releases page for the latest stable version. We will host th
 We are commited to adding support for more discrete math functions and are currently exploring the possibility of adding BODMAS functionality. 
 
 In the mean time, we would appreciate any support in the form of bug reports, both mathemtaical and user interface based, in order to provide the best possible experience. Bugs can be reported in the `Issues` tab.
+
+### Supported Opertaions
+We currently support:
+* Matrix Addition
+* Matrix Subtraction
+* Matrix Product
+* Matrix Bitwise AND, OR, XOR
+* Matrix Power
+* Matrix Right and Left Shift
+* Matrix Transpose
+* Matrix Boolean Power
+* Matrix Boolean Product
+* Matrix Cofactor
+* Matrix Adjoint
+* Matrix Minor
+* Matrix Inverse
+* Determinant
