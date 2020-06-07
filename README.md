@@ -8,6 +8,8 @@ Have you ever looked at a particularly gnarly math problem and thought, "there i
 
 ![](images/operation.png)
 
+**Credit:** Huge shoutout to [Daniel Zawadzki](https://codepen.io/danzawadzki/pens/showcase) whose form CSS we found on `templatemonster.com`
+
 ## Using 
 
 ### Before Running (Assuming you have pip and git)
