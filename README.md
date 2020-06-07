@@ -8,7 +8,7 @@ Have you ever looked at a particularly gnarly math problem and thought, "there i
 
 ![](images/operation.png)
 
-**Credit:** Huge shoutout to [Daniel Zawadzki](https://codepen.io/danzawadzki/pens/showcase) whose form CSS we found on `templatemonster.com`
+**Credit:** Huge shoutout to [Daniel Zawadzki](https://codepen.io/danzawadzki/pens/showcase) whose form we found in a free CSS list on `templatemonster.com`
 
 ## Using 
 
