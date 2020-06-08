@@ -4,6 +4,8 @@ Have you ever looked at a particularly gnarly math problem and thought, "there i
 
 `TooManyMatrices` is a project in discrete mathematics where we ([@AdiUA](https://github.com/Adi-UA) and [@dev-ved30](https://github.com/dev-ved30)) build a website to solve all kinds of discrete math problems that are annoying to compute by hand or calculator.
 
+[Click here to go to the website](https://toomanymatrices.herokuapp.com/) or copy paste the following URL in your browser: https://toomanymatrices.herokuapp.com/
+
 ![](images/Homepage.png)
 
 ![](images/operation.png)
