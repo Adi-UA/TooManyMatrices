@@ -12,7 +12,7 @@ Have you ever looked at a particularly gnarly math problem and thought, "there i
 
 **Credit:** Huge shoutout to [Daniel Zawadzki](https://codepen.io/danzawadzki/pens/showcase) whose form we found in a free CSS list on `templatemonster.com`
 
-## Using 
+## Using Locally
 
 ### Before Running (Assuming you have pip and git)
 
@@ -21,11 +21,11 @@ Have you ever looked at a particularly gnarly math problem and thought, "there i
 * Run `pip install numpy`
 * Run `pip install whitenoise`
 
-Then, clone the repo with: `git clone https://github.com/Adi-UA/TooManyMatrices.git`
+Then, clone the repo with: `git clone https://github.com/Adi-UA/TooManyMatrices.git` or use the latest stable `release`.
 
 **Note:** We are using `python 3.7.4`, `wheel 0.34.2`, `django 3.0.7`, `numpy 1.18.4`, and `whitenoise 5.1.0`
 
-### Running 
+### Running
 
 From inside the repo on your computer, go to `src`, open a `terminal` and run:
 
