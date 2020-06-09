@@ -1,8 +1,8 @@
 # TooManyMatrices
 
-Have you ever looked at a particularly gnarly math problem and thought, "there is _no way_ I can manually calculate _that_ without messing up"? If you have, then `TooManyMatrices` might ease your woes (your discrete math woes anyway) by running those calculations for you.
+Have you ever looked at a particularly gnarly math problem and thought, "there is _no way_ I can manually calculate _that_ without messing up"? If you have, then `TooManyMatrices` might ease your woes (your matrix woes anyway) by running those calculations for you.
 
-`TooManyMatrices` is a project in discrete mathematics where we ([@AdiUA](https://github.com/Adi-UA) and [@dev-ved30](https://github.com/dev-ved30)) build a website to solve all kinds of discrete math problems that are annoying to compute by hand or calculator.
+`TooManyMatrices` is a project where we ([@AdiUA](https://github.com/Adi-UA) and [@dev-ved30](https://github.com/dev-ved30)) build a website to solve matrix problems that are annoying to compute by hand or calculator.
 
 [Click here to go to the website](https://toomanymatrices.herokuapp.com/) or copy paste the following URL in your browser: https://toomanymatrices.herokuapp.com/
 
@@ -39,15 +39,8 @@ Finally, open a browser and go to `localhost:8000` to get started.
 
 **Note:** The website itself should work within any browser, but you might see some UI inconsistencies on non-Chromium based browsers (Ex. Safari).
 
-## Current Status
-
-At this stage, we have complete matrix functionality and stable interactions between the front and back end. The initial version of this webapp will only support matrix operations, but more functions are coming soon! 
-
-Please refer to the releases page for the latest stable version. We will host the website as soon as we finish polishing a few aspects of the UI and code.
-
-We are commited to adding support for more discrete math functions and are currently exploring the possibility of adding BODMAS functionality. 
-
-In the mean time, we would appreciate any support in the form of bug reports, both mathemtaical and user interface based in order to provide the best possible experience. Bugs can be reported in the `Issues` tab.
+## Found Bugs?
+We would appreciate any support in the form of bug reports, both mathemtaical and user interface based in order to provide the best possible experience. Bugs can be reported in the `Issues` tab.
 
 ### Supported Opertaions
 
