@@ -16,14 +16,20 @@ Have you ever looked at a particularly gnarly math problem and thought, "there i
 
 ### Before Running (Assuming you have pip and git)
 
-* Run `pip install wheel`
-* Run `pip install django`
-* Run `pip install numpy`
-* Run `pip install whitenoise`
+* If you're not worried about breaking anything in your environment:
+    
+    * Run `pip install -r requirements.txt`
+
+* Otherwise, if you're trying to install the dependencies individually:
+
+    * Run `pip install wheel`
+    * Run `pip install django`
+    * Run `pip install numpy`
+    * Run `pip install whitenoise`
 
 Then, clone the repo with: `git clone https://github.com/Adi-UA/TooManyMatrices.git` or use the latest stable `release`.
 
-**Note:** We are using `python 3.7.4`, `wheel 0.34.2`, `django 3.0.7`, `numpy 1.18.4`, and `whitenoise 5.1.0`
+**Note:** We are using `python 3.7.4`, `wheel 0.34.2`, `django 3.0.8`, `numpy 1.19.0`, and `whitenoise 5.1.0`
 
 ### Running
 
