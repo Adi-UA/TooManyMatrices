@@ -14,7 +14,7 @@ Have you ever looked at a particularly gnarly math problem and thought, "there i
 
 ## Using Locally
 
-### Before Running (Assuming you have pip and git)
+### Before Running (Assuming you have pip, git and an appropriate version of python)
 
 * If you're not worried about breaking anything in your environment:
     
@@ -29,7 +29,7 @@ Have you ever looked at a particularly gnarly math problem and thought, "there i
 
 Then, clone the repo with: `git clone https://github.com/Adi-UA/TooManyMatrices.git` or use the latest stable `release`.
 
-**Note:** We are using `python 3.7.4`, `wheel 0.34.2`, `django 3.0.8`, `numpy 1.19.0`, and `whitenoise 5.1.0`
+**Note:** We are using `python 3.7.x`, `wheel 0.34.2`, `django 3.0.8`, `numpy 1.19.0`, and `whitenoise 5.1.0`
 
 ### Running
 
