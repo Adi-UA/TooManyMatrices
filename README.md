@@ -1,5 +1,7 @@
 # TooManyMatrices
 
+**Note:** Since the wesbite is deployed to Heroku, it may take upto 15 seconds to load up. We apologize for the delay.
+
 Have you ever looked at a particularly gnarly math problem and thought, "there is _no way_ I can manually calculate _that_ without messing up"? If you have, then `TooManyMatrices` might ease your woes (your matrix woes anyway) by running those calculations for you.
 
 `TooManyMatrices` is a project where we ([@AdiUA](https://github.com/Adi-UA) and [@dev-ved30](https://github.com/dev-ved30)) build a website to solve matrix problems that are annoying to compute by hand or calculator.
